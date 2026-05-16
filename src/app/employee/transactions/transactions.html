@@ -1,0 +1,84 @@
+<div class="row align-items-center mb-4">
+  <div class="col-md-8">
+    <h2 class="fw-bold text-dark mb-1">Global Transactions</h2>
+    <p class="text-muted small mb-0">Monitor all branch transactions, investigate failed transfers, and review fraud flags.</p>
+  </div>
+  <div class="col-md-4 text-md-end mt-3 mt-md-0 d-flex gap-2 justify-content-md-end">
+    <button class="btn btn-outline-dark rounded-pill px-4 fw-bold shadow-sm d-flex align-items-center gap-2" (click)="exportLedger()">
+      <i class="bi bi-download"></i> Export CSV
+    </button>
+  </div>
+</div>
+
+<div class="card border-0 shadow-sm rounded-5 overflow-hidden mb-4" id="empTxnContainer">
+  <div class="card-header bg-white py-4 px-4 border-0 border-bottom">
+    <div class="row g-3 align-items-center">
+      <div class="col-md-4">
+        <div class="input-group">
+          <span class="input-group-text bg-light border-0"><i class="bi bi-search text-muted"></i></span>
+          <input type="text" class="form-control bg-light border-0" placeholder="Search by reference, amount or date...">
+        </div>
+      </div>
+      <div class="col-md-3">
+        <select class="form-select bg-light border-0">
+          <option value="">All Types</option>
+          <option value="deposit">Deposits</option>
+          <option value="withdrawal">Withdrawals</option>
+          <option value="transfer">Transfers</option>
+        </select>
+      </div>
+      <div class="col-md-3">
+        <select class="form-select bg-light border-0">
+          <option value="">All Statuses</option>
+          <option value="completed">Completed</option>
+          <option value="pending">Pending</option>
+          <option value="failed">Failed / Flagged</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="table-responsive">
+    <table class="table table-hover align-middle mb-0">
+      <thead class="bg-light text-muted small text-uppercase ls-widest">
+        <tr>
+          <th class="ps-4 py-3 border-0">Reference & Details</th>
+          <th class="py-3 border-0">Category</th>
+          <th class="py-3 border-0">Date</th>
+          <th class="py-3 border-0">Status</th>
+          <th class="py-3 text-end pe-4 border-0">Amount</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let txn of transactions()">
+          <td class="ps-4 py-3">
+            <div class="d-flex align-items-center gap-3">
+              <div [class]="'rounded-circle d-flex align-items-center justify-content-center ' + (txn.transactionType === 'DEPOSIT' ? 'bg-success bg-opacity-10 text-success' : 'bg-danger bg-opacity-10 text-danger')" style="width: 45px; height: 45px;">
+                <i [class]="'bi fs-5 ' + (txn.transactionType === 'DEPOSIT' ? 'bi-arrow-down-left' : 'bi-arrow-up-right')"></i>
+              </div>
+              <div>
+                <div class="fw-bold text-dark mb-1">{{txn.remarks || txn.transactionType}}</div>
+                <div class="text-muted small">Ref: <code class="text-primary">{{txn.transactionReference}}</code></div>
+              </div>
+            </div>
+          </td>
+          <td><span class="badge bg-light text-dark border rounded-pill px-3 py-2 small fw-bold">{{txn.transactionType}}</span></td>
+          <td class="small text-muted fw-bold">{{txn.createdAt | date:'medium'}}</td>
+          <td>
+            <span [class]="'badge rounded-pill px-3 py-2 small ' + (txn.status === 'completed' ? 'bg-success bg-opacity-10 text-success' : 'bg-warning bg-opacity-10 text-warning')">
+              {{txn.status | titlecase}}
+            </span>
+          </td>
+          <td class="text-end pe-4">
+            <h6 [class]="'fw-bold mb-0 ' + (txn.transactionType === 'DEPOSIT' ? 'text-success' : 'text-dark')">
+              {{txn.transactionType === 'DEPOSIT' ? '+' : '-'}}${{txn.amount | number:'1.2-2'}}
+            </h6>
+          </td>
+        </tr>
+        <tr *ngIf="transactions().length === 0">
+          <td colspan="5" class="text-center py-5 text-muted small">No transactions found.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

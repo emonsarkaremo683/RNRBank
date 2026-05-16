@@ -1,0 +1,83 @@
+<!-- Page Header -->
+<section class="bg-primary text-white py-5">
+  <div class="container py-lg-4 text-center">
+    <h1 class="display-4 fw-bold mb-3">Careers at RNR Bank</h1>
+    <p class="lead opacity-75 mx-auto" style="max-width: 700px;">Join a team of innovators, dreamers, and doers. Build the future of digital banking with us.</p>
+  </div>
+</section>
+
+<!-- Why Join Us -->
+<section class="py-5">
+  <div class="container py-lg-5">
+    <div class="text-center mb-5">
+      <h2 class="display-6 fw-bold">Life at RNR Bank</h2>
+    </div>
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="p-4 bg-light rounded-5 text-center h-100 shadow-sm border-0">
+          <i class="bi bi-heart-pulse text-primary fs-1 mb-3"></i>
+          <h5 class="fw-bold">Wellness First</h5>
+          <p class="small text-secondary mb-0">Comprehensive health insurance and wellness programs for you and your family.</p>
+        </div>
+      </div>
+       <div class="col-md-4">
+        <div class="p-4 bg-light rounded-5 text-center h-100 shadow-sm border-0">
+          <i class="bi bi-mortarboard text-primary fs-1 mb-3"></i>
+          <h5 class="fw-bold">Continuous Learning</h5>
+          <p class="small text-secondary mb-0">Ongoing training, certifications, and educational assistance to grow your career.</p>
+        </div>
+      </div>
+       <div class="col-md-4">
+        <div class="p-4 bg-light rounded-5 text-center h-100 shadow-sm border-0">
+          <i class="bi bi-briefcase text-primary fs-1 mb-3"></i>
+          <h5 class="fw-bold">Flexible Work</h5>
+          <p class="small text-secondary mb-0">Hybrid work models and flexible hours to maintain a healthy work-life balance.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Job Openings -->
+<section class="py-5 bg-light">
+  <div class="container py-lg-5">
+    <div class="row mb-5 align-items-end">
+      <div class="col-md-6">
+        <h2 class="fw-bold mb-0">Open Positions</h2>
+        <p class="text-secondary mb-0">Find your next role in our global team.</p>
+      </div>
+      <div class="col-md-6 text-md-end mt-4 mt-md-0">
+        <div class="d-inline-flex gap-2">
+           <select class="form-select rounded-pill px-4 border-0 shadow-sm">
+             <option selected>All Departments</option>
+             <option>Technology</option>
+             <option>Marketing</option>
+             <option>Finance</option>
+           </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="row g-4">
+      <div *ngFor="let job of jobs()" class="col-12">
+        <div class="card border-0 shadow-sm rounded-4 p-4 hover-translate-x transition-all">
+          <div class="row align-items-center g-3">
+            <div class="col-md-6">
+              <h5 class="fw-bold mb-1">{{job.title}}</h5>
+              <div class="d-flex gap-3 small text-secondary">
+                <span><i class="bi bi-building me-1"></i> {{job.department}}</span>
+                <span><i class="bi bi-geo-alt me-1"></i> {{job.location}}</span>
+              </div>
+            </div>
+            <div class="col-md-3 text-md-center">
+              <span class="badge bg-primary bg-opacity-10 text-primary px-3 py-2 rounded-pill">{{job.type}}</span>
+            </div>
+            <div class="col-md-3 text-md-end">
+              <button class="btn btn-primary rounded-pill fw-bold px-4">Apply Now</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,46 @@
+<div class="otp-header mb-5 text-center">
+  <div class="bg-primary bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-4" style="width: 80px; height: 80px;">
+    <i class="bi bi-shield-lock-fill text-primary display-5"></i>
+  </div>
+  <h2 class="fw-bold text-dark mb-2">Verify Identity</h2>
+  <p class="text-muted small px-lg-5">We've sent a 6-digit verification code to your registered mobile number ending in <strong>•••• 1122</strong>.</p>
+</div>
+
+<form [formGroup]="otpForm" (ngSubmit)="onVerify()" class="otp-form text-center">
+  <div class="d-flex justify-content-between mb-5 gap-2">
+    <input type="text" maxlength="1" class="form-control otp-input py-3 fs-3 fw-bold" #otp1 (keyup)="moveFocus($event, otp2)">
+    <input type="text" maxlength="1" class="form-control otp-input py-3 fs-3 fw-bold" #otp2 (keyup)="moveFocus($event, otp3, otp1)">
+    <input type="text" maxlength="1" class="form-control otp-input py-3 fs-3 fw-bold" #otp3 (keyup)="moveFocus($event, otp4, otp2)">
+    <input type="text" maxlength="1" class="form-control otp-input py-3 fs-3 fw-bold" #otp4 (keyup)="moveFocus($event, otp5, otp3)">
+    <input type="text" maxlength="1" class="form-control otp-input py-3 fs-3 fw-bold" #otp5 (keyup)="moveFocus($event, otp6, otp4)">
+    <input type="text" maxlength="1" class="form-control otp-input py-3 fs-3 fw-bold" #otp6 (keyup)="moveFocus($event, null, otp5)">
+  </div>
+
+  <div class="mb-5">
+    <p class="text-muted small mb-2">Didn't receive the code?</p>
+    <div *ngIf="countdown > 0">
+      <span class="badge bg-light text-dark py-2 px-3 rounded-pill border">
+        Resend available in <span class="fw-bold text-primary">{{formatTime(countdown)}}</span>
+      </span>
+    </div>
+    <button 
+      *ngIf="countdown === 0" 
+      type="button" 
+      class="btn btn-link text-primary fw-bold text-decoration-none"
+      (click)="resendOtp()"
+    >
+      Resend Verification Code
+    </button>
+  </div>
+
+  <button 
+    type="submit" 
+    class="btn btn-primary btn-lg w-100 rounded-pill fw-bold py-3 shadow-lg"
+    [disabled]="!isOtpComplete() || isLoading"
+  >
+    <span *ngIf="!isLoading">Verify & Continue</span>
+    <div *ngIf="isLoading" class="spinner-border spinner-border-sm text-white" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </button>
+</form>

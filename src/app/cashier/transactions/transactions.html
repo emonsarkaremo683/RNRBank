@@ -1,0 +1,74 @@
+<div class="row align-items-center mb-4">
+  <div class="col-md-8">
+    <h2 class="fw-bold text-dark mb-1">Transaction Ledger</h2>
+    <p class="text-muted small mb-0">View and audit all recent cash operations and transfers.</p>
+  </div>
+  <div class="col-md-4 text-md-end mt-3 mt-md-0">
+    <button class="btn btn-outline-primary rounded-pill px-4 fw-bold shadow-sm" (click)="loadTransactions()">
+      <i class="bi bi-arrow-clockwise me-2"></i> Refresh Ledger
+    </button>
+  </div>
+</div>
+
+<div class="card border-0 shadow-sm rounded-4 overflow-hidden">
+  <div class="table-responsive">
+    <table class="table table-hover align-middle mb-0">
+      <thead class="bg-light text-muted small text-uppercase ls-widest">
+        <tr>
+          <th class="ps-4 py-3 border-0">Reference</th>
+          <th class="py-3 border-0">Type</th>
+          <th class="py-3 border-0">Accounts (From/To)</th>
+          <th class="py-3 border-0">Date & Time</th>
+          <th class="py-3 border-0">Status</th>
+          <th class="py-3 text-end pe-4 border-0">Amount</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let txn of transactions()">
+          <td class="ps-4 py-3">
+            <div class="fw-bold text-dark mb-1">{{txn.transactionReference}}</div>
+            <div class="small text-muted font-monospace">{{txn.id}}</div>
+          </td>
+          <td>
+            <span class="badge bg-light text-dark border rounded-pill px-3 py-2 small fw-bold">
+              {{txn.transactionType}}
+            </span>
+          </td>
+          <td>
+            <div class="d-flex align-items-center gap-2 mb-1">
+              <span class="badge bg-secondary bg-opacity-10 text-secondary small">From</span>
+              <span class="small fw-bold text-dark">{{txn.senderAccountId}}</span>
+            </div>
+            <div class="d-flex align-items-center gap-2">
+              <span class="badge bg-primary bg-opacity-10 text-primary small">To</span>
+              <span class="small fw-bold text-dark">{{txn.receiverAccountId}}</span>
+            </div>
+          </td>
+          <td class="small text-muted fw-bold">
+            {{txn.createdAt | date:'medium'}}
+          </td>
+          <td>
+            <span [class]="'badge rounded-pill px-3 py-2 small fw-bold ' + getStatusClass(txn.status)">
+              {{txn.status | titlecase}}
+            </span>
+          </td>
+          <td class="text-end pe-4">
+            <h6 [class]="'fw-bold mb-0 ' + (txn.transactionType === 'DEPOSIT' ? 'text-success' : 'text-dark')">
+              {{txn.transactionType === 'DEPOSIT' ? '+' : '-'}}${{txn.amount | number:'1.2-2'}}
+            </h6>
+          </td>
+        </tr>
+        <tr *ngIf="transactions().length === 0 && !loading()">
+          <td colspan="6" class="text-center py-5 text-muted small">No transactions found in the current period.</td>
+        </tr>
+        <tr *ngIf="loading()">
+          <td colspan="6" class="text-center py-5">
+            <div class="spinner-border text-primary" role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,25 @@
+.matrix-table {
+  .form-switch .form-check-input {
+    width: 2.5em;
+    height: 1.25em;
+    cursor: pointer;
+    
+    &:checked {
+      background-color: #0a192f;
+      border-color: #0a192f;
+    }
+  }
+
+  thead th {
+    vertical-align: middle;
+    border-bottom: none;
+  }
+
+  tbody tr:hover td {
+    background-color: rgba(10, 25, 47, 0.02);
+  }
+}
+
+.ls-widest {
+  letter-spacing: 0.1em;
+}

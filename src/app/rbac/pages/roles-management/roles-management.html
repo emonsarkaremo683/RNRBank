@@ -1,0 +1,85 @@
+<div class="roles-header d-flex justify-content-between align-items-center mb-5">
+  <div>
+    <h2 class="fw-bold text-dark mb-1">Roles Management</h2>
+    <p class="text-muted small mb-0">Define and manage system roles and their access levels.</p>
+  </div>
+  <button class="btn btn-primary rounded-pill px-4 fw-bold shadow-sm d-flex align-items-center gap-2" (click)="openCreateModal()">
+    <i class="bi bi-plus-lg"></i> Create New Role
+  </button>
+</div>
+
+<div class="row g-4">
+  <!-- Role Stats -->
+  <div class="col-md-3">
+    <div class="card border-0 shadow-sm rounded-4 p-4 text-center">
+      <h6 class="text-muted small text-uppercase fw-bold ls-widest mb-3">Total Roles</h6>
+      <h2 class="fw-bold text-primary mb-0">{{roles().length}}</h2>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="card border-0 shadow-sm rounded-4 p-4 text-center">
+      <h6 class="text-muted small text-uppercase fw-bold ls-widest mb-3">Active Roles</h6>
+      <h2 class="fw-bold text-success mb-0">{{roles().length}}</h2>
+    </div>
+  </div>
+</div>
+
+<!-- Roles Table -->
+<div class="card border-0 shadow-sm rounded-5 mt-5 overflow-hidden">
+  <div class="card-header bg-white py-4 px-4 border-0">
+    <div class="row align-items-center">
+      <div class="col-md-4">
+        <div class="input-group">
+          <span class="input-group-text bg-light border-0"><i class="bi bi-search text-muted"></i></span>
+          <input type="text" class="form-control bg-light border-0" placeholder="Search roles...">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="table-responsive">
+    <table class="table table-hover align-middle mb-0">
+      <thead class="bg-light text-muted small text-uppercase">
+        <tr>
+          <th class="ps-4 py-3">Role Name</th>
+          <th class="py-3">Code</th>
+          <th class="py-3">Permissions</th>
+          <th class="py-3">Status</th>
+          <th class="py-3 text-end pe-4">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let role of roles()">
+          <td class="ps-4">
+            <div class="d-flex align-items-center gap-3">
+              <div class="role-icon bg-primary bg-opacity-10 text-primary rounded-circle d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+                <i class="bi bi-shield-lock"></i>
+              </div>
+              <div>
+                <h6 class="fw-bold mb-0 text-dark">{{role.name}}</h6>
+                <span class="text-muted small">{{role.description || 'System role'}}</span>
+              </div>
+            </div>
+          </td>
+          <td><code class="text-primary fw-bold">{{role.code}}</code></td>
+          <td>
+            <span class="badge bg-light text-dark border rounded-pill px-3 py-2">
+              <i class="bi bi-key me-1"></i> Managed
+            </span>
+          </td>
+          <td>
+            <span class="badge bg-success bg-opacity-10 text-success rounded-pill px-3 py-2">Active</span>
+          </td>
+          <td class="text-end pe-4">
+            <div class="d-flex justify-content-end gap-2">
+              <button class="btn btn-light btn-sm rounded-circle shadow-sm" (click)="editRole(role)"><i class="bi bi-pencil-square text-primary"></i></button>
+              <button class="btn btn-light btn-sm rounded-circle shadow-sm" (click)="deleteRole(role.id)"><i class="bi bi-trash text-danger"></i></button>
+              <button class="btn btn-light btn-sm rounded-pill px-3 shadow-sm small fw-bold text-primary" (click)="managePermissions(role)">
+                Permissions
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

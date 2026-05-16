@@ -1,0 +1,135 @@
+<div class="row align-items-center mb-4">
+  <div class="col-md-8">
+    <h2 class="fw-bold text-dark mb-1">Executive Performance Board</h2>
+    <p class="text-muted small mb-0">High-level financial KPIs, customer growth metrics, and global banking health.</p>
+  </div>
+  <div class="col-md-4 text-md-end mt-3 mt-md-0">
+    <button class="btn btn-info rounded-pill px-4 fw-bold shadow-sm d-flex align-items-center gap-2 ms-auto">
+      <i class="bi bi-file-earmark-pdf"></i> Annual Report 2026
+    </button>
+  </div>
+</div>
+
+<!-- Executive KPI Cards -->
+<div class="row g-4 mb-5">
+  <div class="col-md-6 col-lg-3">
+    <div class="card border-0 bg-info bg-gradient text-dark shadow-sm rounded-4 p-4 h-100 position-relative overflow-hidden">
+      <div class="position-relative" style="z-index: 2;">
+        <h6 class="small fw-bold text-uppercase ls-widest mb-3 opacity-75">Total Revenue</h6>
+        <h2 class="fw-bold mb-1">${{stats()?.totalRevenue | number}}</h2>
+        <span class="badge bg-white text-info rounded-pill px-2 py-1 small fw-bold">+12% Growth</span>
+      </div>
+      <i class="bi bi-cash-coin position-absolute text-white opacity-25" style="font-size: 7rem; right: -10px; bottom: -20px;"></i>
+    </div>
+  </div>
+
+  <div class="col-md-6 col-lg-3">
+    <div class="card border-0 bg-success bg-gradient text-white shadow-sm rounded-4 p-4 h-100 position-relative overflow-hidden">
+      <div class="position-relative" style="z-index: 2;">
+        <h6 class="small fw-bold text-uppercase ls-widest mb-3 opacity-75">Monthly Profit</h6>
+        <h2 class="fw-bold mb-1">${{stats()?.monthlyProfit | number}}</h2>
+        <span class="badge bg-white text-success rounded-pill px-2 py-1 small fw-bold">Target Exceeded</span>
+      </div>
+      <i class="bi bi-graph-up position-absolute text-white opacity-25" style="font-size: 7rem; right: -10px; bottom: -20px;"></i>
+    </div>
+  </div>
+
+  <div class="col-md-6 col-lg-3">
+    <div class="card border-0 bg-white shadow-sm rounded-4 p-4 h-100">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <div class="bg-primary bg-opacity-10 text-primary rounded-3 p-2">
+          <i class="bi bi-people fs-4"></i>
+        </div>
+        <span class="small fw-bold text-success"><i class="bi bi-arrow-up-short"></i> 8.5%</span>
+      </div>
+      <h6 class="text-muted small fw-bold text-uppercase mb-1">Total Customers</h6>
+      <h3 class="fw-bold text-dark mb-0">{{stats()?.totalCustomers | number}}</h3>
+    </div>
+  </div>
+
+  <div class="col-md-6 col-lg-3">
+    <div class="card border-0 bg-white shadow-sm rounded-4 p-4 h-100">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <div class="bg-warning bg-opacity-10 text-warning rounded-3 p-2">
+          <i class="bi bi-shield-exclamation fs-4"></i>
+        </div>
+        <span class="badge bg-danger rounded-pill small fw-bold">{{stats()?.fraudAlerts}} Alerts</span>
+      </div>
+      <h6 class="text-muted small fw-bold text-uppercase mb-1">Risk Status</h6>
+      <h3 class="fw-bold text-dark mb-0">Controlled</h3>
+    </div>
+  </div>
+</div>
+
+<div class="row g-4 mb-5">
+  <div class="col-lg-8">
+    <div class="card border-0 shadow-sm rounded-5 p-4 h-100">
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <h5 class="fw-bold text-dark mb-0">Financial Growth Analytics</h5>
+        <div class="d-flex gap-2">
+          <button class="btn btn-light btn-sm rounded-pill fw-bold border px-3">Revenue</button>
+          <button class="btn btn-outline-success btn-sm rounded-pill fw-bold px-3">Profit</button>
+        </div>
+      </div>
+      <div style="height: 350px;">
+        <canvas baseChart
+          [data]="lineChartData"
+          [options]="lineChartOptions"
+          [type]="'line'">
+        </canvas>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-4">
+    <div class="card border-0 shadow-sm rounded-5 p-4 h-100">
+      <h5 class="fw-bold text-dark mb-4">Branch Rankings (Revenue)</h5>
+      <div class="d-flex flex-column gap-4">
+        <div class="d-flex align-items-center gap-3">
+           <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center fw-bold" style="width: 32px; height: 32px;">1</div>
+           <div class="flex-grow-1">
+             <h6 class="fw-bold text-dark mb-0 small">Motijheel Main</h6>
+             <div class="progress mt-1" style="height: 4px;">
+               <div class="progress-bar bg-primary" role="progressbar" style="width: 95%"></div>
+             </div>
+           </div>
+           <span class="small fw-bold">$4.2M</span>
+        </div>
+        <div class="d-flex align-items-center gap-3">
+           <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center fw-bold" style="width: 32px; height: 32px;">2</div>
+           <div class="flex-grow-1">
+             <h6 class="fw-bold text-dark mb-0 small">Gulshan-2 Branch</h6>
+             <div class="progress mt-1" style="height: 4px;">
+               <div class="progress-bar bg-primary" role="progressbar" style="width: 82%"></div>
+             </div>
+           </div>
+           <span class="small fw-bold">$3.8M</span>
+        </div>
+        <div class="d-flex align-items-center gap-3">
+           <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center fw-bold" style="width: 32px; height: 32px;">3</div>
+           <div class="flex-grow-1">
+             <h6 class="fw-bold text-dark mb-0 small">Agrabad C/A</h6>
+             <div class="progress mt-1" style="height: 4px;">
+               <div class="progress-bar bg-primary" role="progressbar" style="width: 76%"></div>
+             </div>
+           </div>
+           <span class="small fw-bold">$3.1M</span>
+        </div>
+        <div class="d-flex align-items-center gap-3">
+           <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center fw-bold" style="width: 32px; height: 32px;">4</div>
+           <div class="flex-grow-1">
+             <h6 class="fw-bold text-dark mb-0 small">Uttara Model Town</h6>
+             <div class="progress mt-1" style="height: 4px;">
+               <div class="progress-bar bg-primary" role="progressbar" style="width: 65%"></div>
+             </div>
+           </div>
+           <span class="small fw-bold">$2.5M</span>
+        </div>
+      </div>
+      
+      <div class="mt-auto pt-4 border-top border-secondary border-opacity-10 text-center">
+        <a routerLink="/analytics/branches" class="small fw-bold text-info text-decoration-none">Full Branch Analytics <i class="bi bi-arrow-right ms-1"></i></a>
+      </div>
+    </div>
+  </div>
+</div>

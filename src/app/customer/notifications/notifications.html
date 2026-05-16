@@ -1,0 +1,47 @@
+<div class="row align-items-center mb-4">
+  <div class="col-md-8">
+    <h2 class="fw-bold text-dark mb-1">Notifications</h2>
+    <p class="text-muted small mb-0">Stay updated with your account activities and security alerts.</p>
+  </div>
+  <div class="col-md-4 text-md-end mt-3 mt-md-0">
+    <button class="btn btn-outline-primary rounded-pill px-4 fw-bold shadow-sm d-flex align-items-center gap-2 ms-auto">
+      <i class="bi bi-check-all"></i> Mark All as Read
+    </button>
+  </div>
+</div>
+
+<div class="card border-0 shadow-sm rounded-5 overflow-hidden">
+  <div class="card-header bg-white py-4 px-4 border-0 border-bottom d-flex justify-content-between align-items-center">
+    <div class="d-flex gap-2">
+      <button class="btn btn-primary rounded-pill px-4 fw-bold shadow-sm">All</button>
+      <button class="btn btn-white bg-white border rounded-pill px-4 fw-bold shadow-sm text-muted">Unread</button>
+    </div>
+  </div>
+  <div class="list-group list-group-flush">
+    <div *ngFor="let notif of notifications" class="list-group-item p-4 border-bottom position-relative" [class.bg-light]="!notif.read">
+      <div *ngIf="!notif.read" class="position-absolute top-50 start-0 translate-middle-y bg-primary rounded-circle" style="width: 8px; height: 8px; margin-left: 12px;"></div>
+      
+      <div class="d-flex gap-4 align-items-start ms-3">
+        <div [class]="'rounded-circle d-flex align-items-center justify-content-center ' + 
+          (notif.type === 'alert' ? 'bg-danger bg-opacity-10 text-danger' : 
+           notif.type === 'success' ? 'bg-success bg-opacity-10 text-success' : 
+           notif.type === 'warning' ? 'bg-warning bg-opacity-10 text-warning' : 
+           'bg-info bg-opacity-10 text-info')" style="width: 50px; height: 50px; flex-shrink: 0;">
+          <i [class]="'bi fs-4 ' + 
+            (notif.type === 'alert' ? 'bi-shield-exclamation' : 
+             notif.type === 'success' ? 'bi-arrow-down-left' : 
+             notif.type === 'warning' ? 'bi-exclamation-triangle' : 
+             'bi-info-circle')"></i>
+        </div>
+        
+        <div class="flex-grow-1">
+          <div class="d-flex justify-content-between align-items-center mb-1">
+            <h6 [class]="'mb-0 ' + (!notif.read ? 'fw-bold text-dark' : 'fw-semibold text-muted')">{{notif.title}}</h6>
+            <span class="small text-muted">{{notif.time}}</span>
+          </div>
+          <p class="small text-muted mb-0">{{notif.message}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,42 @@
+<div class="row align-items-center mb-5">
+  <div class="col-md-8">
+    <h2 class="fw-bold text-dark mb-1">Global Login History</h2>
+    <p class="text-muted small mb-0">Review all system authentication events, monitor failed attempts, and investigate suspicious patterns.</p>
+  </div>
+</div>
+
+<div class="card border-0 shadow-sm rounded-5 overflow-hidden">
+  <div class="table-responsive">
+    <table class="table table-hover align-middle mb-0">
+      <thead class="bg-light text-muted small text-uppercase ls-widest">
+        <tr>
+          <th class="ps-4 py-3 border-0">Timestamp</th>
+          <th class="py-3 border-0">User ID</th>
+          <th class="py-3 border-0">Device & Browser</th>
+          <th class="py-3 border-0">IP Address</th>
+          <th class="py-3 border-0">Status</th>
+          <th class="py-3 text-end pe-4 border-0">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let h of history">
+          <td class="ps-4 py-3">
+             <div class="fw-bold text-dark small">{{h.date | date:'mediumDate'}}</div>
+             <div class="text-muted" style="font-size: 0.7rem;">{{h.date | date:'mediumTime'}}</div>
+          </td>
+          <td><span class="small fw-bold text-primary">{{h.userId}}</span></td>
+          <td><span class="small text-muted fw-bold"><i class="bi bi-laptop me-1"></i> {{h.device}}</span></td>
+          <td><code class="small text-dark">{{h.ip}}</code></td>
+          <td>
+            <span [class]="'badge rounded-pill px-3 py-2 small ' + (h.status === 'success' ? 'bg-success bg-opacity-10 text-success' : 'bg-danger bg-opacity-10 text-danger')">
+              {{h.status | uppercase}}
+            </span>
+          </td>
+          <td class="text-end pe-4">
+             <button class="btn btn-light btn-sm rounded-circle shadow-sm border-0"><i class="bi bi-info-lg"></i></button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,82 @@
+<!-- Page Header -->
+<section class="bg-primary text-white py-5">
+  <div class="container py-lg-4 text-center">
+    <h1 class="display-4 fw-bold mb-3">Security Awareness</h1>
+    <p class="lead opacity-75 mx-auto" style="max-width: 700px;">Your security is our top priority. Learn how to protect your financial data and bank safely online.</p>
+  </div>
+</section>
+
+<!-- Security Guidelines -->
+<section class="py-5">
+  <div class="container py-lg-5">
+    <div class="row g-5">
+      <div class="col-lg-6">
+        <h2 class="fw-bold mb-4">Fraud Prevention Tips</h2>
+        <div class="d-flex flex-column gap-4">
+          <div *ngFor="let tip of tips()" class="p-4 bg-light rounded-4 shadow-sm border-start border-5 border-warning">
+            <h5 class="fw-bold mb-2">{{tip.title}}</h5>
+            <p class="small text-secondary mb-0">{{tip.desc}}</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="bg-dark text-white p-5 rounded-5 shadow-lg h-100">
+          <i class="bi bi-shield-lock-fill text-warning" style="font-size: 4rem;"></i>
+          <h2 class="fw-bold mt-4 mb-4">Report a Scam</h2>
+          <p class="opacity-75 mb-5">If you suspect you've been a victim of fraud or have received a suspicious communication, please report it to our security team immediately.</p>
+          
+          <div class="bg-white bg-opacity-10 p-4 rounded-4 mb-4">
+            <div class="d-flex gap-3 mb-3">
+              <i class="bi bi-telephone-fill text-warning"></i>
+              <div>
+                <h6 class="fw-bold mb-0">Fraud Hotline</h6>
+                <span class="small opacity-50">+1 (800) RNR-SAFE (24/7)</span>
+              </div>
+            </div>
+            <div class="d-flex gap-3">
+              <i class="bi bi-envelope-fill text-warning"></i>
+              <div>
+                <h6 class="fw-bold mb-0">Security Email</h6>
+                <span class="small opacity-50">security@rnrbank.com</span>
+              </div>
+            </div>
+          </div>
+          
+          <button class="btn btn-warning w-100 rounded-pill fw-bold py-3 mt-auto shadow">Report Suspicious Activity</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Technical Security -->
+<section class="py-5 bg-light">
+  <div class="container py-lg-5">
+    <div class="text-center mb-5">
+      <h2 class="display-6 fw-bold">How we protect you</h2>
+    </div>
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="text-center p-4">
+          <i class="bi bi-cpu text-primary fs-1 mb-3"></i>
+          <h5 class="fw-bold">AI Fraud Detection</h5>
+          <p class="small text-secondary">Our AI models monitor millions of transactions to detect and block suspicious patterns in real-time.</p>
+        </div>
+      </div>
+       <div class="col-md-4">
+        <div class="text-center p-4">
+          <i class="bi bi-incognito text-primary fs-1 mb-3"></i>
+          <h5 class="fw-bold">Data Encryption</h5>
+          <p class="small text-secondary">All your data is protected with 256-bit AES encryption, both in transit and at rest.</p>
+        </div>
+      </div>
+       <div class="col-md-4">
+        <div class="text-center p-4">
+          <i class="bi bi-fingerprint text-primary fs-1 mb-3"></i>
+          <h5 class="fw-bold">Biometric Auth</h5>
+          <p class="small text-secondary">State-of-the-art biometric authentication ensures that only you can access your accounts.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

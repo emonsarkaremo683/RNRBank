@@ -1,0 +1,146 @@
+<div class="row align-items-center mb-4">
+  <div class="col-md-8">
+    <h2 class="fw-bold text-dark mb-1">Cashier Dashboard</h2>
+    <p class="text-muted small mb-0">Overview of today's branch cash operations and teller performance.</p>
+  </div>
+  <div class="col-md-4 text-md-end mt-3 mt-md-0">
+    <div class="bg-white p-2 rounded-4 shadow-sm d-inline-flex align-items-center gap-2 border">
+      <span class="badge bg-success bg-opacity-10 text-success rounded-pill p-2"><i class="bi bi-clock-fill"></i></span>
+      <span class="fw-bold small me-2">{{today | date:'fullDate'}}</span>
+    </div>
+  </div>
+</div>
+
+<!-- Summary Cards -->
+<div class="row g-4 mb-5">
+  <div class="col-md-6 col-xl-3">
+    <div class="card border-0 shadow-sm rounded-4 h-100 overflow-hidden">
+      <div class="card-body p-4">
+        <div class="d-flex justify-content-between mb-3">
+          <div class="bg-primary bg-opacity-10 text-primary rounded-3 p-3 shadow-sm">
+            <i class="bi bi-cash-stack fs-4"></i>
+          </div>
+          <div class="text-end">
+            <span class="text-muted small fw-bold text-uppercase">Today's Deposits</span>
+            <h3 class="fw-bold text-dark mb-0">${{stats()?.todayDeposits | number}}</h3>
+          </div>
+        </div>
+        <div class="d-flex justify-content-between align-items-center">
+          <span class="badge bg-success bg-opacity-10 text-success small"><i class="bi bi-graph-up me-1"></i> +12.5%</span>
+          <button class="btn btn-light btn-sm rounded-pill fw-bold text-primary" routerLink="/cashier/deposits">Details</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-6 col-xl-3">
+    <div class="card border-0 shadow-sm rounded-4 h-100 overflow-hidden">
+      <div class="card-body p-4">
+        <div class="d-flex justify-content-between mb-3">
+          <div class="bg-danger bg-opacity-10 text-danger rounded-3 p-3 shadow-sm">
+            <i class="bi bi-bank fs-4"></i>
+          </div>
+          <div class="text-end">
+            <span class="text-muted small fw-bold text-uppercase">Today's Withdrawals</span>
+            <h3 class="fw-bold text-dark mb-0">${{stats()?.todayWithdrawals | number}}</h3>
+          </div>
+        </div>
+        <div class="d-flex justify-content-between align-items-center">
+          <span class="badge bg-warning text-dark small"><i class="bi bi-graph-down me-1"></i> -3.2%</span>
+          <button class="btn btn-light btn-sm rounded-pill fw-bold text-primary" routerLink="/cashier/withdrawals">Details</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-6 col-xl-3">
+    <div class="card border-0 shadow-sm rounded-4 h-100 overflow-hidden">
+      <div class="card-body p-4">
+        <div class="d-flex justify-content-between mb-3">
+          <div class="bg-warning bg-opacity-10 text-warning rounded-3 p-3 shadow-sm">
+            <i class="bi bi-people-fill fs-4"></i>
+          </div>
+          <div class="text-end">
+            <span class="text-muted small fw-bold text-uppercase">Teller Queue</span>
+            <h3 class="fw-bold text-dark mb-0">{{stats()?.pendingQueue}}</h3>
+          </div>
+        </div>
+        <div class="d-flex justify-content-between align-items-center">
+          <span class="text-muted small">Average wait: 5m</span>
+          <button class="btn btn-light btn-sm rounded-pill fw-bold text-primary" routerLink="/cashier/teller-queue">Serve</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-6 col-xl-3">
+    <div class="card border-0 shadow-sm rounded-4 h-100 overflow-hidden">
+      <div class="card-body p-4">
+        <div class="d-flex justify-content-between mb-3">
+          <div class="bg-info bg-opacity-10 text-info rounded-3 p-3 shadow-sm">
+            <i class="bi bi-safe2-fill fs-4"></i>
+          </div>
+          <div class="text-end">
+            <span class="text-muted small fw-bold text-uppercase">Vault Balance</span>
+            <h3 class="fw-bold text-dark mb-0">${{stats()?.vaultBalance | number}}</h3>
+          </div>
+        </div>
+        <div class="d-flex justify-content-between align-items-center">
+          <span class="text-success small fw-bold">Status: Secure</span>
+          <button class="btn btn-light btn-sm rounded-pill fw-bold text-primary" routerLink="/cashier/vault">Request</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row g-4">
+  <!-- Analytics Chart -->
+  <div class="col-lg-8">
+    <div class="card border-0 shadow-sm rounded-4 h-100 p-4">
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <h5 class="fw-bold text-dark mb-0">Customer Traffic (Today)</h5>
+        <div class="dropdown">
+          <button class="btn btn-light btn-sm border rounded-pill px-3 fw-bold" data-bs-toggle="dropdown">Last 24h <i class="bi bi-chevron-down ms-1"></i></button>
+          <ul class="dropdown-menu shadow border-0 rounded-3">
+            <li><a class="dropdown-item small">Last 7 Days</a></li>
+            <li><a class="dropdown-item small">Last Month</a></li>
+          </ul>
+        </div>
+      </div>
+      <div style="height: 350px;">
+        <canvas baseChart [data]="chartData" [options]="chartOptions" [type]="'line'"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <!-- Branch Cash Summary -->
+  <div class="col-lg-4">
+    <div class="card border-0 shadow-sm rounded-4 h-100 p-4">
+      <h5 class="fw-bold text-dark mb-4">Cash Position</h5>
+      <div class="list-group list-group-flush">
+        <div class="list-group-item px-0 py-3 border-bottom d-flex justify-content-between">
+          <span class="text-muted small fw-bold">Cash in Hand</span>
+          <span class="fw-bold text-success">${{stats()?.cashInHand | number}}</span>
+        </div>
+        <div class="list-group-item px-0 py-3 border-bottom d-flex justify-content-between">
+          <span class="text-muted small fw-bold">Failed Transactions</span>
+          <span class="fw-bold text-danger">{{stats()?.failedTransactions}}</span>
+        </div>
+        <div class="list-group-item px-0 py-3 border-bottom d-flex justify-content-between">
+          <span class="text-muted small fw-bold">Customer Requests</span>
+          <span class="fw-bold text-primary">{{stats()?.customerRequests}}</span>
+        </div>
+        <div class="list-group-item px-0 py-3 border-bottom d-flex justify-content-between">
+          <span class="text-muted small fw-bold">Daily Cash Flow</span>
+          <span class="fw-bold text-dark">${{stats()?.dailyCashFlow | number}}</span>
+        </div>
+        <div class="list-group-item px-0 py-3 border-0 d-flex justify-content-between">
+          <span class="text-muted small fw-bold">Pending Verification</span>
+          <span class="badge bg-warning text-dark rounded-pill">{{stats()?.pendingVerifications}}</span>
+        </div>
+      </div>
+      <button class="btn btn-primary w-100 rounded-pill fw-bold py-3 mt-4 shadow-sm">Generate Reconciliation Report</button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,33 @@
+<div class="row align-items-center mb-4">
+  <div class="col-md-8">
+    <h2 class="fw-bold text-dark mb-1">My Tasks</h2>
+    <p class="text-muted small mb-0">Manage your daily workflow, approvals, and follow-ups.</p>
+  </div>
+</div>
+
+<div class="card border-0 shadow-sm rounded-5 overflow-hidden">
+  <div class="card-header bg-white py-4 px-4 border-0 border-bottom d-flex justify-content-between align-items-center">
+    <h5 class="fw-bold text-dark mb-0">Pending Tasks</h5>
+    <button class="btn btn-primary btn-sm rounded-pill fw-bold px-3">Add Task</button>
+  </div>
+  <div class="list-group list-group-flush">
+    <div *ngFor="let task of tasks()" class="list-group-item p-4 border-bottom">
+      <div class="d-flex justify-content-between align-items-center">
+        <div class="form-check d-flex align-items-center gap-3">
+          <input class="form-check-input mt-0 fs-5" type="checkbox" style="cursor: pointer;" (change)="completeTask(task.id)">
+          <div>
+            <h6 class="fw-bold mb-1" [class.text-decoration-line-through]="task.status === 'completed'">{{task.title}}</h6>
+            <div class="small text-muted d-flex gap-3">
+              <span><i class="bi bi-clock me-1"></i> Due: {{task.dueDate || task.due | date:'mediumDate'}}</span>
+              <span [class]="'fw-bold ' + (task.priority?.toLowerCase() === 'high' ? 'text-danger' : task.priority?.toLowerCase() === 'medium' ? 'text-warning' : 'text-info')">
+                <i class="bi bi-flag-fill me-1"></i> {{task.priority | titlecase}}
+              </span>
+            </div>
+          </div>
+        </div>
+        <button class="btn btn-light btn-sm rounded-circle shadow-sm"><i class="bi bi-three-dots-vertical"></i></button>
+      </div>
+    </div>
+    <div *ngIf="tasks().length === 0" class="text-center py-5 text-muted small">No tasks found.</div>
+  </div>
+</div>

@@ -1,0 +1,173 @@
+<div class="row align-items-center mb-4">
+  <div class="col-md-8">
+    <h2 class="fw-bold text-dark mb-1">Financial Overview</h2>
+    <p class="text-muted small mb-0">Here is your updated financial summary and recent activities.</p>
+  </div>
+  <div class="col-md-4 text-md-end mt-3 mt-md-0">
+    <button class="btn btn-primary rounded-pill px-4 fw-bold shadow-sm d-flex align-items-center gap-2 ms-auto" routerLink="/customer/transactions">
+      <i class="bi bi-send"></i> Send Money
+    </button>
+  </div>
+</div>
+
+<!-- Summary Cards -->
+<div class="row g-4 mb-5">
+  <div class="col-md-6 col-lg-4">
+    <div class="card border-0 bg-primary text-white shadow-sm rounded-4 p-4 h-100 position-relative overflow-hidden">
+      <div class="position-relative" style="z-index: 2;">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+          <div class="bg-white bg-opacity-25 rounded-3 p-2">
+            <i class="bi bi-wallet2 fs-4"></i>
+          </div>
+          <span class="badge bg-white text-primary rounded-pill fw-bold">Total Balance</span>
+        </div>
+        <h2 class="fw-bold mb-1">${{getTotalBalance() | number:'1.2-2'}}</h2>
+        <p class="small text-white-50 mb-0 d-flex align-items-center gap-1">
+          <i class="bi bi-graph-up-arrow"></i> +2.4% from last month
+        </p>
+      </div>
+      <i class="bi bi-cash-stack position-absolute text-white opacity-10" style="font-size: 8rem; right: -20px; bottom: -20px;"></i>
+    </div>
+  </div>
+
+  <div class="col-md-6 col-lg-4">
+    <div class="card border-0 bg-white shadow-sm rounded-4 p-4 h-100 transition-all hover-translate-y">
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <div class="bg-success bg-opacity-10 text-success rounded-3 p-2">
+          <i class="bi bi-arrow-down-left-circle fs-4"></i>
+        </div>
+        <span class="small text-muted fw-bold text-uppercase">Monthly Income</span>
+      </div>
+      <h3 class="fw-bold text-dark mb-1">$6,500.00</h3>
+      <p class="small text-success mb-0 d-flex align-items-center gap-1 fw-bold">
+        <i class="bi bi-arrow-up-right"></i> 12% increase
+      </p>
+    </div>
+  </div>
+
+  <div class="col-md-12 col-lg-4">
+    <div class="card border-0 bg-white shadow-sm rounded-4 p-4 h-100 transition-all hover-translate-y">
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <div class="bg-danger bg-opacity-10 text-danger rounded-3 p-2">
+          <i class="bi bi-arrow-up-right-circle fs-4"></i>
+        </div>
+        <span class="small text-muted fw-bold text-uppercase">Monthly Spending</span>
+      </div>
+      <h3 class="fw-bold text-dark mb-1">$2,700.00</h3>
+      <p class="small text-danger mb-0 d-flex align-items-center gap-1 fw-bold">
+        <i class="bi bi-arrow-down-right"></i> 5% decrease
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="row g-4 mb-5">
+  <!-- Chart -->
+  <div class="col-lg-7">
+    <div class="card border-0 shadow-sm rounded-4 p-4 h-100">
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <h5 class="fw-bold text-dark mb-0">Cash Flow Analytics</h5>
+        <select class="form-select form-select-sm border-0 bg-light rounded-pill px-3 fw-bold text-muted" style="width: 140px;">
+          <option>This Year</option>
+          <option>Last 6 Months</option>
+        </select>
+      </div>
+      <div style="height: 300px;">
+        <canvas baseChart
+          [data]="barChartData"
+          [options]="barChartOptions"
+          [type]="'bar'">
+        </canvas>
+      </div>
+    </div>
+  </div>
+
+  <!-- Quick Actions & Small Stats -->
+  <div class="col-lg-5">
+    <div class="row g-4">
+      <div class="col-6">
+        <button class="btn btn-light w-100 p-4 rounded-4 border-0 shadow-sm d-flex flex-column align-items-center gap-2 transition-all hover-translate-y" routerLink="/customer/transactions">
+          <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center mb-2" style="width: 50px; height: 50px;">
+            <i class="bi bi-arrow-left-right fs-4"></i>
+          </div>
+          <span class="fw-bold small text-dark">Transfer</span>
+        </button>
+      </div>
+      <div class="col-6">
+        <button class="btn btn-light w-100 p-4 rounded-4 border-0 shadow-sm d-flex flex-column align-items-center gap-2 transition-all hover-translate-y" routerLink="/customer/mobile-banking">
+          <div class="bg-warning text-dark rounded-circle d-flex align-items-center justify-content-center mb-2" style="width: 50px; height: 50px;">
+            <i class="bi bi-phone fs-4"></i>
+          </div>
+          <span class="fw-bold small text-dark">Top Up</span>
+        </button>
+      </div>
+      <div class="col-6">
+        <button class="btn btn-light w-100 p-4 rounded-4 border-0 shadow-sm d-flex flex-column align-items-center gap-2 transition-all hover-translate-y" routerLink="/customer/cards">
+          <div class="bg-info text-white rounded-circle d-flex align-items-center justify-content-center mb-2" style="width: 50px; height: 50px;">
+            <i class="bi bi-credit-card fs-4"></i>
+          </div>
+          <span class="fw-bold small text-dark">Cards</span>
+        </button>
+      </div>
+      <div class="col-6">
+        <button class="btn btn-light w-100 p-4 rounded-4 border-0 shadow-sm d-flex flex-column align-items-center gap-2 transition-all hover-translate-y" routerLink="/customer/loans">
+          <div class="bg-success text-white rounded-circle d-flex align-items-center justify-content-center mb-2" style="width: 50px; height: 50px;">
+            <i class="bi bi-piggy-bank fs-4"></i>
+          </div>
+          <span class="fw-bold small text-dark">Loans</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Recent Transactions -->
+<div class="card border-0 shadow-sm rounded-4 overflow-hidden mb-4">
+  <div class="card-header bg-white py-4 px-4 border-0 d-flex justify-content-between align-items-center">
+    <h5 class="fw-bold text-dark mb-0">Recent Transactions</h5>
+    <a routerLink="/customer/transactions" class="btn btn-outline-primary btn-sm rounded-pill px-3 fw-bold">View All</a>
+  </div>
+  <div class="table-responsive">
+    <table class="table table-hover align-middle mb-0 border-top">
+      <thead class="bg-light text-muted small text-uppercase ls-widest">
+        <tr>
+          <th class="ps-4 py-3 border-0">Transaction</th>
+          <th class="py-3 border-0">Category</th>
+          <th class="py-3 border-0">Date</th>
+          <th class="py-3 border-0">Status</th>
+          <th class="py-3 text-end pe-4 border-0">Amount</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let txn of transactions()">
+          <td class="ps-4 py-3">
+            <div class="d-flex align-items-center gap-3">
+              <div [class]="'rounded-circle d-flex align-items-center justify-content-center ' + (txn.transactionType === 'DEPOSIT' ? 'bg-success bg-opacity-10 text-success' : 'bg-danger bg-opacity-10 text-danger')" style="width: 40px; height: 40px;">
+                <i [class]="'bi ' + (txn.transactionType === 'DEPOSIT' ? 'bi-arrow-down-left' : 'bi-arrow-up-right')"></i>
+              </div>
+              <div>
+                <div class="fw-bold text-dark small mb-1">{{txn.remarks || txn.transactionType}}</div>
+                <div class="text-muted" style="font-size: 0.75rem;">Ref: {{txn.transactionReference}}</div>
+              </div>
+            </div>
+          </td>
+          <td><span class="small text-muted fw-bold">{{txn.transactionType}}</span></td>
+          <td class="small text-muted">{{txn.createdAt | date:'mediumDate'}}</td>
+          <td>
+            <span [class]="'badge rounded-pill px-3 py-2 small ' + (txn.status === 'completed' ? 'bg-success bg-opacity-10 text-success' : 'bg-warning bg-opacity-10 text-warning')">
+              {{txn.status | titlecase}}
+            </span>
+          </td>
+          <td class="text-end pe-4">
+            <span [class]="'fw-bold ' + (txn.transactionType === 'DEPOSIT' ? 'text-success' : 'text-dark')">
+              {{txn.transactionType === 'DEPOSIT' ? '+' : '-'}}${{txn.amount | number:'1.2-2'}}
+            </span>
+          </td>
+        </tr>
+        <tr *ngIf="transactions().length === 0">
+          <td colspan="5" class="text-center py-5 text-muted small">No recent transactions found.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

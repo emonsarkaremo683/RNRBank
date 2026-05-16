@@ -1,0 +1,28 @@
+<div class="row align-items-center mb-4">
+  <div class="col-md-8">
+    <h2 class="fw-bold text-dark mb-1">Forensic Reports & Intelligence</h2>
+    <p class="text-muted small mb-0">Generate deep-dive security reports, regulatory filings, and administrative audit ledgers.</p>
+  </div>
+</div>
+
+<div class="row g-4">
+  <div *ngFor="let rep of reports" class="col-md-6">
+    <div class="card border-0 shadow-sm rounded-5 h-100 p-4 transition-all hover-translate-y">
+      <div class="d-flex align-items-center justify-content-between mb-3">
+        <span [class]="'badge rounded-pill px-3 py-2 small fw-bold ' + (rep.type === 'Security' ? 'bg-danger bg-opacity-10 text-danger' : rep.type === 'Regulatory' ? 'bg-primary bg-opacity-10 text-primary' : 'bg-warning bg-opacity-10 text-warning')">
+          {{rep.type}}
+        </span>
+        <span class="small text-muted fw-bold">{{rep.date}}</span>
+      </div>
+      <h5 class="fw-bold text-dark mb-2">{{rep.title}}</h5>
+      <p class="text-muted small mb-4 flex-grow-1">{{rep.desc}}</p>
+      
+      <div class="d-flex gap-2 mt-auto">
+        <button class="btn btn-outline-danger rounded-pill fw-bold btn-sm flex-grow-1 border">Preview Data</button>
+        <button class="btn btn-danger rounded-circle shadow-sm border-0 btn-sm" style="width: 32px; height: 32px;">
+          <i class="bi bi-file-earmark-pdf"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

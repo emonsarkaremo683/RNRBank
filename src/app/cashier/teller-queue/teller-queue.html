@@ -1,0 +1,77 @@
+<div class="row align-items-center mb-4">
+  <div class="col-md-8">
+    <h2 class="fw-bold text-dark mb-1">Teller Queue Management</h2>
+    <p class="text-muted small mb-0">Manage customer service flow and track counter performance.</p>
+  </div>
+</div>
+
+<div class="row g-4 mb-5">
+  <div class="col-md-3">
+    <div class="card border-0 shadow-sm rounded-4 p-4 text-center">
+      <h6 class="text-muted small fw-bold text-uppercase mb-2">Waiting</h6>
+      <h2 class="fw-bold text-primary mb-0">{{getQueueByStatus('waiting').length}}</h2>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="card border-0 shadow-sm rounded-4 p-4 text-center">
+      <h6 class="text-muted small fw-bold text-uppercase mb-2">Serving</h6>
+      <h2 class="fw-bold text-warning mb-0">{{getQueueByStatus('serving').length}}</h2>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="card border-0 shadow-sm rounded-4 p-4 text-center">
+      <h6 class="text-muted small fw-bold text-uppercase mb-2">Completed</h6>
+      <h2 class="fw-bold text-success mb-0">{{getQueueByStatus('completed').length}}</h2>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="card border-0 shadow-sm rounded-4 p-4 text-center">
+      <h6 class="text-muted small fw-bold text-uppercase mb-2">Avg. Time</h6>
+      <h2 class="fw-bold text-dark mb-0">4.5m</h2>
+    </div>
+  </div>
+</div>
+
+<div class="card border-0 shadow-sm rounded-5 overflow-hidden">
+  <div class="card-header bg-white py-4 px-4 border-0">
+    <h5 class="fw-bold text-dark mb-0">Live Queue Feed</h5>
+  </div>
+  <div class="table-responsive">
+    <table class="table table-hover align-middle mb-0">
+      <thead class="bg-light text-muted small text-uppercase">
+        <tr>
+          <th class="ps-4">Token #</th>
+          <th>Customer</th>
+          <th>Service Type</th>
+          <th>Priority</th>
+          <th>Status</th>
+          <th class="text-end pe-4">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of queue()">
+          <td class="ps-4">
+            <span class="badge bg-primary rounded-pill px-3 py-2 fw-bold">{{item.tokenNumber}}</span>
+          </td>
+          <td class="small fw-bold">{{item.customerId}}</td>
+          <td><span class="small fw-bold text-muted text-uppercase">{{item.serviceType}}</span></td>
+          <td>
+            <span [class]="'badge rounded-pill px-3 py-2 small ' + (item.priority === 'high' ? 'bg-danger bg-opacity-10 text-danger' : 'bg-info bg-opacity-10 text-info')">
+              {{item.priority | titlecase}}
+            </span>
+          </td>
+          <td>
+            <span [class]="'badge rounded-pill px-3 py-2 small ' + (item.status === 'serving' ? 'bg-warning text-dark' : item.status === 'completed' ? 'bg-success bg-opacity-10 text-success' : 'bg-light text-dark')">
+              {{item.status | titlecase}}
+            </span>
+          </td>
+          <td class="text-end pe-4">
+            <button *ngIf="item.status === 'waiting'" class="btn btn-primary btn-sm rounded-pill px-4 fw-bold me-2" (click)="serveCustomer(item.id)">Call Next</button>
+            <button *ngIf="item.status === 'serving'" class="btn btn-success btn-sm rounded-pill px-4 fw-bold me-2" (click)="completeService(item.id)">Complete</button>
+            <button *ngIf="item.status !== 'completed'" class="btn btn-outline-secondary btn-sm rounded-pill px-3 fw-bold" (click)="skipCustomer(item.id)">Skip</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

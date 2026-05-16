@@ -1,0 +1,74 @@
+<!-- Page Header -->
+<section class="bg-primary text-white py-5">
+  <div class="container py-lg-4 text-center">
+    <h1 class="display-4 fw-bold mb-3">Our Services</h1>
+    <p class="lead opacity-75 mx-auto" style="max-width: 700px;">Tailored financial solutions designed to meet your every need, from personal savings to enterprise-level business banking.</p>
+  </div>
+</section>
+
+<!-- Services Grid -->
+<section class="py-5">
+  <div class="container py-lg-5">
+    <div class="row g-4">
+      <div *ngFor="let service of allServices" class="col-md-6 col-lg-4">
+        <div class="card h-100 border-0 shadow-sm hover-translate-y p-4 rounded-5 transition-all">
+          <div class="bg-light rounded-4 d-inline-flex align-items-center justify-content-center mb-4 shadow-sm" style="width: 80px; height: 80px;">
+            <i class="bi {{service.icon}} fs-1 text-primary"></i>
+          </div>
+          <h3 class="fw-bold mb-3">{{service.title}}</h3>
+          <p class="text-secondary mb-4">{{service.description}}</p>
+          <ul class="list-unstyled mb-5">
+            <li class="d-flex align-items-center mb-2 small text-secondary">
+              <i class="bi bi-check-circle-fill text-success me-2"></i> High interest rates
+            </li>
+             <li class="d-flex align-items-center mb-2 small text-secondary">
+              <i class="bi bi-check-circle-fill text-success me-2"></i> 24/7 Digital access
+            </li>
+             <li class="d-flex align-items-center mb-2 small text-secondary">
+              <i class="bi bi-check-circle-fill text-success me-2"></i> Zero maintenance fees
+            </li>
+          </ul>
+          <div class="mt-auto">
+            <a [routerLink]="service.link" class="btn btn-outline-primary w-100 rounded-pill fw-bold">Explore Details</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Digital Banking Highlight -->
+<section class="py-5 bg-dark text-white">
+  <div class="container py-lg-5">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-7">
+        <h2 class="display-5 fw-bold mb-4">Banking at Your Fingertips</h2>
+        <p class="lead opacity-75 mb-5">Our digital platforms are built for the modern lifestyle. Secure, fast, and incredibly easy to use.</p>
+        <div class="row g-4">
+          <div class="col-sm-6">
+            <div class="p-4 bg-secondary bg-opacity-10 rounded-4">
+              <i class="bi bi-phone text-warning fs-1 mb-3"></i>
+              <h5 class="fw-bold">Mobile App</h5>
+              <p class="small opacity-50 mb-0">Full banking power in your pocket. Available on iOS and Android.</p>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="p-4 bg-secondary bg-opacity-10 rounded-4">
+              <i class="bi bi-laptop text-warning fs-1 mb-3"></i>
+              <h5 class="fw-bold">Internet Banking</h5>
+              <p class="small opacity-50 mb-0">Manage your wealth from any browser with advanced tools.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-5">
+        <div class="bg-primary p-5 rounded-5 shadow-lg text-center">
+          <h3 class="fw-bold mb-4">Start Today</h3>
+          <p class="opacity-75 mb-4">Join 2.5 million users who trust RNR Bank for their daily needs.</p>
+          <button class="btn btn-warning btn-lg w-100 rounded-pill fw-bold py-3 mb-3 shadow">Open Account</button>
+          <p class="small opacity-50">Takes only 5 minutes. No paperwork.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

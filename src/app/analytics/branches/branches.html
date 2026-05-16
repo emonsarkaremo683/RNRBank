@@ -1,0 +1,44 @@
+<div class="row align-items-center mb-5">
+  <div class="col-md-8">
+    <h2 class="fw-bold text-dark mb-1">Branch Performance Analytics</h2>
+    <p class="text-muted small mb-0">Compare branch-level revenue, customer growth, and operational efficiency across all global locations.</p>
+  </div>
+</div>
+
+<div class="row g-4 mb-5">
+  <div class="col-12">
+    <div class="card border-0 shadow-sm rounded-5 p-4 h-100">
+      <h5 class="fw-bold text-dark mb-4">Branch Revenue Comparison</h5>
+      <div style="height: 400px;">
+        <canvas baseChart [data]="branchRevenueData" [type]="'bar'"></canvas>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row g-4">
+  <div class="col-md-6 col-lg-3">
+    <div class="card border-0 bg-white shadow-sm rounded-4 p-4">
+       <h6 class="text-muted small fw-bold text-uppercase mb-2">Top Performer</h6>
+       <h5 class="fw-bold text-primary mb-0">Motijheel Main</h5>
+    </div>
+  </div>
+  <div class="col-md-6 col-lg-3">
+    <div class="card border-0 bg-white shadow-sm rounded-4 p-4">
+       <h6 class="text-muted small fw-bold text-uppercase mb-2">Most New Users</h6>
+       <h5 class="fw-bold text-success mb-0">Gulshan-2</h5>
+    </div>
+  </div>
+  <div class="col-md-6 col-lg-3">
+    <div class="card border-0 bg-white shadow-sm rounded-4 p-4">
+       <h6 class="text-muted small fw-bold text-uppercase mb-2">Operational Score</h6>
+       <h5 class="fw-bold text-dark mb-0">94.5% Average</h5>
+    </div>
+  </div>
+  <div class="col-md-6 col-lg-3">
+    <div class="card border-0 bg-white shadow-sm rounded-4 p-4">
+       <h6 class="text-muted small fw-bold text-uppercase mb-2">Global Coverage</h6>
+       <h5 class="fw-bold text-info mb-0">15 Countries</h5>
+    </div>
+  </div>
+</div>

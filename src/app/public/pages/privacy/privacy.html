@@ -1,0 +1,42 @@
+<!-- Page Header -->
+<section class="bg-primary text-white py-5">
+  <div class="container py-lg-4 text-center">
+    <h1 class="display-4 fw-bold mb-3">{{content()?.title}}</h1>
+    <p class="lead opacity-75 mx-auto" style="max-width: 700px;">{{content()?.content}}</p>
+  </div>
+</section>
+
+<!-- Privacy Content -->
+<section class="py-5">
+  <div class="container py-lg-5">
+    <div class="row justify-content-center">
+      <div class="col-lg-10">
+        <div class="bg-white p-4 p-md-5 rounded-5 shadow-sm border">
+          <div class="mb-5">
+            <h4 class="fw-bold mb-3">1. Information Collection</h4>
+            <p class="text-secondary">We collect personal information that you provide to us, including your name, address, email, and financial details, to provide and improve our services.</p>
+          </div>
+          <div class="mb-5">
+            <h4 class="fw-bold mb-3">2. How We Use Your Data</h4>
+            <p class="text-secondary">Your data is used to verify your identity, process transactions, detect fraud, and personalize your banking experience.</p>
+          </div>
+          <div class="mb-5">
+            <h4 class="fw-bold mb-3">3. Data Security</h4>
+            <p class="text-secondary">We use bank-grade encryption and multi-layer security protocols to protect your information from unauthorized access.</p>
+          </div>
+          <div class="mb-5">
+            <h4 class="fw-bold mb-3">4. Sharing with Third Parties</h4>
+            <p class="text-secondary">We do not sell your personal data. We only share information with trusted partners for essential services or when required by law.</p>
+          </div>
+          <div class="mb-0">
+            <h4 class="fw-bold mb-3">5. Your Rights</h4>
+            <p class="text-secondary mb-0">You have the right to access, correct, or delete your personal information at any time through our app or by contacting support.</p>
+          </div>
+        </div>
+        <div class="text-center mt-5 text-secondary small">
+          Last updated: {{content()?.lastUpdated}}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,51 @@
+<div class="row align-items-center mb-4">
+  <div class="col-md-8">
+    <h2 class="fw-bold text-dark mb-1">Daily Reconciliation Summary</h2>
+    <p class="text-muted small mb-0">Summary of all transactions and cash positions for {{today | date:'fullDate'}}.</p>
+  </div>
+</div>
+
+<div class="row g-4">
+  <div class="col-lg-6">
+    <div class="card border-0 shadow-sm rounded-4 p-4 p-lg-5">
+      <h5 class="fw-bold text-dark mb-4 border-bottom pb-3">Operational Stats</h5>
+      <div class="d-flex flex-column gap-3">
+        <div class="d-flex justify-content-between p-3 bg-light rounded-4">
+          <span class="text-muted fw-bold small uppercase">Total Deposits</span>
+          <span class="fw-bold text-success">${{stats()?.todayDeposits | number}}</span>
+        </div>
+        <div class="d-flex justify-content-between p-3 bg-light rounded-4">
+          <span class="text-muted fw-bold small uppercase">Total Withdrawals</span>
+          <span class="fw-bold text-danger">${{stats()?.todayWithdrawals | number}}</span>
+        </div>
+        <div class="d-flex justify-content-between p-3 bg-light rounded-4 border-top">
+          <span class="text-dark fw-bold">Net Cash Flow</span>
+          <span class="fw-bold text-primary">${{(stats()?.todayDeposits - stats()?.todayWithdrawals) | number}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-6">
+    <div class="card border-0 shadow-sm rounded-4 p-4 p-lg-5 h-100">
+      <h5 class="fw-bold text-dark mb-4 border-bottom pb-3">Verification Checklist</h5>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item px-0 py-3 d-flex align-items-center gap-3 border-0">
+          <i class="bi bi-check-circle-fill text-success fs-4"></i>
+          <div>
+            <h6 class="fw-bold mb-0">Vault Reconciliation</h6>
+            <span class="small text-muted">Completed by Manager</span>
+          </div>
+        </li>
+        <li class="list-group-item px-0 py-3 d-flex align-items-center gap-3 border-0">
+          <i class="bi bi-dash-circle text-warning fs-4"></i>
+          <div>
+            <h6 class="fw-bold mb-0">Teller Drawer Audit</h6>
+            <span class="small text-muted">Pending Shift End</span>
+          </div>
+        </li>
+      </ul>
+      <button class="btn btn-primary btn-lg w-100 rounded-pill fw-bold py-3 mt-auto">Finalize Day & Sign Out</button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,1004 @@
+{
+  "users": [
+    {
+      "id": "USR-ADMIN",
+      "uuid": "admin-uuid-001",
+      "fullName": "Super Admin",
+      "email": "superadmin@rnrbank.com",
+      "phone": "+8801000000001",
+      "password": "admin123",
+      "roleId": "ROL-001",
+      "employeeId": "EMP-001",
+      "status": "active",
+      "isEmailVerified": true,
+      "isPhoneVerified": true,
+      "is2FAEnabled": true,
+      "lastLogin": "2024-05-15T19:26:06Z",
+      "createdAt": "2024-01-01T00:00:00Z",
+      "updatedAt": "2024-05-15T19:26:06Z"
+    },
+    {
+      "id": "USR-CASHIER",
+      "uuid": "cashier-uuid-001",
+      "fullName": "Trust Bank Cashier",
+      "email": "cashier@rnrbank.com",
+      "phone": "+8801700000123",
+      "password": "password",
+      "roleId": "ROL-007",
+      "employeeId": "EMP-CASHIER",
+      "status": "active",
+      "isEmailVerified": true,
+      "isPhoneVerified": true,
+      "is2FAEnabled": false,
+      "lastLogin": "2024-05-15T19:26:06Z",
+      "createdAt": "2024-01-01T00:00:00Z",
+      "updatedAt": "2024-05-15T19:26:06Z"
+    },
+    {
+      "id": "USR-MANAGER",
+      "uuid": "manager-uuid-001",
+      "fullName": "Branch Manager",
+      "email": "manager@rnrbank.com",
+      "phone": "+8801000000002",
+      "password": "password",
+      "roleId": "ROL-003",
+      "employeeId": "EMP-002",
+      "status": "active",
+      "isEmailVerified": true,
+      "isPhoneVerified": true,
+      "is2FAEnabled": false,
+      "lastLogin": "2024-05-15T19:26:06Z",
+      "createdAt": "2024-01-01T00:00:00Z",
+      "updatedAt": "2024-05-15T19:26:06Z"
+    },
+    {
+      "id": "USR-001",
+      "uuid": "550e8400-e29b-41d4-a716-446655440000",
+      "fullName": "Ahmed Ullah",
+      "email": "ahmed@rnrbank.com",
+      "phone": "+8801711001122",
+      "password": "password",
+      "roleId": "ROL-001",
+      "employeeId": "EMP-001",
+      "customerId": null,
+      "profilePhoto": "https://api.dicebear.com/7.x/avataaars/svg?seed=Ahmed",
+      "status": "active",
+      "isEmailVerified": true,
+      "isPhoneVerified": true,
+      "is2FAEnabled": true,
+      "lastLogin": "2023-06-25T17:52:34.990Z",
+      "createdAt": "2022-01-01T08:00:00.000Z",
+      "updatedAt": "2023-06-25T17:52:34.990Z"
+    },
+    {
+      "id": "USR-002",
+      "uuid": "660f8400-e29b-41d4-a716-446655440001",
+      "fullName": "Farhana Yasmin",
+      "email": "farhana.y@rnrbank.com.bd",
+      "phone": "+8801811001123",
+      "password": "password",
+      "roleId": "ROL-003",
+      "employeeId": "EMP-002",
+      "customerId": null,
+      "profilePhoto": "https://api.dicebear.com/7.x/avataaars/svg?seed=Farhana",
+      "status": "active",
+      "isEmailVerified": true,
+      "isPhoneVerified": true,
+      "is2FAEnabled": false,
+      "lastLogin": "2023-02-21T05:16:00.551Z",
+      "createdAt": "2022-02-15T09:00:00.000Z",
+      "updatedAt": "2023-02-21T05:16:00.551Z"
+    },
+    {
+      "id": "USR-013",
+      "uuid": "770g8400-e29b-41d4-a716-446655440012",
+      "fullName": "Abdul Karim",
+      "email": "abdul@gmail.com",
+      "phone": "+8801747506389",
+      "password": "password",
+      "roleId": "ROL-006",
+      "employeeId": null,
+      "customerId": "CUST-001",
+      "profilePhoto": "https://api.dicebear.com/7.x/avataaars/svg?seed=Abdul",
+      "status": "active",
+      "isEmailVerified": true,
+      "isPhoneVerified": true,
+      "is2FAEnabled": false,
+      "isPremium": true,
+      "lastLogin": "2021-04-26T03:55:58.780Z",
+      "createdAt": "2021-01-10T10:00:00.000Z",
+      "updatedAt": "2021-04-26T03:55:58.780Z"
+    }
+  ],
+  "roles": [
+    {
+      "id": "ROL-001",
+      "name": "Super Admin",
+      "code": "SUPER_ADMIN"
+    },
+    {
+      "id": "ROL-002",
+      "name": "HO Admin",
+      "code": "HO_ADMIN"
+    },
+    {
+      "id": "ROL-003",
+      "name": "Branch Manager",
+      "code": "BRANCH_MANAGER"
+    },
+    {
+      "id": "ROL-004",
+      "name": "KYC Officer",
+      "code": "KYC_OFFICER"
+    },
+    {
+      "id": "ROL-007",
+      "name": "Cashier",
+      "code": "CASHIER"
+    },
+    {
+      "id": "ROL-005",
+      "name": "Loan Officer",
+      "code": "LOAN_OFFICER"
+    },
+    {
+      "id": "ROL-006",
+      "name": "Customer",
+      "code": "CUSTOMER"
+    }
+  ],
+  "permissions": [
+    {
+      "id": "CREATE_ACCOUNT",
+      "name": "CREATE_ACCOUNT",
+      "module": "ACCOUNTS"
+    },
+    {
+      "id": "APPROVE_KYC",
+      "name": "APPROVE_KYC",
+      "module": "KYC"
+    },
+    {
+      "id": "MANAGE_EMPLOYEES",
+      "name": "MANAGE_EMPLOYEES",
+      "module": "HR"
+    },
+    {
+      "id": "VIEW_REPORTS",
+      "name": "VIEW_REPORTS",
+      "module": "REPORTS"
+    },
+    {
+      "id": "TRANSFER_FUNDS",
+      "name": "TRANSFER_FUNDS",
+      "module": "TRANSACTIONS"
+    }
+  ],
+  "rolePermissions": [
+    {
+      "id": "RP-001",
+      "roleId": "ROL-001",
+      "permissionId": "CREATE_ACCOUNT"
+    },
+    {
+      "id": "RP-002",
+      "roleId": "ROL-001",
+      "permissionId": "APPROVE_KYC"
+    },
+    {
+      "id": "RP-003",
+      "roleId": "ROL-001",
+      "permissionId": "MANAGE_EMPLOYEES"
+    },
+    {
+      "id": "RP-004",
+      "roleId": "ROL-001",
+      "permissionId": "VIEW_REPORTS"
+    },
+    {
+      "id": "RP-005",
+      "roleId": "ROL-001",
+      "permissionId": "TRANSFER_FUNDS"
+    },
+    {
+      "id": "RP-006",
+      "roleId": "ROL-007",
+      "permissionId": "PROCESS_DEPOSIT"
+    },
+    {
+      "id": "RP-007",
+      "roleId": "ROL-007",
+      "permissionId": "PROCESS_WITHDRAWAL"
+    },
+    {
+      "id": "RP-008",
+      "roleId": "ROL-007",
+      "permissionId": "VIEW_TELLER_QUEUE"
+    }
+  ],
+  "branches": [
+    {
+      "id": "BR-001",
+      "branchCode": "001",
+      "branchName": "Main Branch (Motijheel)",
+      "address": "Prabhubrata Tower, Motijheel C/A, Dhaka-1000",
+      "phone": "+880-2-9550000",
+      "email": "motijheel@rnrbank.com.bd",
+      "managerId": "EMP-002",
+      "routingNumber": "123456789",
+      "status": "active"
+    },
+    {
+      "id": "BR-002",
+      "branchCode": "002",
+      "branchName": "Gulshan Branch",
+      "address": "Gulshan-2, Dhaka",
+      "phone": "+880-2-8810000",
+      "email": "gulshan@rnrbank.com.bd",
+      "managerId": "EMP-003",
+      "routingNumber": "987654321",
+      "status": "active"
+    },
+    {
+      "branchCode": "003",
+      "branchName": "Cumilla",
+      "address": "cumilla",
+      "phone": "654452",
+      "email": "cumilla@rnrbank.com",
+      "managerId": "1254",
+      "routingNumber": "4578964132",
+      "status": "active",
+      "id": "vZAHDoJ8WmI"
+    }
+  ],
+  "employees": [
+    {
+      "id": "EMP-001",
+      "employeeCode": "E001",
+      "branchId": "BR-001",
+      "departmentId": "DEPT-001",
+      "designationId": "DES-001",
+      "roleId": "ROL-001",
+      "salary": 150000,
+      "joinDate": "2022-01-01",
+      "status": "active"
+    },
+    {
+      "id": "EMP-002",
+      "employeeCode": "E002",
+      "branchId": "BR-001",
+      "departmentId": "DEPT-003",
+      "designationId": "DES-004",
+      "roleId": "ROL-003",
+      "salary": 120000,
+      "joinDate": "2022-02-15",
+      "status": "active"
+    },
+    {
+      "id": "EMP-CASHIER",
+      "employeeCode": "C001",
+      "branchId": "BR-001",
+      "departmentId": "DEPT-002",
+      "designationId": "DES-005",
+      "roleId": "ROL-007",
+      "salary": 45000,
+      "joinDate": "2023-01-10",
+      "status": "active"
+    },
+    {
+      "employeeCode": "rwet",
+      "branchId": "trfwef",
+      "departmentId": "efg",
+      "designationId": "Cash",
+      "roleId": "ht",
+      "salary": 50000,
+      "joinDate": "2026-05-22",
+      "status": "active",
+      "id": "X9DrQUFAsgs"
+    }
+  ],
+  "customers": [
+    {
+      "id": "CUST-001",
+      "fullName": "Abdul Karim",
+      "email": "abdul.karim@gmail.com",
+      "phone": "+8801747506389",
+      "dateOfBirth": "1991-06-28",
+      "status": "active",
+      "createdAt": "2022-06-25T18:18:00.835Z"
+    }
+  ],
+  "accountTypes": [
+    {
+      "id": "AT-001",
+      "name": "Savings",
+      "description": "Individual Savings Account"
+    },
+    {
+      "id": "AT-002",
+      "name": "Current",
+      "description": "Business Current Account"
+    }
+  ],
+  "accounts": [
+    {
+      "id": "ACC-001",
+      "accountNumber": "10052249802",
+      "customerId": "CUST-001",
+      "branchId": "BR-002",
+      "accountTypeId": "AT-001",
+      "balance": 73500.5,
+      "currency": "BDT",
+      "status": "active",
+      "openedAt": "2023-06-12T11:49:26.984Z"
+    }
+  ],
+  "transactions": [
+    {
+      "id": "TXN-001",
+      "transactionReference": "RNRB-TXN-10001",
+      "senderAccountId": "ACC-001",
+      "receiverAccountId": "ACC-002",
+      "amount": 5000,
+      "charge": 10,
+      "transactionType": "TRANSFER",
+      "status": "completed",
+      "remarks": "Monthly Rent",
+      "createdAt": "2024-12-17T03:02:25.692Z"
+    },
+    {
+      "transactionReference": "RNRB-TXN-99474",
+      "senderAccountId": "ACC-001",
+      "receiverAccountId": "ACC-26962164+987",
+      "amount": 10100,
+      "charge": 0,
+      "transactionType": "TRANSFER",
+      "status": "completed",
+      "remarks": "ry",
+      "createdAt": "2026-05-16T09:36:43.051Z",
+      "id": "AucehzndwcA"
+    },
+    {
+      "transactionReference": "RNRB-TXN-42884",
+      "senderAccountId": "ACC-001",
+      "receiverAccountId": "ACC-26962164+987",
+      "amount": 5000,
+      "charge": 0,
+      "transactionType": "TRANSFER",
+      "status": "completed",
+      "remarks": "dd",
+      "createdAt": "2026-05-16T09:42:03.619Z",
+      "id": "5gjCtPW_CG4"
+    },
+    {
+      "transactionReference": "RNRB-TXN-19249",
+      "senderAccountId": "ACC-001",
+      "receiverAccountId": "20052249805",
+      "amount": 50000,
+      "charge": 0,
+      "transactionType": "TRANSFER",
+      "status": "completed",
+      "remarks": "Money Transfer",
+      "createdAt": "2026-05-16T09:42:50.012Z",
+      "id": "P1-qgnCKm1U"
+    },
+    {
+      "transactionReference": "RNRB-TXN-95767",
+      "senderAccountId": "ACC-001",
+      "receiverAccountId": "55555555555555",
+      "amount": 10000,
+      "charge": 0,
+      "transactionType": "TRANSFER",
+      "status": "completed",
+      "remarks": "Money Transfer",
+      "createdAt": "2026-05-16T10:22:54.845Z",
+      "id": "dUT4G0RNo1s"
+    },
+    {
+      "accountNumber": "8657867863",
+      "customerName": "ytyhwrt",
+      "amount": 10000,
+      "depositType": "CASH",
+      "referenceNote": "werg",
+      "transactionPin": "1234",
+      "transactionType": "DEPOSIT",
+      "senderAccountId": "CASH-COUNTER",
+      "receiverAccountId": "8657867863",
+      "transactionReference": "TXN-803522",
+      "createdAt": "2026-05-16T12:16:56.116Z",
+      "status": "completed",
+      "id": "yhvNK2CSBgQ"
+    }
+  ],
+  "atmBooths": [
+    {
+      "id": "ATM-001",
+      "location": "Motijheel Branch",
+      "status": "active",
+      "cashLevel": 85,
+      "lastMaintenance": "2026-05-01"
+    },
+    {
+      "id": "ATM-002",
+      "location": "Gulshan Circle",
+      "status": "maintenance",
+      "cashLevel": 12,
+      "lastMaintenance": "2026-05-16"
+    },
+    {
+      "name": "eww",
+      "address": "wwwwww",
+      "status": "active",
+      "id": "H833q2e2now",
+      "features": [
+        "Cash Withdrawal",
+        "Check Balance"
+      ]
+    }
+  ],
+  "loanTypes": [
+    {
+      "id": "1",
+      "type": "home",
+      "title": "Premium Home Loan",
+      "interestRate": 7.5,
+      "maxAmount": 5000000,
+      "tenure": "Up to 30 years",
+      "description": "Lowest interest rates for premium customers.",
+      "features": [
+        "No processing fee",
+        "Quick approval"
+      ]
+    },
+    {
+      "id": "2",
+      "type": "car",
+      "title": "Auto Drive Loan",
+      "interestRate": 8.9,
+      "maxAmount": 500000,
+      "tenure": "Up to 7 years",
+      "description": "Finance your new car with ease.",
+      "features": [
+        "Flexible EMIs",
+        "Minimal documentation"
+      ]
+    }
+  ],
+  "exchangeRates": [
+    {
+      "currency": "US Dollar",
+      "code": "USD",
+      "buy": 109.5,
+      "sell": 110.2,
+      "flag": "us",
+      "id": "X59ZKL4s1Tg"
+    },
+    {
+      "currency": "Euro",
+      "code": "EUR",
+      "buy": 118.4,
+      "sell": 119.1,
+      "flag": "eu",
+      "id": "p50h8fu3FaM"
+    }
+  ],
+  "faqs": [
+    {
+      "category": "General",
+      "question": "How do I open an account?",
+      "answer": "You can open an account online or by visiting any of our branches with valid ID and address proof.",
+      "id": "RJHsU5YEVbc"
+    },
+    {
+      "category": "Security",
+      "question": "Is online banking safe?",
+      "answer": "Yes, we use multi-factor authentication and 256-bit encryption to keep your data secure.",
+      "id": "EQgOq5snkJM"
+    }
+  ],
+  "beneficiaries": [
+    {
+      "id": "BEN-001",
+      "customerId": "CUST-001",
+      "name": "Mohammad Ali",
+      "accountNumber": "20052249805",
+      "bankName": "RNR Bank",
+      "relation": "Brother"
+    },
+    {
+      "id": "BEN-002",
+      "customerId": "CUST-001",
+      "name": "Fatema Begum",
+      "accountNumber": "30052249806",
+      "bankName": "City Bank",
+      "relation": "Mother"
+    },
+    {
+      "name": "eee",
+      "accountNumber": "55555555555555",
+      "bankName": "Brac Bank",
+      "relation": "wew",
+      "id": "kSYteYg0f6Y",
+      "customerId": "CUST-001"
+    }
+  ],
+  "supportTickets": [
+    {
+      "id": "TCK-001",
+      "customerId": "CUST-001",
+      "subject": "Card Not Working",
+      "status": "open",
+      "createdAt": "2026-05-15T10:00:00Z"
+    }
+  ],
+  "mobileWallets": [
+    {
+      "id": "WAL-001",
+      "customerId": "CUST-001",
+      "phoneNumber": "+8801747506389",
+      "balance": 1500,
+      "provider": "bKash"
+    }
+  ],
+  "billPayments": [
+    {
+      "id": "BILL-001",
+      "customerId": "CUST-001",
+      "biller": "DESCO",
+      "amount": 1200,
+      "date": "2026-05-10T12:00:00Z",
+      "status": "paid"
+    },
+    {
+      "biller": "Robi",
+      "accountNo": "5958854",
+      "amount": 500,
+      "customerId": "CUST-001",
+      "date": "2026-05-16T10:38:43.638Z",
+      "status": "paid",
+      "id": "yqKgG1x1xfI"
+    }
+  ],
+  "transfers": [
+    {
+      "id": "TRF-001",
+      "reference": "RNR-TRF-001",
+      "fromAccount": "10052249802",
+      "toAccount": "30052249806",
+      "amount": 2500,
+      "date": "2026-05-15T14:30:00Z",
+      "status": "completed",
+      "type": "INTERNAL"
+    }
+  ],
+  "statements": [
+    {
+      "id": "STMT-001",
+      "accountId": "ACC-001",
+      "month": "May 2026",
+      "openingBalance": 70000,
+      "closingBalance": 73500.5,
+      "totalCredit": 5000,
+      "totalDebit": 1499.5
+    }
+  ],
+  "fraudAlerts": [
+    {
+      "id": "FRD-001",
+      "severity": "high",
+      "description": "Multiple failed logins from new IP",
+      "status": "open",
+      "createdAt": "2026-05-16T11:20:00Z"
+    }
+  ],
+  "auditLogs": [
+    {
+      "id": "AUD-001",
+      "userId": "USR-ADMIN",
+      "action": "LOGIN",
+      "details": {
+        "module": "AUTH",
+        "ip": "192.168.1.100"
+      },
+      "timestamp": "2026-05-15T09:00:00Z"
+    }
+  ],
+  "devices": [
+    {
+      "id": "DEV-001",
+      "userId": "USR-001",
+      "deviceName": "MacBook Pro",
+      "os": "macOS",
+      "browser": "Chrome",
+      "status": "trusted",
+      "lastActive": "2026-05-15T09:00:00Z"
+    }
+  ],
+  "ips": [
+    {
+      "id": "IP-001",
+      "ipAddress": "192.168.1.100",
+      "status": "whitelisted",
+      "location": "Dhaka, BD",
+      "lastSeen": "2026-05-15T09:00:00Z"
+    }
+  ],
+  "complianceViolations": [
+    {
+      "id": "COMP-001",
+      "policy": "KYC Delay",
+      "severity": "medium",
+      "status": "open",
+      "date": "2026-05-14T00:00:00Z"
+    }
+  ],
+  "amlAlerts": [
+    {
+      "id": "AML-001",
+      "transactionId": "TRF-001",
+      "reason": "High Value Transfer",
+      "status": "pending",
+      "date": "2026-05-15T14:30:00Z"
+    }
+  ],
+  "riskProfiles": [
+    {
+      "id": "RSK-001",
+      "entityId": "CUST-001",
+      "entityType": "customer",
+      "score": 85,
+      "level": "low"
+    }
+  ],
+  "newsItems": [
+    {
+      "id": "1",
+      "title": "RNR Bank Named Best Digital Bank 2025",
+      "summary": "Global Finance Magazine has recognized RNR Bank for its outstanding digital banking platform and customer service.",
+      "date": "May 10, 2026",
+      "category": "Corporate",
+      "imageUrl": "https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&q=80&w=400"
+    },
+    {
+      "id": "2",
+      "title": "New High-Yield Savings Account Launched",
+      "summary": "Earn up to 4.25% APY with our new Savings Plus account, designed to help you reach your goals faster.",
+      "date": "May 05, 2026",
+      "category": "Banking",
+      "imageUrl": "https://images.unsplash.com/photo-1579621970795-87f9ac75be1a?auto=format&fit=crop&q=80&w=400"
+    }
+  ],
+  "careerJobs": [
+    {
+      "id": "1",
+      "title": "Senior Angular Developer",
+      "department": "Technology",
+      "location": "Remote / New York",
+      "type": "Full-time"
+    },
+    {
+      "id": "2",
+      "title": "UX/UI Product Designer",
+      "department": "Marketing",
+      "location": "Remote",
+      "type": "Full-time"
+    },
+    {
+      "id": "3",
+      "title": "Information Security Analyst",
+      "department": "Technology",
+      "location": "London",
+      "type": "Full-time"
+    }
+  ],
+  "investorReports": [
+    {
+      "id": "1",
+      "title": "Annual Report 2025",
+      "size": "12.5 MB",
+      "type": "PDF"
+    },
+    {
+      "id": "2",
+      "title": "Q1 2026 Earnings Release",
+      "size": "4.2 MB",
+      "type": "PDF"
+    },
+    {
+      "id": "3",
+      "title": "ESG Report 2025",
+      "size": "8.1 MB",
+      "type": "PDF"
+    }
+  ],
+  "securityTips": [
+    {
+      "title": "Watch out for Phishing",
+      "desc": "RNR Bank will never ask for your password via email.",
+      "severity": "Warning",
+      "id": "WAR2UiApavQ"
+    },
+    {
+      "title": "Use Strong Passwords",
+      "desc": "Use a unique combination of letters and symbols.",
+      "severity": "Info",
+      "id": "_jUjPSdl7VM"
+    }
+  ],
+  "pageContent": {
+    "about": {
+      "title": "About RNR Bank",
+      "tagline": "Redefining digital banking with a focus on innovation, security, and premium customer experience.",
+      "story": "Founded in 2016, RNR Bank started as a small fintech startup with a big vision: to make banking accessible, transparent, and secure for everyone. Today, we serve over 2.5 million customers across 15 countries."
+    },
+    "privacy": {
+      "title": "Privacy Policy",
+      "lastUpdated": "January 01, 2026",
+      "content": "Your privacy is fundamental to our relationship with you. Learn how we protect your personal data."
+    },
+    "terms": {
+      "title": "Terms & Conditions",
+      "lastUpdated": "January 01, 2026",
+      "content": "Please read these terms carefully before using RNR Bank's services."
+    }
+  },
+  "payroll": [
+    {
+      "id": "PAY-001",
+      "employeeId": "EMP-001",
+      "month": "May 2026",
+      "basicSalary": 150000,
+      "allowance": 25000,
+      "deduction": 5000,
+      "netPay": 170000,
+      "status": "paid"
+    },
+    {
+      "id": "PAY-002",
+      "employeeId": "EMP-002",
+      "month": "May 2026",
+      "basicSalary": 120000,
+      "allowance": 15000,
+      "deduction": 3000,
+      "netPay": 132000,
+      "status": "pending"
+    },
+    {
+      "id": "PAY-003",
+      "employeeId": "EMP-CASHIER",
+      "month": "May 2026",
+      "basicSalary": 45000,
+      "allowance": 5000,
+      "deduction": 1000,
+      "netPay": 49000,
+      "status": "pending"
+    }
+  ],
+  "leaveRequests": [
+    {
+      "id": "LR-001",
+      "employeeId": "EMP-002",
+      "type": "Sick Leave",
+      "startDate": "2026-05-18",
+      "endDate": "2026-05-20",
+      "reason": "Fever",
+      "status": "approved"
+    },
+    {
+      "id": "LR-002",
+      "employeeId": "EMP-CASHIER",
+      "type": "Annual Leave",
+      "startDate": "2026-06-01",
+      "endDate": "2026-06-05",
+      "status": "pending",
+      "reason": "Family vacation"
+    }
+  ],
+  "attendance": [
+    {
+      "id": "ATT-001",
+      "employeeId": "EMP-001",
+      "date": "2026-05-16",
+      "clockIn": "09:00 AM",
+      "clockOut": "17:30 PM",
+      "status": "present"
+    },
+    {
+      "id": "ATT-002",
+      "employeeId": "EMP-002",
+      "date": "2026-05-16",
+      "clockIn": "09:05 AM",
+      "clockOut": null,
+      "status": "present"
+    },
+    {
+      "id": "ATT-003",
+      "employeeId": "EMP-CASHIER",
+      "date": "2026-05-16",
+      "clockIn": "08:45 AM",
+      "clockOut": null,
+      "status": "present"
+    }
+  ],
+  "employeeKpis": [
+    {
+      "id": "KPI-001",
+      "employeeId": "EMP-001",
+      "rating": 4.8,
+      "feedback": "Excellent leadership during migration."
+    },
+    {
+      "id": "KPI-002",
+      "employeeId": "EMP-002",
+      "rating": 4.5,
+      "feedback": "Very efficient branch operations."
+    }
+  ],
+  "loans": [
+    {
+      "id": "LN-1001",
+      "customerId": "CUST-001",
+      "type": "Personal Loan",
+      "amount": 50000,
+      "remaining": 35000,
+      "emi": 1200,
+      "nextPayment": "2026-06-05",
+      "status": "active",
+      "progress": 30,
+      "purpose": "Home Renovation",
+      "createdAt": "2024-01-15T10:00:00Z"
+    },
+    {
+      "loanType": "Home Loan",
+      "amount": 50000,
+      "tenure": 12,
+      "purpose": "ggg",
+      "accountId": "ACC-001",
+      "emi": 4166,
+      "nextPayment": "2026-06-15T10:37:10.142Z",
+      "customerId": "CUST-001",
+      "status": "approved",
+      "remaining": 50000,
+      "progress": 0,
+      "createdAt": "2026-05-16T10:37:10.142Z",
+      "id": "juSe0zb5H7k"
+    }
+  ],
+  "cards": [
+    {
+      "id": "CRD-001",
+      "customerId": "CUST-001",
+      "type": "Credit",
+      "network": "Visa",
+      "number": "4532781290435678",
+      "expiry": "12/28",
+      "status": "active",
+      "limit": 5000,
+      "used": 1250,
+      "cvv": "123"
+    },
+    {
+      "id": "CRD-002",
+      "customerId": "CUST-001",
+      "type": "Debit",
+      "network": "Mastercard",
+      "number": "5412983412098745",
+      "expiry": "09/27",
+      "status": "active",
+      "limit": 10000,
+      "used": 450,
+      "cvv": "456"
+    },
+    {
+      "cardType": "Credit Card",
+      "network": "Visa",
+      "agreement": true,
+      "customerId": "CUST-001",
+      "status": "active",
+      "number": "0774374539778112",
+      "expiry": "12/29",
+      "used": 0,
+      "limit": 5000,
+      "createdAt": "2026-05-16T10:36:34.430Z",
+      "id": "RI0ZkDgxPlM"
+    }
+  ],
+  "tellerQueue": [
+    {
+      "id": "TQ-001",
+      "tokenNumber": "T-101",
+      "customerId": "CUST-001",
+      "serviceType": "Deposit",
+      "status": "waiting",
+      "priority": "normal",
+      "createdAt": "2026-05-16T10:00:00Z"
+    },
+    {
+      "id": "TQ-002",
+      "tokenNumber": "T-102",
+      "customerId": "CUST-002",
+      "serviceType": "Withdrawal",
+      "status": "serving",
+      "priority": "high",
+      "createdAt": "2026-05-16T10:05:00Z"
+    }
+  ],
+  "vaultRequests": [
+    {
+      "id": "VR-001",
+      "employeeId": "EMP-CASHIER",
+      "branchId": "BR-001",
+      "amount": 50000,
+      "type": "REFILL",
+      "status": "pending",
+      "createdAt": "2026-05-16T09:00:00Z"
+    }
+  ],
+  "cashTransfers": [
+    {
+      "id": "CT-001",
+      "fromCashierId": "EMP-CASHIER",
+      "toCashierId": "EMP-003",
+      "amount": 5000,
+      "status": "completed",
+      "createdAt": "2026-05-16T11:00:00Z"
+    }
+  ],
+  "kycRequests": [
+    {
+      "id": "KYC-001",
+      "customerId": "CUST-001",
+      "fullName": "Abdul Karim",
+      "docType": "National ID",
+      "verificationStatus": "approved",
+      "submittedAt": "2026-05-15T10:00:00Z"
+    },
+    {
+      "id": "KYC-002",
+      "customerId": "CUST-002",
+      "fullName": "Zayed Khan",
+      "docType": "Passport",
+      "verificationStatus": "approved",
+      "submittedAt": "2026-05-16T08:30:00Z"
+    }
+  ],
+  "tasks": [
+    {
+      "id": "TSK-001",
+      "title": "Approve Loan Request #LN-452",
+      "priority": "high",
+      "status": "pending",
+      "dueDate": "2026-05-17"
+    },
+    {
+      "id": "TSK-002",
+      "title": "Quarterly Audit Preparation",
+      "priority": "medium",
+      "status": "in-progress",
+      "dueDate": "2026-05-20"
+    }
+  ],
+  "announcements": [
+    {
+      "id": "ANN-001",
+      "title": "Branch Policy Update",
+      "message": "New compliance rules for high-value cash deposits effective June 1.",
+      "type": "urgent",
+      "createdAt": "2026-05-16T09:00:00Z"
+    },
+    {
+      "id": "ANN-002",
+      "title": "KYC System Maintenance",
+      "message": "The KYC portal will be offline for maintenance tonight from 2 AM to 4 AM.",
+      "type": "info",
+      "createdAt": "2026-05-16T10:00:00Z"
+    }
+  ],
+  "settings": {
+    "bankName": "RNR Bank Ltd.",
+    "headOffice": "Dhaka, Bangladesh",
+    "maintenanceMode": false,
+    "version": "1.0.0"
+  },
+  "$schema": "./node_modules/json-server/schema.json"
+}

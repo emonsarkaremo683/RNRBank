@@ -1,0 +1,54 @@
+<div class="auth-wrapper min-vh-100 d-flex align-items-center py-5">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-12 col-md-10 col-lg-12 col-xl-11">
+        <div class="card auth-container border-0 shadow-2xl overflow-hidden">
+          <div class="row g-0">
+            <!-- Left Side: Illustration & Branding -->
+            <div class="col-lg-6 d-none d-lg-block auth-branding p-5">
+              <div class="d-flex flex-column h-100">
+                <div class="brand-logo mb-5">
+                  <a routerLink="/" class="text-white text-decoration-none fw-bold fs-2 d-flex align-items-center">
+                    <i class="bi bi-bank2 me-3"></i>
+                    <span>RNR<span class="text-warning">Bank</span></span>
+                  </a>
+                </div>
+                
+                <div class="mt-auto">
+                  <h1 class="display-4 fw-bold text-white mb-4">Secure Your <br> Financial Future</h1>
+                  <p class="lead text-white-50 mb-5">Join 2.5 million customers who trust RNR Bank for premium digital banking solutions.</p>
+                  
+                  <div class="security-badges d-flex gap-4">
+                    <div class="d-flex align-items-center text-white small">
+                      <i class="bi bi-shield-check fs-3 me-2 text-warning"></i>
+                      <span>256-bit AES <br> Encrypted</span>
+                    </div>
+                    <div class="d-flex align-items-center text-white small">
+                      <i class="bi bi-fingerprint fs-3 me-2 text-warning"></i>
+                      <span>Multi-factor <br> Auth</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Right Side: Auth Forms -->
+            <div class="col-lg-6 bg-white auth-form-section">
+              <div class="p-4 p-md-5">
+                <router-outlet></router-outlet>
+              </div>
+              
+              <div class="auth-footer text-center py-4 border-top bg-light">
+                <p class="small text-muted mb-0">&copy; 2026 RNR Bank Ltd. All rights reserved.</p>
+                <div class="d-flex justify-content-center gap-3 mt-2">
+                  <a routerLink="/privacy" class="text-decoration-none small text-muted">Privacy Policy</a>
+                  <a routerLink="/terms" class="text-decoration-none small text-muted">Terms of Service</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

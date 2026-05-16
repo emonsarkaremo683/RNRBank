@@ -1,0 +1,206 @@
+<div class="row align-items-center mb-4">
+  <div class="col-md-8">
+    <h2 class="fw-bold text-dark mb-1">Employee Operations Dashboard</h2>
+    <p class="text-muted small mb-0">Overview of branch performance, daily tasks, and customer operations.</p>
+  </div>
+  <div class="col-md-4 text-md-end mt-3 mt-md-0">
+    <button class="btn btn-primary rounded-pill px-4 fw-bold shadow-sm d-flex align-items-center gap-2 ms-auto">
+      <i class="bi bi-clock-history"></i> Start Shift
+    </button>
+  </div>
+</div>
+
+<!-- Summary Cards -->
+<div class="row g-4 mb-5">
+  <div class="col-sm-6 col-xl-3">
+    <div class="card border-0 bg-white shadow-sm rounded-4 p-4 h-100">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <div class="bg-primary bg-opacity-10 text-primary rounded-3 p-2">
+          <i class="bi bi-people fs-4"></i>
+        </div>
+        <span class="small fw-bold text-success"><i class="bi bi-arrow-up-short"></i> 5%</span>
+      </div>
+      <h6 class="text-muted small fw-bold text-uppercase mb-1">Branch Customers</h6>
+      <h3 class="fw-bold text-dark mb-0">{{stats()?.branchCustomers | number}}</h3>
+    </div>
+  </div>
+
+  <div class="col-sm-6 col-xl-3">
+    <div class="card border-0 bg-white shadow-sm rounded-4 p-4 h-100">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <div class="bg-warning bg-opacity-10 text-warning rounded-3 p-2">
+          <i class="bi bi-person-bounding-box fs-4"></i>
+        </div>
+        <span class="small fw-bold text-warning"><i class="bi bi-dash"></i> 0%</span>
+      </div>
+      <h6 class="text-muted small fw-bold text-uppercase mb-1">Pending KYC</h6>
+      <h3 class="fw-bold text-dark mb-0">{{stats()?.pendingKyc | number}}</h3>
+    </div>
+  </div>
+
+  <div class="col-sm-6 col-xl-3">
+    <div class="card border-0 bg-white shadow-sm rounded-4 p-4 h-100">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <div class="bg-success bg-opacity-10 text-success rounded-3 p-2">
+          <i class="bi bi-cash-stack fs-4"></i>
+        </div>
+        <span class="small fw-bold text-success"><i class="bi bi-arrow-up-short"></i> 12%</span>
+      </div>
+      <h6 class="text-muted small fw-bold text-uppercase mb-1">Today's Transactions</h6>
+      <h3 class="fw-bold text-dark mb-0">{{stats()?.todayTransactions | number}}</h3>
+    </div>
+  </div>
+
+  <div class="col-sm-6 col-xl-3">
+    <div class="card border-0 bg-white shadow-sm rounded-4 p-4 h-100">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <div class="bg-danger bg-opacity-10 text-danger rounded-3 p-2">
+          <i class="bi bi-shield-exclamation fs-4"></i>
+        </div>
+        <span class="small fw-bold text-danger"><i class="bi bi-arrow-up-short"></i> 2</span>
+      </div>
+      <h6 class="text-muted small fw-bold text-uppercase mb-1">Fraud Alerts</h6>
+      <h3 class="fw-bold text-dark mb-0">{{stats()?.fraudAlerts | number}}</h3>
+    </div>
+  </div>
+</div>
+
+<div class="row g-4 mb-5">
+  <!-- Chart -->
+  <div class="col-lg-8">
+    <div class="card border-0 shadow-sm rounded-4 p-4 h-100">
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <h5 class="fw-bold text-dark mb-0">Weekly Operations Overview</h5>
+        <button class="btn btn-light btn-sm rounded-pill fw-bold border shadow-sm px-3"><i class="bi bi-download"></i> Export</button>
+      </div>
+      <div style="height: 300px;">
+        <canvas baseChart
+          [data]="barChartData"
+          [options]="barChartOptions"
+          [type]="'bar'">
+        </canvas>
+      </div>
+    </div>
+  </div>
+
+  <!-- Quick Tasks / Alerts -->
+  <div class="col-lg-4">
+    <div class="card border-0 shadow-sm rounded-4 p-4 h-100 bg-primary bg-gradient text-white position-relative overflow-hidden">
+      <i class="bi bi-lightning-charge position-absolute text-white opacity-10" style="font-size: 10rem; right: -20px; bottom: -20px;"></i>
+      <h5 class="fw-bold mb-4 position-relative" style="z-index: 2;">Action Required</h5>
+      
+      <div class="d-flex flex-column gap-3 position-relative" style="z-index: 2;">
+        <div class="bg-white bg-opacity-10 p-3 rounded-3 d-flex justify-content-between align-items-center cursor-pointer" routerLink="/employee/kyc">
+          <div class="d-flex align-items-center gap-3">
+            <i class="bi bi-person-check fs-4"></i>
+            <span class="fw-bold small">Review KYC Applications</span>
+          </div>
+          <span class="badge bg-warning text-dark rounded-pill">{{stats()?.pendingKyc}}</span>
+        </div>
+        
+        <div class="bg-white bg-opacity-10 p-3 rounded-3 d-flex justify-content-between align-items-center cursor-pointer" routerLink="/employee/loans">
+          <div class="d-flex align-items-center gap-3">
+            <i class="bi bi-wallet2 fs-4"></i>
+            <span class="fw-bold small">Process Loan Requests</span>
+          </div>
+          <span class="badge bg-danger rounded-pill">{{stats()?.pendingLoans}}</span>
+        </div>
+        
+        <div class="bg-white bg-opacity-10 p-3 rounded-3 d-flex justify-content-between align-items-center cursor-pointer" routerLink="/employee/atm">
+          <div class="d-flex align-items-center gap-3">
+            <i class="bi bi-atm fs-4"></i>
+            <span class="fw-bold small">ATM Maintenance Alerts</span>
+          </div>
+          <span class="badge bg-warning text-dark rounded-pill">{{stats()?.atmIssues}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row g-4 mb-4">
+  <div class="col-lg-12">
+    <div class="card border-0 shadow-sm rounded-4">
+      <div class="card-header bg-white py-3 px-4 border-0 d-flex justify-content-between align-items-center">
+        <h5 class="fw-bold text-dark mb-0">Loan Requests <span class="badge bg-warning bg-opacity-10 text-warning rounded-pill ms-2">{{pendingLoans().length}} Pending</span></h5>
+      </div>
+      <div class="table-responsive">
+        <table class="table table-hover align-middle mb-0">
+          <thead class="bg-light text-muted small text-uppercase">
+            <tr>
+              <th class="ps-4">Customer</th>
+              <th>Amount</th>
+              <th>Type</th>
+              <th>Purpose</th>
+              <th class="text-end pe-4">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let loan of pendingLoans()">
+              <td class="ps-4">
+                <span class="fw-bold text-dark">{{loan.customerName}}</span>
+              </td>
+              <td class="fw-bold text-primary">${{loan.amount | number}}</td>
+              <td><span class="badge bg-primary bg-opacity-10 text-primary">{{loan.type}}</span></td>
+              <td class="small text-muted">{{loan.purpose}}</td>
+              <td class="text-end pe-4">
+                <button class="btn btn-success btn-sm rounded-pill px-4 me-2 fw-bold shadow-sm" (click)="approveLoan(loan.id)">Approve</button>
+                <button class="btn btn-outline-danger btn-sm rounded-pill px-4 fw-bold" (click)="rejectLoan(loan.id)">Reject</button>
+              </td>
+            </tr>
+            <tr *ngIf="pendingLoans().length === 0">
+              <td colspan="5" class="text-center py-4 text-muted small">No pending loan requests</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row g-4">
+  <div class="col-lg-12">
+    <div class="card border-0 shadow-sm rounded-4 overflow-hidden mb-4">
+      <div class="card-header bg-white py-4 px-4 border-0 d-flex justify-content-between align-items-center">
+        <h5 class="fw-bold text-dark mb-0">Recent Branch Transactions</h5>
+        <a routerLink="/employee/transactions" class="btn btn-outline-primary btn-sm rounded-pill px-3 fw-bold">View Full Ledger</a>
+      </div>
+      <div class="table-responsive">
+        <table class="table table-hover align-middle mb-0 border-top">
+          <thead class="bg-light text-muted small text-uppercase ls-widest">
+            <tr>
+              <th class="ps-4 py-3 border-0">Reference</th>
+              <th class="py-3 border-0">Type</th>
+              <th class="py-3 border-0">Date & Time</th>
+              <th class="py-3 border-0">Status</th>
+              <th class="py-3 text-end pe-4 border-0">Amount</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let txn of recentTransactions()">
+              <td class="ps-4 py-3">
+                <div class="fw-bold text-dark small mb-1">{{txn.transactionReference}}</div>
+                <div class="text-muted" style="font-size: 0.75rem;">From: {{txn.senderAccountId}}</div>
+              </td>
+              <td><span class="badge bg-light text-dark border rounded-pill px-3 py-2 small fw-bold">{{txn.transactionType}}</span></td>
+              <td class="small text-muted fw-bold">{{txn.createdAt | date:'medium'}}</td>
+              <td>
+                <span [class]="'badge rounded-pill px-3 py-2 small ' + (txn.status === 'completed' ? 'bg-success bg-opacity-10 text-success' : 'bg-warning bg-opacity-10 text-warning')">
+                  {{txn.status | titlecase}}
+                </span>
+              </td>
+              <td class="text-end pe-4">
+                <h6 [class]="'fw-bold mb-0 ' + (txn.transactionType === 'DEPOSIT' ? 'text-success' : 'text-dark')">
+                  {{txn.transactionType === 'DEPOSIT' ? '+' : '-'}}${{txn.amount | number:'1.2-2'}}
+                </h6>
+              </td>
+            </tr>
+            <tr *ngIf="recentTransactions().length === 0">
+              <td colspan="5" class="text-center py-5 text-muted small">No recent transactions found.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

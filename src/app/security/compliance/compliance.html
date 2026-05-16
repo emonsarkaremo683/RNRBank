@@ -1,0 +1,48 @@
+<div class="row align-items-center mb-4">
+  <div class="col-md-8">
+    <h2 class="fw-bold text-dark mb-1">Compliance & Regulatory Hub</h2>
+    <p class="text-muted small mb-0">Oversee regulatory compliance, manage policy violations, and track mandatory reporting schedules.</p>
+  </div>
+</div>
+
+<div class="card border-0 shadow-sm rounded-5 overflow-hidden mb-4">
+  <div class="card-header bg-white py-4 px-4 border-0 border-bottom d-flex justify-content-between align-items-center">
+    <h5 class="fw-bold text-dark mb-0">Policy Violations Registry</h5>
+  </div>
+  <div class="table-responsive">
+    <table class="table table-hover align-middle mb-0">
+      <thead class="bg-light text-muted small text-uppercase ls-widest">
+        <tr>
+          <th class="ps-4 py-3 border-0">Violation Type / Policy</th>
+          <th class="py-3 border-0">Severity</th>
+          <th class="py-3 border-0">Detection Date</th>
+          <th class="py-3 border-0">Status</th>
+          <th class="py-3 text-end pe-4 border-0">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let v of violations">
+          <td class="ps-4 py-3">
+            <h6 class="fw-bold text-dark mb-1">{{v.policy}}</h6>
+            <span class="text-muted small">Ref: {{v.id}}</span>
+          </td>
+          <td>
+            <span [class]="'badge rounded-pill px-3 py-2 small fw-bold ' + (v.severity === 'high' ? 'bg-danger' : 'bg-warning text-dark')">
+              {{v.severity | uppercase}}
+            </span>
+          </td>
+          <td class="small text-muted">{{v.date | date:'mediumDate'}}</td>
+          <td>
+            <span class="badge bg-light text-dark border rounded-pill px-3 py-2 small fw-bold">{{v.status | titlecase}}</span>
+          </td>
+          <td class="text-end pe-4">
+             <button class="btn btn-light btn-sm rounded-pill px-3 fw-bold text-primary shadow-sm border">Mitigate</button>
+          </td>
+        </tr>
+        <tr *ngIf="violations.length === 0">
+          <td colspan="5" class="text-center py-5 text-muted small">No compliance violations found in the recent window.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

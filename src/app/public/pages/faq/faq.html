@@ -1,0 +1,64 @@
+<!-- Page Header -->
+<section class="bg-primary text-white py-5">
+  <div class="container py-lg-4 text-center">
+    <h1 class="display-4 fw-bold mb-3">Frequently Asked Questions</h1>
+    <p class="lead opacity-75 mx-auto" style="max-width: 700px;">Everything you need to know about RNR Bank's products and services. Can't find an answer? Our support team is here for you.</p>
+  </div>
+</section>
+
+<!-- FAQ Search -->
+<section class="py-5 bg-light border-bottom">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-6">
+        <div class="input-group shadow-sm">
+          <span class="input-group-text bg-white border-0 ps-4"><i class="bi bi-search text-secondary"></i></span>
+          <input type="text" class="form-control border-0 py-3 px-3" placeholder="Search for questions...">
+          <button class="btn btn-primary px-4 fw-bold">Search</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ Accordion -->
+<section class="py-5">
+  <div class="container py-lg-4">
+    <div class="row g-5">
+      <!-- Categories Sidebar -->
+      <div class="col-lg-3">
+        <div class="list-group list-group-flush shadow-sm rounded-4 overflow-hidden border">
+          <button class="list-group-item list-group-item-action py-3 active fw-bold"><i class="bi bi-grid me-2"></i> All Categories</button>
+          <button class="list-group-item list-group-item-action py-3"><i class="bi bi-person me-2"></i> Account Opening</button>
+          <button class="list-group-item list-group-item-action py-3"><i class="bi bi-credit-card me-2"></i> Card Services</button>
+          <button class="list-group-item list-group-item-action py-3"><i class="bi bi-phone me-2"></i> Mobile Banking</button>
+          <button class="list-group-item list-group-item-action py-3"><i class="bi bi-shield-lock me-2"></i> Security & Privacy</button>
+          <button class="list-group-item list-group-item-action py-3"><i class="bi bi-cash-stack me-2"></i> Loans & Credit</button>
+        </div>
+        <div class="mt-4 p-4 bg-primary rounded-4 text-white">
+          <h5 class="fw-bold mb-3">Need more help?</h5>
+          <p class="small opacity-75 mb-4">Our support team is available 24/7 to assist you with any questions.</p>
+          <a routerLink="/contact" class="btn btn-warning w-100 rounded-pill fw-bold btn-sm py-2">Contact Support</a>
+        </div>
+      </div>
+
+      <!-- Accordion -->
+      <div class="col-lg-9">
+        <div class="accordion accordion-flush shadow-sm rounded-4 overflow-hidden border" id="faqPageAccordion">
+          <div *ngFor="let faq of faqs; let i = index" class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed fw-bold py-4 px-4" type="button" data-bs-toggle="collapse" [attr.data-bs-target]="'#faqCollapse' + i">
+                {{faq.question}}
+              </button>
+            </h2>
+            <div [id]="'faqCollapse' + i" class="accordion-collapse collapse" data-bs-parent="#faqPageAccordion">
+              <div class="accordion-body text-secondary py-4 px-4">
+                {{faq.answer}}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

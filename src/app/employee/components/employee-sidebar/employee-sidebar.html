@@ -1,0 +1,109 @@
+<div class="d-flex flex-column h-100">
+  <div class="p-4 d-flex align-items-center gap-3 border-bottom border-white border-opacity-25" style="position: sticky; top: 0; z-index: 10; background-color: rgba(13, 110, 253, 0.9);">
+    <div class="bg-white rounded-3 p-2">
+      <i class="bi bi-briefcase fs-4 text-primary"></i>
+    </div>
+    <div>
+      <h5 class="fw-bold mb-0">RNR <span class="text-warning">Staff</span></h5>
+      <span class="small text-white-50 text-uppercase fw-bold ls-widest" style="font-size: 0.65rem;">Employee Portal</span>
+    </div>
+  </div>
+
+  <div class="p-3 flex-grow-1">
+    <h6 class="text-white-50 small text-uppercase fw-bold px-3 mb-3" style="letter-spacing: 0.1em;">Main Navigation</h6>
+    <ul class="nav flex-column gap-1">
+      <li class="nav-item">
+        <a routerLink="/employee/dashboard" routerLinkActive="bg-white bg-opacity-25 text-white fw-bold shadow-sm" class="nav-link text-white p-3 rounded-3 d-flex align-items-center gap-3">
+          <i class="bi bi-grid-1x2 fs-5"></i>
+          <span class="fw-bold">Dashboard</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a routerLink="/employee/ess" routerLinkActive="bg-white bg-opacity-25 text-white fw-bold shadow-sm" class="nav-link text-white p-3 rounded-3 d-flex align-items-center gap-3">
+          <i class="bi bi-person-workspace fs-5"></i>
+          <span class="fw-bold">Self Service</span>
+        </a>
+      </li>
+      <li class="nav-item" *ngIf="hasRole('MANAGER') || hasRole('CS_OFFICER') || hasRole('ADMIN')">
+        <a routerLink="/employee/customers" routerLinkActive="bg-white bg-opacity-25 text-white fw-bold shadow-sm" class="nav-link text-white p-3 rounded-3 d-flex align-items-center gap-3">
+          <i class="bi bi-people fs-5"></i>
+          <span class="fw-bold">Customers</span>
+        </a>
+      </li>
+      <li class="nav-item" *ngIf="hasRole('MANAGER') || hasRole('CS_OFFICER') || hasRole('ADMIN')">
+        <a routerLink="/employee/accounts" routerLinkActive="bg-white bg-opacity-25 text-white fw-bold shadow-sm" class="nav-link text-white p-3 rounded-3 d-flex align-items-center gap-3">
+          <i class="bi bi-journal-text fs-5"></i>
+          <span class="fw-bold">Accounts</span>
+        </a>
+      </li>
+      <li class="nav-item" *ngIf="hasRole('MANAGER') || hasRole('KYC_OFFICER') || hasRole('ADMIN')">
+        <a routerLink="/employee/kyc" routerLinkActive="bg-white bg-opacity-25 text-white fw-bold shadow-sm" class="nav-link text-white p-3 rounded-3 d-flex align-items-center gap-3">
+          <i class="bi bi-person-bounding-box fs-5"></i>
+          <span class="fw-bold">KYC Management</span>
+        </a>
+      </li>
+    </ul>
+
+    <h6 class="text-white-50 small text-uppercase fw-bold px-3 mt-4 mb-3" style="letter-spacing: 0.1em;">Operations</h6>
+    <ul class="nav flex-column gap-1">
+      <li class="nav-item" *ngIf="hasRole('MANAGER') || hasRole('LOAN_OFFICER') || hasRole('ADMIN')">
+        <a routerLink="/employee/loans" routerLinkActive="bg-white bg-opacity-25 text-white fw-bold shadow-sm" class="nav-link text-white p-3 rounded-3 d-flex align-items-center gap-3">
+          <i class="bi bi-cash-coin fs-5"></i>
+          <span class="fw-bold">Loans</span>
+        </a>
+      </li>
+      <li class="nav-item" *ngIf="hasRole('MANAGER') || hasRole('CASH_OFFICER') || hasRole('ADMIN')">
+        <a routerLink="/employee/cash-operations" routerLinkActive="bg-white bg-opacity-25 text-white fw-bold shadow-sm" class="nav-link text-white p-3 rounded-3 d-flex align-items-center gap-3">
+          <i class="bi bi-safe fs-5"></i>
+          <span class="fw-bold">Cash Operations</span>
+        </a>
+      </li>
+      <li class="nav-item" *ngIf="hasRole('MANAGER') || hasRole('CS_OFFICER') || hasRole('ADMIN')">
+        <a routerLink="/employee/cards" routerLinkActive="bg-white bg-opacity-25 text-white fw-bold shadow-sm" class="nav-link text-white p-3 rounded-3 d-flex align-items-center gap-3">
+          <i class="bi bi-credit-card-2-front fs-5"></i>
+          <span class="fw-bold">Cards</span>
+        </a>
+      </li>
+      <li class="nav-item" *ngIf="hasRole('MANAGER') || hasRole('ADMIN')">
+        <a routerLink="/employee/atm" routerLinkActive="bg-white bg-opacity-25 text-white fw-bold shadow-sm" class="nav-link text-white p-3 rounded-3 d-flex align-items-center gap-3">
+          <i class="bi bi-atm fs-5"></i>
+          <span class="fw-bold">ATM Management</span>
+        </a>
+      </li>
+      <li class="nav-item" *ngIf="hasRole('MANAGER') || hasRole('AUDITOR') || hasRole('ADMIN')">
+        <a routerLink="/employee/transactions" routerLinkActive="bg-white bg-opacity-25 text-white fw-bold shadow-sm" class="nav-link text-white p-3 rounded-3 d-flex align-items-center gap-3">
+          <i class="bi bi-arrow-left-right fs-5"></i>
+          <span class="fw-bold">Transactions</span>
+        </a>
+      </li>
+    </ul>
+
+    <h6 class="text-white-50 small text-uppercase fw-bold px-3 mt-4 mb-3" style="letter-spacing: 0.1em;">Internal & Reports</h6>
+    <ul class="nav flex-column gap-1">
+      <li class="nav-item">
+        <a routerLink="/employee/tasks" routerLinkActive="bg-white bg-opacity-25 text-white fw-bold shadow-sm" class="nav-link text-white p-3 rounded-3 d-flex align-items-center gap-3">
+          <i class="bi bi-list-task fs-5"></i>
+          <span class="fw-bold">My Tasks</span>
+        </a>
+      </li>
+      <li class="nav-item" *ngIf="hasRole('MANAGER') || hasRole('AUDITOR') || hasRole('ADMIN')">
+        <a routerLink="/employee/reports" routerLinkActive="bg-white bg-opacity-25 text-white fw-bold shadow-sm" class="nav-link text-white p-3 rounded-3 d-flex align-items-center gap-3">
+          <i class="bi bi-bar-chart-line fs-5"></i>
+          <span class="fw-bold">Reports</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a routerLink="/employee/notifications" routerLinkActive="bg-white bg-opacity-25 text-white fw-bold shadow-sm" class="nav-link text-white p-3 rounded-3 d-flex align-items-center gap-3">
+          <i class="bi bi-bell fs-5"></i>
+          <span class="fw-bold">Notifications</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <div class="p-4 border-top border-white border-opacity-25 text-center" style="position: sticky; bottom: 0; background-color: rgba(13, 110, 253, 0.9); z-index: 10;">
+     <button class="btn btn-light text-primary w-100 rounded-pill fw-bold" (click)="logout()">
+       <i class="bi bi-box-arrow-left me-2"></i> Logout
+     </button>
+  </div>
+</div>

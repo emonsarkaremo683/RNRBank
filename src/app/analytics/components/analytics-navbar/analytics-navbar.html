@@ -1,0 +1,63 @@
+<nav class="navbar navbar-expand bg-white border-bottom sticky-top py-3 px-4 shadow-sm">
+  <div class="container-fluid">
+    <button class="btn btn-light d-lg-none me-3" type="button" data-bs-toggle="offcanvas" data-bs-target="#analyticsSidebar">
+      <i class="bi bi-list fs-4"></i>
+    </button>
+
+    <div class="d-none d-md-block">
+      <h5 class="fw-bold mb-0 text-info"><i class="bi bi-graph-up-arrow me-2"></i>BI & Analytics Center <span class="text-info fw-normal small"> • {{currentUser()?.role}}</span></h5>
+      <span class="text-muted small">Executive Insights • Data Updated: <span class="fw-bold">Just now</span></span>
+    </div>
+
+    <ul class="navbar-nav ms-auto align-items-center gap-2">
+      <!-- Report Generator -->
+      <li class="nav-item d-none d-lg-block me-3">
+        <button class="btn btn-info bg-opacity-10 text-info border-info border-opacity-25 rounded-pill fw-bold px-4 shadow-sm">
+          <i class="bi bi-file-earmark-plus me-2"></i> Quick Report
+        </button>
+      </li>
+
+      <li class="nav-item dropdown">
+        <button class="btn btn-light rounded-circle p-2 position-relative shadow-sm" data-bs-toggle="dropdown" style="width: 40px; height: 40px;">
+          <i class="bi bi-bell"></i>
+          <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-info border border-2 border-white" style="padding: 0.35rem;">
+            5
+          </span>
+        </button>
+        <div class="dropdown-menu dropdown-menu-end shadow-lg border-0 rounded-4 p-0 mt-3" style="width: 320px;">
+          <div class="p-3 border-bottom d-flex justify-content-between align-items-center bg-light rounded-top-4">
+            <h6 class="fw-bold mb-0">Analytics Alerts</h6>
+            <span class="badge bg-info text-dark rounded-pill">5 Updates</span>
+          </div>
+          <div class="list-group list-group-flush" style="max-height: 300px; overflow-y: auto;">
+             <a href="#" class="list-group-item list-group-item-action p-3 border-0">
+               <div class="d-flex gap-3">
+                 <div class="bg-success bg-opacity-10 text-success rounded-circle d-flex align-items-center justify-content-center" style="width: 40px; height: 40px; flex-shrink: 0;">
+                   <i class="bi bi-arrow-up-circle"></i>
+                 </div>
+                 <div>
+                   <p class="small fw-bold mb-1">Monthly Revenue Up 12%</p>
+                   <span class="small text-muted">Exceeded targets in Gulshan and Motijheel.</span>
+                   <div class="small text-info mt-1">2 hours ago</div>
+                 </div>
+               </div>
+             </a>
+          </div>
+        </div>
+      </li>
+
+      <li class="nav-item dropdown ms-2">
+        <div class="d-flex align-items-center gap-3 cursor-pointer p-1 pe-3 rounded-pill bg-light border border-secondary border-opacity-25" data-bs-toggle="dropdown">
+          <img [src]="currentUser()?.profilePhoto || 'https://api.dicebear.com/7.x/avataaars/svg?seed=BI'" class="rounded-circle border border-2 border-info shadow-sm" style="width: 35px; height: 35px; object-fit: cover;">
+          <div class="text-end d-none d-lg-block">
+            <h6 class="fw-bold mb-0 small text-dark lh-1">{{currentUser()?.fullName}}</h6>
+          </div>
+          <i class="bi bi-chevron-down small text-muted"></i>
+        </div>
+        <ul class="dropdown-menu dropdown-menu-end shadow-lg border-0 rounded-4 mt-3 p-2" style="min-width: 200px;">
+          <li><button class="dropdown-item rounded-3 py-2 text-danger fw-bold" (click)="logout()"><i class="bi bi-box-arrow-right me-2"></i> Logout</button></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</nav>

@@ -1,0 +1,89 @@
+<div class="row align-items-center mb-4">
+  <div class="col-md-8">
+    <h2 class="fw-bold text-dark mb-1">Employee Self-Service (ESS)</h2>
+    <p class="text-muted small mb-0">Track your attendance, view payslips, and manage leave applications.</p>
+  </div>
+  <div class="col-md-4 text-md-end mt-3 mt-md-0">
+    <button class="btn btn-primary rounded-pill px-4 fw-bold shadow-sm" (click)="clockIn()">
+      <i class="bi bi-clock-history me-2"></i> Clock In / Out
+    </button>
+  </div>
+</div>
+
+<!-- Performance Cards -->
+<div class="row g-4 mb-5">
+  <div *ngFor="let kpi of myKpis()" class="col-md-4">
+    <div class="card border-0 bg-primary bg-gradient text-white shadow-sm rounded-4 p-4 h-100">
+      <h6 class="small fw-bold text-uppercase ls-widest mb-3 opacity-75">Your KPI Score ({{kpi.month}})</h6>
+      <div class="d-flex justify-content-between align-items-end">
+        <div>
+           <h2 class="fw-bold mb-1">{{kpi.kycAccuracy}}%</h2>
+           <p class="small mb-0 opacity-50">KYC Accuracy</p>
+        </div>
+        <div class="text-end">
+           <h4 class="fw-bold mb-1">{{kpi.customerRating}}</h4>
+           <p class="small mb-0 opacity-50">Avg. Rating</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+     <button class="card border-0 bg-white shadow-sm rounded-4 p-4 h-100 w-100 text-start transition-all hover-translate-y" (click)="applyLeave()">
+        <div class="bg-warning bg-opacity-10 text-warning rounded-circle d-flex align-items-center justify-content-center mb-3" style="width: 50px; height: 50px;">
+          <i class="bi bi-calendar-plus fs-4"></i>
+        </div>
+        <h5 class="fw-bold text-dark mb-1">Apply for Leave</h5>
+        <p class="small text-muted mb-0">Request sick or casual leave.</p>
+     </button>
+  </div>
+</div>
+
+<div class="row g-4">
+  <!-- My Attendance -->
+  <div class="col-lg-6">
+    <div class="card border-0 shadow-sm rounded-5 overflow-hidden h-100">
+      <div class="card-header bg-white py-4 px-4 border-0 border-bottom d-flex justify-content-between align-items-center">
+        <h5 class="fw-bold text-dark mb-0">Recent Attendance</h5>
+        <button class="btn btn-outline-primary btn-sm rounded-pill px-3 fw-bold">View History</button>
+      </div>
+      <div class="table-responsive">
+        <table class="table table-hover align-middle mb-0">
+          <thead class="bg-light text-muted small text-uppercase">
+            <tr>
+              <th class="ps-4">Date</th>
+              <th>Time</th>
+              <th class="text-end pe-4">Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let att of myAttendance()">
+              <td class="ps-4 small fw-bold text-dark">{{att.date | date:'mediumDate'}}</td>
+              <td class="small text-muted">{{att.clockIn}} - {{att.clockOut || '--'}}</td>
+              <td class="text-end pe-4">
+                <span class="badge bg-success bg-opacity-10 text-success rounded-pill px-2 py-1">PRESENT</span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- My Payroll -->
+  <div class="col-lg-6">
+    <div class="card border-0 shadow-sm rounded-5 overflow-hidden h-100">
+      <div class="card-header bg-white py-4 px-4 border-0 border-bottom">
+        <h5 class="fw-bold text-dark mb-0">Monthly Payslips</h5>
+      </div>
+      <div class="list-group list-group-flush">
+        <div *ngFor="let pay of myPayroll()" class="list-group-item p-4 border-bottom d-flex justify-content-between align-items-center">
+          <div>
+            <h6 class="fw-bold text-dark mb-1">{{pay.month}}</h6>
+            <span class="small text-muted">Net Pay: <strong>${{pay.netPay | number}}</strong></span>
+          </div>
+          <button class="btn btn-light btn-sm rounded-circle border shadow-sm"><i class="bi bi-download"></i></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,91 @@
+<div class="offcanvas-lg offcanvas-start bg-dark text-white border-end shadow d-flex flex-column overflow-y-auto" id="securitySidebar" style="width: 280px; min-height: 100vh;">
+  <div class="p-4 d-flex align-items-center gap-3 border-bottom border-secondary border-opacity-25" style="position: sticky; top: 0; background: #212529; z-index: 10;">
+    <div class="bg-danger rounded-3 p-2">
+      <i class="bi bi-shield-check fs-4 text-white"></i>
+    </div>
+    <div>
+      <h5 class="fw-bold mb-0 text-white">RNR <span class="text-danger">SECURE</span></h5>
+      <span class="small text-muted text-uppercase fw-bold ls-widest" style="font-size: 0.65rem;">Audit & Compliance</span>
+    </div>
+  </div>
+
+  <div class="p-3 flex-grow-1">
+    <h6 class="text-muted small text-uppercase fw-bold ls-widest px-3 mb-3">Monitoring</h6>
+    <ul class="nav flex-column gap-1">
+      <li class="nav-item">
+        <a routerLink="/security/dashboard" routerLinkActive="bg-danger text-white" class="nav-link text-white-50 p-3 rounded-3 d-flex align-items-center gap-3 transition-all hover-white">
+          <i class="bi bi-shield-lock fs-5"></i>
+          <span class="fw-bold">Security Hub</span>
+        </a>
+      </li>
+      <li class="nav-item" *ngIf="hasRole('ADMIN') || hasRole('SECURITY_OFFICER')">
+        <a routerLink="/security/fraud" routerLinkActive="bg-danger text-white" class="nav-link text-white-50 p-3 rounded-3 d-flex align-items-center gap-3 transition-all hover-white">
+          <i class="bi bi-exclamation-triangle fs-5"></i>
+          <span class="fw-bold">Fraud Detection</span>
+        </a>
+      </li>
+      <li class="nav-item" *ngIf="hasRole('ADMIN') || hasRole('COMPLIANCE_OFFICER')">
+        <a routerLink="/security/aml" routerLinkActive="bg-danger text-white" class="nav-link text-white-50 p-3 rounded-3 d-flex align-items-center gap-3 transition-all hover-white">
+          <i class="bi bi-cash-stack fs-5"></i>
+          <span class="fw-bold">AML Monitoring</span>
+        </a>
+      </li>
+    </ul>
+
+    <h6 class="text-muted small text-uppercase fw-bold ls-widest px-3 mt-4 mb-3">Audit & Logs</h6>
+    <ul class="nav flex-column gap-1">
+      <li class="nav-item" *ngIf="hasRole('ADMIN') || hasRole('AUDITOR') || hasRole('SECURITY_OFFICER')">
+        <a routerLink="/security/audit" routerLinkActive="bg-danger text-white" class="nav-link text-white-50 p-3 rounded-3 d-flex align-items-center gap-3 transition-all hover-white">
+          <i class="bi bi-journal-text fs-5"></i>
+          <span class="fw-bold">Audit Logs</span>
+        </a>
+      </li>
+      <li class="nav-item" *ngIf="hasRole('ADMIN') || hasRole('SECURITY_OFFICER')">
+        <a routerLink="/security/sessions" routerLinkActive="bg-danger text-white" class="nav-link text-white-50 p-3 rounded-3 d-flex align-items-center gap-3 transition-all hover-white">
+          <i class="bi bi-clock-history fs-5"></i>
+          <span class="fw-bold">Login Sessions</span>
+        </a>
+      </li>
+      <li class="nav-item" *ngIf="hasRole('ADMIN') || hasRole('SECURITY_OFFICER')">
+        <a routerLink="/security/devices" routerLinkActive="bg-danger text-white" class="nav-link text-white-50 p-3 rounded-3 d-flex align-items-center gap-3 transition-all hover-white">
+          <i class="bi bi-laptop fs-5"></i>
+          <span class="fw-bold">Device Mgmt</span>
+        </a>
+      </li>
+      <li class="nav-item" *ngIf="hasRole('ADMIN') || hasRole('SECURITY_OFFICER')">
+        <a routerLink="/security/ip-monitoring" routerLinkActive="bg-danger text-white" class="nav-link text-white-50 p-3 rounded-3 d-flex align-items-center gap-3 transition-all hover-white">
+          <i class="bi bi-globe fs-5"></i>
+          <span class="fw-bold">IP Tracking</span>
+        </a>
+      </li>
+    </ul>
+
+    <h6 class="text-muted small text-uppercase fw-bold ls-widest px-3 mt-4 mb-3">Compliance & Risk</h6>
+    <ul class="nav flex-column gap-1">
+      <li class="nav-item" *ngIf="hasRole('ADMIN') || hasRole('COMPLIANCE_OFFICER')">
+        <a routerLink="/security/compliance" routerLinkActive="bg-danger text-white" class="nav-link text-white-50 p-3 rounded-3 d-flex align-items-center gap-3 transition-all hover-white">
+          <i class="bi bi-check2-circle fs-5"></i>
+          <span class="fw-bold">Compliance</span>
+        </a>
+      </li>
+      <li class="nav-item" *ngIf="hasRole('ADMIN') || hasRole('RISK_OFFICER') || hasRole('COMPLIANCE_OFFICER')">
+        <a routerLink="/security/risks" routerLinkActive="bg-danger text-white" class="nav-link text-white-50 p-3 rounded-3 d-flex align-items-center gap-3 transition-all hover-white">
+          <i class="bi bi-activity fs-5"></i>
+          <span class="fw-bold">Risk Analysis</span>
+        </a>
+      </li>
+      <li class="nav-item" *ngIf="hasRole('ADMIN') || hasRole('AUDITOR') || hasRole('COMPLIANCE_OFFICER')">
+        <a routerLink="/security/reports" routerLinkActive="bg-danger text-white" class="nav-link text-white-50 p-3 rounded-3 d-flex align-items-center gap-3 transition-all hover-white">
+          <i class="bi bi-file-earmark-bar-graph fs-5"></i>
+          <span class="fw-bold">Sec Reports</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <div class="p-4 border-top border-secondary border-opacity-25 text-center" style="position: sticky; bottom: 0; background: #212529; z-index: 10;">
+     <button class="btn btn-outline-danger w-100 rounded-pill fw-bold" (click)="logout()">
+       <i class="bi bi-box-arrow-left me-2"></i> Secure Logout
+     </button>
+  </div>
+</div>

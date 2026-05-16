@@ -1,0 +1,52 @@
+<div class="row align-items-center mb-5">
+  <div class="col-md-8">
+    <h2 class="fw-bold text-dark mb-1">Transaction Flow Analytics</h2>
+    <p class="text-muted small mb-0">Monitor global transaction volumes, distribution by type, and channel utilization.</p>
+  </div>
+</div>
+
+<div class="row g-4 mb-5">
+  <div class="col-lg-8">
+    <div class="card border-0 shadow-sm rounded-5 p-4 h-100">
+      <h5 class="fw-bold text-dark mb-4">Weekly Transaction Volume</h5>
+      <div style="height: 350px;">
+        <canvas baseChart [data]="txnVolumeData" [type]="'bar'"></canvas>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-4">
+    <div class="card border-0 shadow-sm rounded-5 p-4 h-100">
+      <h5 class="fw-bold text-dark mb-4">Distribution by Type</h5>
+      <div style="height: 300px;">
+        <canvas baseChart [data]="txnTypeData" [type]="'doughnut'"></canvas>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row g-4">
+  <div class="col-md-3">
+    <div class="card border-0 bg-white shadow-sm rounded-4 p-4 text-center">
+       <h6 class="text-muted small fw-bold text-uppercase mb-2">Total Today</h6>
+       <h3 class="fw-bold text-dark mb-0">12,540</h3>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="card border-0 bg-white shadow-sm rounded-4 p-4 text-center">
+       <h6 class="text-muted small fw-bold text-uppercase mb-2">Failed Rate</h6>
+       <h3 class="fw-bold text-danger mb-0">0.02%</h3>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="card border-0 bg-white shadow-sm rounded-4 p-4 text-center">
+       <h6 class="text-muted small fw-bold text-uppercase mb-2">Success Rate</h6>
+       <h3 class="fw-bold text-success mb-0">99.98%</h3>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="card border-0 bg-white shadow-sm rounded-4 p-4 text-center">
+       <h6 class="text-muted small fw-bold text-uppercase mb-2">Peak Volume</h6>
+       <h3 class="fw-bold text-primary mb-0">45/sec</h3>
+    </div>
+  </div>
+</div>

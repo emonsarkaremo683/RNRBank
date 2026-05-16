@@ -1,0 +1,56 @@
+<div class="row align-items-center mb-4">
+  <div class="col-md-8">
+    <h2 class="fw-bold text-dark mb-1">Fraud Detection Hub</h2>
+    <p class="text-muted small mb-0">Monitor high-risk activities, investigate suspicious logins, and manage fraud cases.</p>
+  </div>
+</div>
+
+<div class="card border-0 shadow-sm rounded-5 overflow-hidden mb-4">
+  <div class="card-header bg-white py-4 px-4 border-0 border-bottom d-flex justify-content-between align-items-center">
+    <div class="input-group w-50">
+      <span class="input-group-text bg-light border-0"><i class="bi bi-search text-muted"></i></span>
+      <input type="text" class="form-control bg-light border-0" placeholder="Search by alert type or account...">
+    </div>
+    <select class="form-select bg-light border-0 w-25">
+      <option value="">All Severities</option>
+      <option value="high">High</option>
+      <option value="medium">Medium</option>
+      <option value="low">Low</option>
+    </select>
+  </div>
+  <div class="table-responsive">
+    <table class="table table-hover align-middle mb-0">
+      <thead class="bg-light text-muted small text-uppercase ls-widest">
+        <tr>
+          <th class="ps-4 py-3 border-0">Alert Details</th>
+          <th class="py-3 border-0">Account ID</th>
+          <th class="py-3 border-0">Severity</th>
+          <th class="py-3 border-0">Date</th>
+          <th class="py-3 border-0">Status</th>
+          <th class="py-3 text-end pe-4 border-0">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let alert of fraudAlerts">
+          <td class="ps-4 py-3">
+            <h6 class="fw-bold text-dark mb-1">{{alert.type}}</h6>
+            <span class="text-muted small font-monospace">Ref: {{alert.id}}</span>
+          </td>
+          <td><code class="text-primary fw-bold">{{alert.accountId}}</code></td>
+          <td>
+            <span [class]="'badge rounded-pill px-3 py-2 small ' + (alert.severity === 'high' ? 'bg-danger' : alert.severity === 'medium' ? 'bg-warning text-dark' : 'bg-info')">
+              {{alert.severity | uppercase}}
+            </span>
+          </td>
+          <td class="small text-muted">{{alert.date | date:'medium'}}</td>
+          <td>
+             <span class="badge bg-light text-dark border rounded-pill px-3 py-2 small fw-bold">{{alert.status | titlecase}}</span>
+          </td>
+          <td class="text-end pe-4">
+            <button class="btn btn-light btn-sm rounded-pill px-3 fw-bold text-danger shadow-sm border">Investigate</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

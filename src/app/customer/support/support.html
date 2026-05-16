@@ -1,0 +1,73 @@
+<div class="row align-items-center mb-4">
+  <div class="col-md-8">
+    <h2 class="fw-bold text-dark mb-1">Help & Support</h2>
+    <p class="text-muted small mb-0">Get assistance, track your support tickets, or read FAQs.</p>
+  </div>
+  <div class="col-md-4 text-md-end mt-3 mt-md-0">
+    <button class="btn btn-primary rounded-pill px-4 fw-bold shadow-sm d-flex align-items-center gap-2 ms-auto">
+      <i class="bi bi-plus-lg"></i> Create Ticket
+    </button>
+  </div>
+</div>
+
+<div class="row g-4 mb-5">
+  <div class="col-md-4">
+    <div class="card border-0 shadow-sm rounded-4 p-4 text-center h-100 transition-all hover-translate-y">
+      <i class="bi bi-telephone text-primary display-4 mb-3"></i>
+      <h5 class="fw-bold">24/7 Hotline</h5>
+      <p class="small text-muted mb-3">Call us anytime for urgent issues.</p>
+      <a href="tel:+8801800000000" class="btn btn-outline-primary rounded-pill fw-bold w-100 mt-auto">+880 1800-RNRBNK</a>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="card border-0 shadow-sm rounded-4 p-4 text-center h-100 transition-all hover-translate-y">
+      <i class="bi bi-chat-dots text-primary display-4 mb-3"></i>
+      <h5 class="fw-bold">Live Chat</h5>
+      <p class="small text-muted mb-3">Chat with our customer service reps.</p>
+      <button class="btn btn-outline-primary rounded-pill fw-bold w-100 mt-auto">Start Chat</button>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="card border-0 shadow-sm rounded-4 p-4 text-center h-100 transition-all hover-translate-y">
+      <i class="bi bi-question-circle text-primary display-4 mb-3"></i>
+      <h5 class="fw-bold">FAQ</h5>
+      <p class="small text-muted mb-3">Find answers to common questions.</p>
+      <button class="btn btn-outline-primary rounded-pill fw-bold w-100 mt-auto">View FAQs</button>
+    </div>
+  </div>
+</div>
+
+<div class="card border-0 shadow-sm rounded-5 overflow-hidden">
+  <div class="card-header bg-white py-4 px-4 border-0 d-flex justify-content-between align-items-center">
+    <h5 class="fw-bold text-dark mb-0">My Tickets</h5>
+  </div>
+  <div class="table-responsive">
+    <table class="table table-hover align-middle mb-0 border-top">
+      <thead class="bg-light text-muted small text-uppercase ls-widest">
+        <tr>
+          <th class="ps-4 py-3 border-0">Ticket ID & Subject</th>
+          <th class="py-3 border-0">Date</th>
+          <th class="py-3 border-0">Status</th>
+          <th class="py-3 text-end pe-4 border-0">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let ticket of tickets">
+          <td class="ps-4 py-3">
+            <h6 class="fw-bold text-dark mb-1">{{ticket.subject}}</h6>
+            <span class="text-muted font-monospace small">#{{ticket.id}}</span>
+          </td>
+          <td class="small text-muted">{{ticket.date | date:'mediumDate'}}</td>
+          <td>
+            <span [class]="'badge rounded-pill px-3 py-2 small ' + (ticket.status === 'open' ? 'bg-warning bg-opacity-10 text-warning' : 'bg-success bg-opacity-10 text-success')">
+              {{ticket.status | titlecase}}
+            </span>
+          </td>
+          <td class="text-end pe-4">
+            <button class="btn btn-light btn-sm rounded-pill px-3 fw-bold text-primary shadow-sm border">View Details</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

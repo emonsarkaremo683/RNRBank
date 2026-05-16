@@ -1,0 +1,44 @@
+<div class="matrix-header mb-5">
+  <h2 class="fw-bold text-dark mb-1">Access Control Matrix</h2>
+  <p class="text-muted small">Configure modular permissions across all system roles.</p>
+</div>
+
+<div class="card border-0 shadow-sm rounded-5 overflow-hidden">
+  <div class="table-responsive">
+    <table class="table table-bordered align-middle mb-0 matrix-table">
+      <thead class="bg-dark text-white text-center small text-uppercase ls-widest sticky-top">
+        <tr>
+          <th class="bg-dark text-start ps-4 py-4" style="min-width: 250px;">Permissions \ Roles</th>
+          <th *ngFor="let role of roles()" class="py-4 px-3" style="min-width: 150px;">
+            {{role.name}}
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let perm of permissions()">
+          <td class="ps-4 py-3 bg-light bg-opacity-50">
+            <div class="fw-bold text-dark small">{{perm.name}}</div>
+            <div class="text-muted" style="font-size: 0.75rem;">{{perm.module}}</div>
+          </td>
+          <td *ngFor="let role of roles()" class="text-center py-3">
+            <div class="form-check form-switch d-flex justify-content-center">
+              <input 
+                class="form-check-input" 
+                type="checkbox" 
+                [checked]="isPermissionAssigned(role.id, perm.id)"
+                (change)="togglePermission(role.id, perm.id, $event)"
+              >
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="mt-5 d-flex justify-content-end gap-3">
+  <button class="btn btn-light rounded-pill px-4 fw-bold">Discard Changes</button>
+  <button class="btn btn-primary rounded-pill px-5 fw-bold shadow-lg" (click)="saveChanges()">
+    Save Access Matrix
+  </button>
+</div>

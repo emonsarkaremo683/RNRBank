@@ -1,0 +1,124 @@
+<div class="row align-items-center mb-4">
+  <div class="col-md-8">
+    <h2 class="fw-bold text-dark mb-1">Core Operations Hub</h2>
+    <p class="text-muted small mb-0">Centralized monitoring and control for all banking operations.</p>
+  </div>
+  <div class="col-md-4 text-md-end mt-3 mt-md-0">
+    <button class="btn btn-primary rounded-pill px-4 fw-bold shadow-sm d-flex align-items-center gap-2 ms-auto">
+      <i class="bi bi-clock-history"></i> Daily Settlement
+    </button>
+  </div>
+</div>
+
+<!-- Summary Cards -->
+<div class="row g-4 mb-5">
+  <div class="col-md-6 col-lg-3">
+    <div class="card border-0 bg-white shadow-sm rounded-4 p-4 h-100">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <div class="bg-primary bg-opacity-10 text-primary rounded-3 p-2">
+          <i class="bi bi-journal-album fs-4"></i>
+        </div>
+        <span class="small fw-bold text-success"><i class="bi bi-arrow-up-short"></i> 8%</span>
+      </div>
+      <h6 class="text-muted small fw-bold text-uppercase mb-1">Total Accounts</h6>
+      <h3 class="fw-bold text-dark mb-0">{{stats()?.totalAccounts | number}}</h3>
+    </div>
+  </div>
+
+  <div class="col-md-6 col-lg-3">
+    <div class="card border-0 bg-white shadow-sm rounded-4 p-4 h-100">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <div class="bg-success bg-opacity-10 text-success rounded-3 p-2">
+          <i class="bi bi-arrow-left-right fs-4"></i>
+        </div>
+        <span class="small fw-bold text-success"><i class="bi bi-arrow-up-short"></i> 15%</span>
+      </div>
+      <h6 class="text-muted small fw-bold text-uppercase mb-1">Daily Transactions</h6>
+      <h3 class="fw-bold text-dark mb-0">{{stats()?.dailyTransactions | number}}</h3>
+    </div>
+  </div>
+
+  <div class="col-md-6 col-lg-3">
+    <div class="card border-0 bg-white shadow-sm rounded-4 p-4 h-100">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <div class="bg-warning bg-opacity-10 text-warning rounded-3 p-2">
+          <i class="bi bi-cash-stack fs-4"></i>
+        </div>
+      </div>
+      <h6 class="text-muted small fw-bold text-uppercase mb-1">Vault Balance</h6>
+      <h3 class="fw-bold text-dark mb-0">${{stats()?.vaultBalance | number}}</h3>
+    </div>
+  </div>
+
+  <div class="col-md-6 col-lg-3">
+    <div class="card border-0 bg-white shadow-sm rounded-4 p-4 h-100">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <div class="bg-danger bg-opacity-10 text-danger rounded-3 p-2">
+          <i class="bi bi-shield-exclamation fs-4"></i>
+        </div>
+        <span class="small fw-bold text-danger"><i class="bi bi-exclamation-triangle"></i></span>
+      </div>
+      <h6 class="text-muted small fw-bold text-uppercase mb-1">Failed Txns</h6>
+      <h3 class="fw-bold text-dark mb-0">{{stats()?.failedTransactions | number}}</h3>
+    </div>
+  </div>
+</div>
+
+<div class="row g-4 mb-5">
+  <!-- Chart -->
+  <div class="col-lg-8">
+    <div class="card border-0 shadow-sm rounded-4 p-4 h-100">
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <h5 class="fw-bold text-dark mb-0">Transaction Flow Trend</h5>
+        <select class="form-select form-select-sm border-0 bg-light rounded-pill px-3" style="width: 140px;">
+          <option>Last 7 Days</option>
+          <option>Last 30 Days</option>
+        </select>
+      </div>
+      <div style="height: 300px;">
+        <canvas baseChart
+          [data]="lineChartData"
+          [options]="lineChartOptions"
+          [type]="'line'">
+        </canvas>
+      </div>
+    </div>
+  </div>
+
+  <!-- Quick Actions -->
+  <div class="col-lg-4">
+    <div class="card border-0 shadow-sm rounded-4 p-4 h-100">
+      <h5 class="fw-bold text-dark mb-4">Operations Shortcuts</h5>
+      <div class="d-flex flex-column gap-3">
+        <button class="btn btn-light w-100 py-3 rounded-4 border-0 d-flex justify-content-between align-items-center hover-translate-y" routerLink="/operations/accounts">
+          <div class="d-flex align-items-center gap-3">
+            <i class="bi bi-journal-plus fs-5 text-primary"></i>
+            <span class="fw-bold text-dark">Open New Account</span>
+          </div>
+          <i class="bi bi-chevron-right text-muted"></i>
+        </button>
+        <button class="btn btn-light w-100 py-3 rounded-4 border-0 d-flex justify-content-between align-items-center hover-translate-y" routerLink="/operations/transfers">
+          <div class="d-flex align-items-center gap-3">
+            <i class="bi bi-send-plus fs-5 text-success"></i>
+            <span class="fw-bold text-dark">Initiate Transfer</span>
+          </div>
+          <i class="bi bi-chevron-right text-muted"></i>
+        </button>
+        <button class="btn btn-light w-100 py-3 rounded-4 border-0 d-flex justify-content-between align-items-center hover-translate-y" routerLink="/operations/cash">
+          <div class="d-flex align-items-center gap-3">
+            <i class="bi bi-safe fs-5 text-warning"></i>
+            <span class="fw-bold text-dark">Vault Management</span>
+          </div>
+          <i class="bi bi-chevron-right text-muted"></i>
+        </button>
+        <button class="btn btn-light w-100 py-3 rounded-4 border-0 d-flex justify-content-between align-items-center hover-translate-y" routerLink="/operations/statements">
+          <div class="d-flex align-items-center gap-3">
+            <i class="bi bi-file-earmark-pdf fs-5 text-info"></i>
+            <span class="fw-bold text-dark">Generate Statement</span>
+          </div>
+          <i class="bi bi-chevron-right text-muted"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

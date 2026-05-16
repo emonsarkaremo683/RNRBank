@@ -1,0 +1,368 @@
+<!-- Hero Section -->
+<section class="bg-primary text-white py-5 position-relative overflow-hidden">
+  <div class="container py-lg-5 position-relative" style="z-index: 2;">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-6">
+        <span class="badge bg-warning text-dark px-3 py-2 rounded-pill fw-bold mb-3">TRUSTED BY 2M+ CUSTOMERS</span>
+        <h1 class="display-3 fw-bold mb-4">Future of Digital <span class="text-warning">Banking</span> is Here</h1>
+        <p class="lead mb-5 opacity-75">Experience premium banking with high-yield savings, instant loans, and seamless digital payments. Your security is our top priority.</p>
+        <div class="d-flex flex-wrap gap-3">
+          <a *ngIf="!isLoggedIn" routerLink="/auth/register" class="btn btn-warning btn-lg px-5 py-3 fw-bold rounded-pill shadow">Open Free Account</a>
+          <a *ngIf="isLoggedIn" [routerLink]="dashboardLink" class="btn btn-warning btn-lg px-5 py-3 fw-bold rounded-pill shadow">Go to Dashboard</a>
+          <a routerLink="/services" class="btn btn-outline-light btn-lg px-5 py-3 fw-bold rounded-pill">Explore Services</a>
+        </div>
+        <div class="mt-5 d-flex align-items-center gap-4">
+          <div class="d-flex -space-x-2">
+            <i class="bi bi-star-fill text-warning me-1"></i>
+            <i class="bi bi-star-fill text-warning me-1"></i>
+            <i class="bi bi-star-fill text-warning me-1"></i>
+            <i class="bi bi-star-fill text-warning me-1"></i>
+            <i class="bi bi-star-fill text-warning me-1"></i>
+          </div>
+          <span class="small opacity-75">Rated 4.9/5 by global users</span>
+        </div>
+      </div>
+      <div class="col-lg-6 d-none d-lg-block">
+        <div class="position-relative">
+          <div class="bg-warning rounded-4 p-4 shadow-lg position-absolute top-0 start-0 translate-middle-y mt-5 ms-n5 border border-4 border-white" style="z-index: 3; width: 200px;">
+            <div class="d-flex align-items-center gap-2 mb-2">
+              <i class="bi bi-shield-check fs-3 text-primary"></i>
+              <span class="fw-bold text-primary">Secure</span>
+            </div>
+            <p class="small text-primary mb-0 opacity-75">Military-grade 256-bit encryption</p>
+          </div>
+          <img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&q=80&w=800" alt="Banking App" class="img-fluid rounded-4 shadow-2xl border border-5 border-white opacity-90">
+          <div class="bg-white rounded-4 p-4 shadow-lg position-absolute bottom-0 end-0 mb-n4 me-n3 border border-4 border-primary" style="z-index: 3; width: 250px;">
+            <div class="d-flex align-items-center justify-content-between mb-3">
+              <span class="fw-bold text-dark">Savings Growth</span>
+              <span class="badge bg-success small">+12.5%</span>
+            </div>
+            <div class="progress" style="height: 10px;">
+              <div class="progress-bar bg-primary" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Abstract Shapes -->
+  <div class="position-absolute top-0 end-0 translate-middle mt-n5 me-n5 bg-white opacity-10 rounded-circle" style="width: 500px; height: 500px;"></div>
+  <div class="position-absolute bottom-0 start-0 translate-middle mb-n5 ms-n5 bg-warning opacity-10 rounded-circle" style="width: 300px; height: 300px;"></div>
+</section>
+
+<!-- Statistics Section -->
+<section class="py-5 bg-white shadow-sm position-relative" style="z-index: 10; margin-top: -50px; border-radius: 50px 50px 0 0;">
+  <div class="container">
+    <div class="row g-4 text-center">
+      <div class="col-6 col-lg-3">
+        <div class="p-3">
+          <h2 class="display-5 fw-bold text-primary mb-1">2.5M+</h2>
+          <p class="text-secondary fw-semibold text-uppercase small ls-widest">Active Users</p>
+        </div>
+      </div>
+      <div class="col-6 col-lg-3 border-start">
+        <div class="p-3">
+          <h2 class="display-5 fw-bold text-primary mb-1">$45B+</h2>
+          <p class="text-secondary fw-semibold text-uppercase small ls-widest">Total Deposits</p>
+        </div>
+      </div>
+      <div class="col-6 col-lg-3 border-start">
+        <div class="p-3">
+          <h2 class="display-5 fw-bold text-primary mb-1">15+</h2>
+          <p class="text-secondary fw-semibold text-uppercase small ls-widest">Countries</p>
+        </div>
+      </div>
+      <div class="col-6 col-lg-3 border-start">
+        <div class="p-3">
+          <h2 class="display-5 fw-bold text-primary mb-1">99.9%</h2>
+          <p class="text-secondary fw-semibold text-uppercase small ls-widest">Uptime</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Featured Services -->
+<section class="py-5">
+  <div class="container py-lg-5">
+    <div class="text-center mb-5">
+      <h6 class="text-primary fw-bold text-uppercase ls-widest mb-2">Our Solutions</h6>
+      <h2 class="display-5 fw-bold mb-3">Comprehensive Banking for Everyone</h2>
+      <p class="text-secondary mx-auto" style="max-width: 600px;">From daily transactions to long-term investments, we provide all the tools you need to manage your wealth efficiently.</p>
+    </div>
+
+    <div class="row g-4">
+      <div *ngFor="let service of services" class="col-md-6 col-lg-3">
+        <div class="card h-100 border-0 shadow-sm hover-translate-y p-4 rounded-4 transition-all">
+          <div class="bg-light rounded-4 d-inline-flex align-items-center justify-content-center mb-4" style="width: 70px; height: 70px;">
+            <i class="bi {{service.icon}} fs-2 text-primary"></i>
+          </div>
+          <h4 class="fw-bold mb-3">{{service.title}}</h4>
+          <p class="text-secondary mb-4">{{service.description}}</p>
+          <a [routerLink]="service.link" class="text-primary fw-bold text-decoration-none d-flex align-items-center mt-auto">
+            Learn More <i class="bi bi-arrow-right ms-2"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Account Opening CTA -->
+<section class="py-5 bg-light">
+  <div class="container py-lg-5">
+    <div class="bg-primary rounded-5 p-4 p-md-5 shadow-lg overflow-hidden position-relative">
+      <div class="row align-items-center g-4">
+        <div class="col-lg-7 position-relative" style="z-index: 2;">
+          <h2 class="display-5 fw-bold text-white mb-4">Ready to start your financial journey?</h2>
+          <p class="lead text-white opacity-75 mb-5">Join millions of happy customers and open your account in less than 5 minutes. No paperwork required.</p>
+          <div class="d-flex flex-wrap gap-3">
+            <button class="btn btn-warning btn-lg px-5 py-3 fw-bold rounded-pill">Get Started Now</button>
+            <button class="btn btn-outline-light btn-lg px-5 py-3 fw-bold rounded-pill">Compare Accounts</button>
+          </div>
+        </div>
+        <div class="col-lg-5 text-center position-relative" style="z-index: 2;">
+          <img src="https://images.unsplash.com/photo-1556742502-ec7c0e9f34b1?auto=format&fit=crop&q=80&w=500" alt="Debit Card" class="img-fluid rounded-4 shadow-lg rotate-3 border border-4 border-white">
+        </div>
+      </div>
+      <!-- Decorative Elements -->
+      <div class="position-absolute top-0 end-0 p-5 mt-n5 me-n5 opacity-10">
+        <i class="bi bi-bank fs-1 text-white" style="font-size: 20rem !important;"></i>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Card Showcase -->
+<section class="py-5">
+  <div class="container py-lg-5">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-6">
+        <h6 class="text-primary fw-bold text-uppercase ls-widest mb-2">Premium Cards</h6>
+        <h2 class="display-5 fw-bold mb-4">A Card for Every Lifestyle</h2>
+        <p class="text-secondary mb-5">Whether you're a frequent traveler, a savvy shopper, or a business owner, our range of credit and debit cards offer unmatched rewards and security.</p>
+
+        <div class="d-flex flex-column gap-4">
+          <div class="d-flex gap-4">
+            <div class="bg-light rounded-circle d-flex align-items-center justify-content-center shadow-sm" style="width: 60px; height: 60px; flex-shrink: 0;">
+              <i class="bi bi-airplane text-primary fs-4"></i>
+            </div>
+            <div>
+              <h5 class="fw-bold mb-1">Travel Rewards</h5>
+              <p class="text-secondary small mb-0">Earn miles on every purchase and access premium airport lounges worldwide.</p>
+            </div>
+          </div>
+          <div class="d-flex gap-4">
+            <div class="bg-light rounded-circle d-flex align-items-center justify-content-center shadow-sm" style="width: 60px; height: 60px; flex-shrink: 0;">
+              <i class="bi bi-shield-lock text-primary fs-4"></i>
+            </div>
+            <div>
+              <h5 class="fw-bold mb-1">Zero Fraud Liability</h5>
+              <p class="text-secondary small mb-0">Your security is our priority. Get instant alerts and 24/7 fraud monitoring.</p>
+            </div>
+          </div>
+          <div class="d-flex gap-4">
+            <div class="bg-light rounded-circle d-flex align-items-center justify-content-center shadow-sm" style="width: 60px; height: 60px; flex-shrink: 0;">
+              <i class="bi bi-percent text-primary fs-4"></i>
+            </div>
+            <div>
+              <h5 class="fw-bold mb-1">Cashback Offers</h5>
+              <p class="text-secondary small mb-0">Get up to 5% cashback on groceries, dining, and online subscriptions.</p>
+            </div>
+          </div>
+        </div>
+        <div class="mt-5">
+          <a routerLink="/services/cards" class="btn btn-primary btn-lg px-5 rounded-pill fw-bold">View All Cards</a>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="position-relative p-5">
+          <div class="bg-dark rounded-4 p-4 shadow-2xl text-white mb-n5 ms-n5 position-relative" style="z-index: 3; width: 350px; height: 220px;">
+            <div class="d-flex justify-content-between align-items-start mb-5">
+              <i class="bi bi-cpu fs-3 text-warning"></i>
+              <span class="fw-bold ls-widest">RNR PREMIER</span>
+            </div>
+            <div class="mb-4">
+              <h5 class="ls-widest mb-0">4582 9012 3456 7890</h5>
+            </div>
+            <div class="d-flex justify-content-between align-items-end">
+              <div>
+                <span class="small opacity-50 d-block">CARD HOLDER</span>
+                <span class="fw-bold">ALEXANDER RNR</span>
+              </div>
+              <div>
+                <span class="small opacity-50 d-block">EXPIRES</span>
+                <span class="fw-bold">12/28</span>
+              </div>
+            </div>
+          </div>
+          <div class="bg-primary rounded-4 p-4 shadow-2xl text-white ms-5 position-relative" style="z-index: 2; width: 350px; height: 220px; opacity: 0.9;">
+             <div class="d-flex justify-content-between align-items-start mb-5">
+              <i class="bi bi-cpu fs-3 text-light"></i>
+              <span class="fw-bold ls-widest">RNR GOLD</span>
+            </div>
+            <div class="mb-4">
+              <h5 class="ls-widest mb-0">5213 6789 0123 4567</h5>
+            </div>
+             <div class="d-flex justify-content-between align-items-end">
+              <div>
+                <span class="small opacity-50 d-block">CARD HOLDER</span>
+                <span class="fw-bold">ALEXANDER RNR</span>
+              </div>
+              <div>
+                <span class="small opacity-50 d-block">EXPIRES</span>
+                <span class="fw-bold">06/27</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Mobile Banking -->
+<section class="py-5 bg-dark text-white overflow-hidden">
+  <div class="container py-lg-5">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-5 order-2 order-lg-1">
+        <div class="position-relative">
+          <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&q=80&w=400" alt="Mobile App" class="img-fluid rounded-5 shadow-lg border border-5 border-secondary mx-auto d-block" style="max-width: 300px;">
+          <div class="bg-primary p-3 rounded-4 shadow-lg position-absolute top-50 start-0 translate-middle-x ms-n3 border border-3 border-dark d-none d-md-block" style="width: 180px;">
+            <div class="d-flex align-items-center gap-2">
+              <i class="bi bi-check-circle-fill text-warning"></i>
+              <span class="small fw-bold">Transfer Success</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-7 order-1 order-lg-2">
+        <h6 class="text-warning fw-bold text-uppercase ls-widest mb-2">Mobile Banking</h6>
+        <h2 class="display-5 fw-bold mb-4">Bank Anywhere, Anytime</h2>
+        <p class="lead opacity-75 mb-5">Manage your accounts, pay bills, and send money instantly with our award-winning mobile app. Designed for your convenience and security.</p>
+
+        <div class="row g-4">
+          <div class="col-md-6">
+            <div class="d-flex gap-3 mb-4">
+              <i class="bi bi-qr-code-scan text-warning fs-3"></i>
+              <div>
+                <h5 class="fw-bold mb-1">QR Payments</h5>
+                <p class="small opacity-50 mb-0">Scan and pay at thousands of merchants instantly.</p>
+              </div>
+            </div>
+            <div class="d-flex gap-3">
+              <i class="bi bi-lightning-charge text-warning fs-3"></i>
+              <div>
+                <h5 class="fw-bold mb-1">Instant Transfer</h5>
+                <p class="small opacity-50 mb-0">Send money to any bank account in seconds.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="d-flex gap-3 mb-4">
+              <i class="bi bi-graph-up-arrow text-warning fs-3"></i>
+              <div>
+                <h5 class="fw-bold mb-1">Expense Tracking</h5>
+                <p class="small opacity-50 mb-0">Insightful analytics on your monthly spending.</p>
+              </div>
+            </div>
+            <div class="d-flex gap-3">
+              <i class="bi bi-fingerprint text-warning fs-3"></i>
+              <div>
+                <h5 class="fw-bold mb-1">Biometric Login</h5>
+                <p class="small opacity-50 mb-0">Access your account securely with FaceID or TouchID.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-5 d-flex gap-3">
+          <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg" alt="App Store" height="45"></a>
+          <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Play Store" height="45"></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Security Section -->
+<section class="py-5">
+  <div class="container py-lg-5">
+    <div class="bg-light rounded-5 p-5 shadow-sm text-center">
+      <i class="bi bi-shield-lock-fill text-primary" style="font-size: 5rem;"></i>
+      <h2 class="display-5 fw-bold mt-4 mb-3">Your Security is Our Priority</h2>
+      <p class="text-secondary mx-auto mb-5" style="max-width: 700px;">We employ multi-layer security protocols, real-time fraud monitoring, and end-to-end encryption to ensure your financial data and transactions are always protected.</p>
+      <div class="row g-4 justify-content-center">
+        <div class="col-md-3">
+          <div class="p-3">
+            <h5 class="fw-bold mb-2">256-bit AES</h5>
+            <p class="small text-secondary mb-0">Bank-grade encryption for all data.</p>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="p-3 border-start">
+            <h5 class="fw-bold mb-2">2FA</h5>
+            <p class="small text-secondary mb-0">Mandatory multi-factor authentication.</p>
+          </div>
+        </div>
+        <div class="col-md-3 border-start">
+          <div class="p-3">
+            <h5 class="fw-bold mb-2">Real-time Alerts</h5>
+            <p class="small text-secondary mb-0">Instant notification for every activity.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ Preview -->
+<section class="py-5 bg-white">
+  <div class="container">
+    <div class="text-center mb-5">
+      <h2 class="fw-bold">Common Questions</h2>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <div class="accordion accordion-flush shadow-sm rounded-4 overflow-hidden border" id="faqAccordion">
+          <div *ngFor="let faq of faqs; let i = index" class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed fw-bold py-4" type="button" data-bs-toggle="collapse" [attr.data-bs-target]="'#collapse' + i">
+                {{faq.question}}
+              </button>
+            </h2>
+            <div [id]="'collapse' + i" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+              <div class="accordion-body text-secondary pb-4">
+                {{faq.answer}}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="text-center mt-5">
+          <a routerLink="/faq" class="btn btn-outline-primary px-5 rounded-pill fw-bold">See More FAQs</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Newsletter -->
+<section class="py-5">
+  <div class="container">
+    <div class="bg-warning rounded-5 p-5 shadow-lg text-center position-relative overflow-hidden">
+      <div class="position-relative" style="z-index: 2;">
+        <h2 class="fw-bold mb-3">Stay Updated with RNR Bank</h2>
+        <p class="mb-5 opacity-75">Subscribe to our newsletter for the latest financial tips and banking updates.</p>
+        <form class="row g-2 justify-content-center">
+          <div class="col-md-4">
+            <input type="email" class="form-control form-control-lg rounded-pill px-4 border-0 shadow-sm" placeholder="Enter your email">
+          </div>
+          <div class="col-md-auto">
+            <button type="submit" class="btn btn-primary btn-lg rounded-pill px-5 fw-bold shadow-sm">Subscribe Now</button>
+          </div>
+        </form>
+      </div>
+      <i class="bi bi-envelope-paper-fill position-absolute bottom-0 end-0 opacity-10 mb-n5 me-n5" style="font-size: 15rem;"></i>
+    </div>
+  </div>
+</section>

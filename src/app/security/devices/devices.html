@@ -1,0 +1,43 @@
+<div class="row align-items-center mb-4">
+  <div class="col-md-8">
+    <h2 class="fw-bold text-dark mb-1">Device Inventory & Trust</h2>
+    <p class="text-muted small mb-0">Manage trusted hardware, review device-level forensics, and block compromised devices.</p>
+  </div>
+</div>
+
+<div class="row g-4">
+  <div *ngFor="let dev of devices" class="col-md-6 col-lg-4">
+    <div class="card border-0 shadow-sm rounded-5 h-100 overflow-hidden transition-all hover-translate-y">
+      <div class="card-body p-4">
+        <div class="d-flex justify-content-between align-items-start mb-4">
+          <div class="d-flex align-items-center gap-3">
+             <div class="bg-primary bg-opacity-10 text-primary rounded-circle d-flex align-items-center justify-content-center fs-4" style="width: 50px; height: 50px;">
+              <i [class]="'bi ' + (dev.deviceName.includes('MacBook') ? 'bi-laptop' : 'bi-phone')"></i>
+            </div>
+            <div>
+              <h6 class="fw-bold text-dark mb-1">{{dev.deviceName}}</h6>
+              <span class="text-muted small fw-bold">{{dev.userId}}</span>
+            </div>
+          </div>
+          <span class="badge bg-success bg-opacity-10 text-success rounded-pill px-3 py-2 small fw-bold">TRUSTED</span>
+        </div>
+        
+        <div class="bg-light rounded-4 p-3 mb-4 small">
+          <div class="d-flex justify-content-between mb-1">
+            <span class="text-muted fw-bold">OS / Browser</span>
+            <span class="text-dark fw-bold">{{dev.os}} / {{dev.browser}}</span>
+          </div>
+           <div class="d-flex justify-content-between">
+            <span class="text-muted fw-bold">Last Activity</span>
+            <span class="text-dark fw-bold">{{dev.lastActive | date:'mediumDate'}}</span>
+          </div>
+        </div>
+        
+        <div class="d-flex gap-2">
+          <button class="btn btn-light btn-sm rounded-pill flex-grow-1 fw-bold border">History</button>
+          <button class="btn btn-outline-danger btn-sm rounded-circle shadow-sm border-0" (click)="blockDevice(dev.id)"><i class="bi bi-shield-x"></i></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

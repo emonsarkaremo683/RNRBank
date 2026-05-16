@@ -1,0 +1,46 @@
+<div class="row align-items-center mb-4">
+  <div class="col-md-8">
+    <h2 class="fw-bold text-dark mb-1">Beneficiary Management</h2>
+    <p class="text-muted small mb-0">Oversee cross-bank beneficiaries, verify payee details, and monitor additions.</p>
+  </div>
+</div>
+
+<div class="card border-0 shadow-sm rounded-5 overflow-hidden mb-4">
+  <div class="card-header bg-white py-4 px-4 border-0 border-bottom d-flex justify-content-between align-items-center">
+    <div class="input-group w-50">
+      <span class="input-group-text bg-light border-0"><i class="bi bi-search text-muted"></i></span>
+      <input type="text" class="form-control bg-light border-0" placeholder="Search payee name or account...">
+    </div>
+  </div>
+  <div class="table-responsive">
+    <table class="table table-hover align-middle mb-0">
+      <thead class="bg-light text-muted small text-uppercase ls-widest">
+        <tr>
+          <th class="ps-4 py-3 border-0">Beneficiary Name</th>
+          <th class="py-3 border-0">Account Details</th>
+          <th class="py-3 border-0">Bank Name</th>
+          <th class="py-3 border-0">Customer ID (Owner)</th>
+          <th class="py-3 text-end pe-4 border-0">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let ben of beneficiaries">
+          <td class="ps-4 py-3">
+            <h6 class="fw-bold text-dark mb-0">{{ben.name}}</h6>
+          </td>
+          <td>
+            <code class="text-primary font-monospace fw-bold">{{ben.accountNumber}}</code>
+          </td>
+          <td><span class="badge bg-light text-dark border rounded-pill px-3 py-2 small fw-bold">{{ben.bankName}}</span></td>
+          <td><span class="small text-muted fw-bold">{{ben.customerId}}</span></td>
+          <td class="text-end pe-4">
+            <button class="btn btn-light btn-sm rounded-pill px-3 fw-bold text-primary shadow-sm border">Review</button>
+          </td>
+        </tr>
+        <tr *ngIf="beneficiaries.length === 0">
+          <td colspan="5" class="text-center py-5 text-muted small">No beneficiaries found.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

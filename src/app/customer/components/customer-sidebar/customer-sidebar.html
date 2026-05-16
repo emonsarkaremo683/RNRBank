@@ -1,0 +1,97 @@
+<div class="offcanvas-lg offcanvas-start bg-dark text-white border-end shadow d-flex flex-column overflow-y-auto" id="customerSidebar" style="width: 280px; min-height: 100vh;">
+  <div class="p-4 d-flex align-items-center gap-3 border-bottom border-secondary border-opacity-25" style="position: sticky; top: 0; background: #212529; z-index: 10;">
+    <div class="bg-primary rounded-3 p-2">
+      <i class="bi bi-bank2 fs-4 text-white"></i>
+    </div>
+    <div>
+      <h5 class="fw-bold mb-0">RNR <span class="text-warning">Bank</span> <span *ngIf="isPremium()" class="badge bg-warning text-dark ms-1 small" style="font-size: 0.5rem;">PREMIUM</span></h5>
+      <span class="small text-muted text-uppercase fw-bold ls-widest" style="font-size: 0.65rem;">Digital Banking</span>
+    </div>
+  </div>
+
+  <div class="p-3 flex-grow-1">
+    <h6 class="text-muted small text-uppercase fw-bold ls-widest px-3 mb-3">Main Navigation</h6>
+    <ul class="nav flex-column gap-1">
+      <li class="nav-item">
+        <a routerLink="/customer/dashboard" routerLinkActive="bg-primary text-white" class="nav-link text-white-50 p-3 rounded-3 d-flex align-items-center gap-3 transition-all hover-white">
+          <i class="bi bi-grid fs-5"></i>
+          <span class="fw-bold">Dashboard</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a routerLink="/customer/accounts" routerLinkActive="bg-primary text-white" class="nav-link text-white-50 p-3 rounded-3 d-flex align-items-center gap-3 transition-all hover-white">
+          <i class="bi bi-wallet2 fs-5"></i>
+          <span class="fw-bold">My Accounts</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a routerLink="/customer/transactions" routerLinkActive="bg-primary text-white" class="nav-link text-white-50 p-3 rounded-3 d-flex align-items-center gap-3 transition-all hover-white">
+          <i class="bi bi-cash-stack fs-5"></i>
+          <span class="fw-bold">Transactions</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a routerLink="/customer/beneficiaries" routerLinkActive="bg-primary text-white" class="nav-link text-white-50 p-3 rounded-3 d-flex align-items-center gap-3 transition-all hover-white">
+          <i class="bi bi-people fs-5"></i>
+          <span class="fw-bold">Beneficiaries</span>
+        </a>
+      </li>
+    </ul>
+
+    <h6 class="text-muted small text-uppercase fw-bold ls-widest px-3 mt-4 mb-3">Services</h6>
+    <ul class="nav flex-column gap-1">
+      <li class="nav-item">
+        <a routerLink="/customer/cards" routerLinkActive="bg-primary text-white" class="nav-link text-white-50 p-3 rounded-3 d-flex align-items-center gap-3 transition-all hover-white">
+          <i class="bi bi-credit-card fs-5"></i>
+          <span class="fw-bold">Cards</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a routerLink="/customer/loans" routerLinkActive="bg-primary text-white" class="nav-link text-white-50 p-3 rounded-3 d-flex align-items-center gap-3 transition-all hover-white">
+          <i class="bi bi-piggy-bank fs-5"></i>
+          <span class="fw-bold">Loans</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a routerLink="/customer/mobile-banking" routerLinkActive="bg-primary text-white" class="nav-link text-white-50 p-3 rounded-3 d-flex align-items-center gap-3 transition-all hover-white">
+          <i class="bi bi-phone fs-5"></i>
+          <span class="fw-bold">Mobile Banking</span>
+        </a>
+      </li>
+    </ul>
+
+    <h6 class="text-muted small text-uppercase fw-bold ls-widest px-3 mt-4 mb-3">Account & Support</h6>
+    <ul class="nav flex-column gap-1">
+      <li class="nav-item">
+        <a routerLink="/customer/profile" routerLinkActive="bg-primary text-white" class="nav-link text-white-50 p-3 rounded-3 d-flex align-items-center gap-3 transition-all hover-white">
+          <i class="bi bi-person fs-5"></i>
+          <span class="fw-bold">Profile</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a routerLink="/customer/security" routerLinkActive="bg-primary text-white" class="nav-link text-white-50 p-3 rounded-3 d-flex align-items-center gap-3 transition-all hover-white">
+          <i class="bi bi-shield-lock fs-5"></i>
+          <span class="fw-bold">Security</span>
+        </a>
+      </li>
+       <li class="nav-item">
+        <a routerLink="/customer/notifications" routerLinkActive="bg-primary text-white" class="nav-link text-white-50 p-3 rounded-3 d-flex align-items-center gap-3 transition-all hover-white">
+          <i class="bi bi-bell fs-5"></i>
+          <span class="fw-bold">Notifications</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a routerLink="/customer/support" routerLinkActive="bg-primary text-white" class="nav-link text-white-50 p-3 rounded-3 d-flex align-items-center gap-3 transition-all hover-white">
+          <i class="bi bi-chat-dots fs-5"></i>
+          <span class="fw-bold">Support</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <div class="p-4 border-top border-secondary border-opacity-25 text-center" style="position: sticky; bottom: 0; background: #212529; z-index: 10;">
+     <button class="btn btn-outline-danger w-100 rounded-pill fw-bold" (click)="logout()">
+       <i class="bi bi-box-arrow-left me-2"></i> Secure Logout
+     </button>
+  </div>
+</div>

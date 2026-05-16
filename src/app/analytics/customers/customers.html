@@ -1,0 +1,52 @@
+<div class="row align-items-center mb-5">
+  <div class="col-md-8">
+    <h2 class="fw-bold text-dark mb-1">Customer Acquisition & Segments</h2>
+    <p class="text-muted small mb-0">Track global user growth, analyze demographic segments, and monitor active/dormant user ratios.</p>
+  </div>
+</div>
+
+<div class="row g-4 mb-5">
+  <div class="col-lg-7">
+    <div class="card border-0 shadow-sm rounded-5 p-4 h-100">
+      <h5 class="fw-bold text-dark mb-4">User Acquisition Trend</h5>
+      <div style="height: 350px;">
+        <canvas baseChart [data]="growthChartData" [type]="'line'"></canvas>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-5">
+    <div class="card border-0 shadow-sm rounded-5 p-4 h-100">
+      <h5 class="fw-bold text-dark mb-4">Segmentation by Account Type</h5>
+      <div style="height: 300px;">
+        <canvas baseChart [data]="segmentChartData" [type]="'pie'"></canvas>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row g-4">
+  <div class="col-md-3">
+    <div class="card border-0 bg-white shadow-sm rounded-4 p-4 text-center">
+       <h6 class="text-muted small fw-bold text-uppercase mb-2">Total active</h6>
+       <h3 class="fw-bold text-dark mb-0">2.1M</h3>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="card border-0 bg-white shadow-sm rounded-4 p-4 text-center">
+       <h6 class="text-muted small fw-bold text-uppercase mb-2">Dormant (90d)</h6>
+       <h3 class="fw-bold text-warning mb-0">154,200</h3>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="card border-0 bg-white shadow-sm rounded-4 p-4 text-center">
+       <h6 class="text-muted small fw-bold text-uppercase mb-2">Retention Rate</h6>
+       <h3 class="fw-bold text-success mb-0">94.2%</h3>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="card border-0 bg-white shadow-sm rounded-4 p-4 text-center">
+       <h6 class="text-muted small fw-bold text-uppercase mb-2">Churn Rate</h6>
+       <h3 class="fw-bold text-danger mb-0">2.1%</h3>
+    </div>
+  </div>
+</div>

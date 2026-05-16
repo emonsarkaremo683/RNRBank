@@ -1,0 +1,89 @@
+<div class="row g-4">
+  <div class="col-lg-4">
+    <div class="card border-0 shadow-sm rounded-4 p-4 sticky-top" style="top: 100px;">
+      <h4 class="fw-bold text-dark mb-4">Request from Vault</h4>
+      <form [formGroup]="vaultForm" (ngSubmit)="onSubmit()">
+        <div class="mb-3">
+          <label class="form-label small fw-bold text-muted text-uppercase">Amount Required</label>
+          <div class="input-group">
+            <span class="input-group-text bg-light border-0">$</span>
+            <input type="number" formControlName="amount" class="form-control bg-light border-0 py-2" placeholder="0.00">
+          </div>
+        </div>
+        
+        <div class="mb-3">
+          <label class="form-label small fw-bold text-muted text-uppercase">Request Type</label>
+          <select formControlName="type" class="form-select bg-light border-0 py-2">
+            <option value="REFILL">Cash Refill (Replenishment)</option>
+            <option value="EXCESS">Cash Excess (Deposit to Vault)</option>
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label small fw-bold text-muted text-uppercase">Priority</label>
+          <select formControlName="priority" class="form-select bg-light border-0 py-2">
+            <option value="low">Low</option>
+            <option value="medium">Medium</option>
+            <option value="high">High / Urgent</option>
+          </select>
+        </div>
+
+        <div class="mb-4">
+          <label class="form-label small fw-bold text-muted text-uppercase">Reason / Notes</label>
+          <textarea formControlName="reason" class="form-control bg-light border-0 py-2" rows="3" placeholder="Explain the need for this request..."></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary w-100 rounded-pill fw-bold py-3 shadow-sm" [disabled]="vaultForm.invalid || isSubmitting()">
+          {{ isSubmitting() ? 'Sending Request...' : 'Submit Vault Request' }}
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <div class="col-lg-8">
+    <div class="card border-0 shadow-sm rounded-4 overflow-hidden">
+      <div class="card-header bg-white py-4 px-4 border-0 d-flex justify-content-between align-items-center">
+        <h5 class="fw-bold text-dark mb-0">Request History</h5>
+        <button class="btn btn-light btn-sm rounded-pill fw-bold" (click)="loadRequests()">Refresh</button>
+      </div>
+      <div class="table-responsive">
+        <table class="table table-hover align-middle mb-0 border-top">
+          <thead class="bg-light text-muted small text-uppercase">
+            <tr>
+              <th class="ps-4">Reference</th>
+              <th>Amount</th>
+              <th>Type</th>
+              <th>Priority</th>
+              <th>Status</th>
+              <th class="pe-4 text-end">Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let req of requests()">
+              <td class="ps-4">
+                <div class="fw-bold text-dark small mb-1">{{req.id}}</div>
+                <div class="text-muted small">ID: {{req.employeeId}}</div>
+              </td>
+              <td class="fw-bold text-dark">${{req.amount | number}}</td>
+              <td><span class="badge bg-light text-dark border">{{req.type}}</span></td>
+              <td>
+                <span [class]="'badge rounded-pill px-2 ' + (req.priority === 'high' ? 'bg-danger' : req.priority === 'medium' ? 'bg-primary' : 'bg-secondary')">
+                  {{req.priority | titlecase}}
+                </span>
+              </td>
+              <td>
+                <span [class]="'badge rounded-pill px-3 py-2 ' + getStatusClass(req.status)">
+                  {{req.status | titlecase}}
+                </span>
+              </td>
+              <td class="pe-4 text-end small text-muted">{{req.createdAt | date:'short'}}</td>
+            </tr>
+            <tr *ngIf="requests().length === 0">
+              <td colspan="6" class="text-center py-5 text-muted small">No vault requests found.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

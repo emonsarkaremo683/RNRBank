@@ -1,0 +1,72 @@
+<div class="audit-header d-flex justify-content-between align-items-center mb-5">
+  <div>
+    <h2 class="fw-bold text-dark mb-1">Audit Logs & Activities</h2>
+    <p class="text-muted small mb-0">Track all system activities, administrative changes, and security events.</p>
+  </div>
+  <div class="d-flex gap-2">
+    <button class="btn btn-light rounded-pill px-4 fw-bold shadow-sm d-flex align-items-center gap-2">
+      <i class="bi bi-download"></i> Export CSV
+    </button>
+    <button class="btn btn-dark rounded-pill px-4 fw-bold shadow-sm d-flex align-items-center gap-2">
+      <i class="bi bi-funnel"></i> Advanced Filter
+    </button>
+  </div>
+</div>
+
+<div class="card border-0 shadow-sm rounded-5 overflow-hidden">
+  <div class="table-responsive">
+    <table class="table table-hover align-middle mb-0">
+      <thead class="bg-light text-muted small text-uppercase ls-widest">
+        <tr>
+          <th class="ps-4 py-3">Timestamp</th>
+          <th class="py-3">User</th>
+          <th class="py-3">Action</th>
+          <th class="py-3">Module</th>
+          <th class="py-3">IP Address</th>
+          <th class="py-3 text-end pe-4">Details</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let log of logs">
+          <td class="ps-4">
+            <div class="fw-bold text-dark small">{{log.timestamp | date:'mediumDate'}}</div>
+            <div class="text-muted" style="font-size: 0.75rem;">{{log.timestamp | date:'shortTime'}}</div>
+          </td>
+          <td>
+            <div class="d-flex align-items-center gap-2">
+              <div class="bg-light rounded-circle d-flex align-items-center justify-content-center" style="width: 32px; height: 32px;">
+                <i class="bi bi-person-fill text-secondary small"></i>
+              </div>
+              <span class="small fw-bold">{{log.userId}}</span>
+            </div>
+          </td>
+          <td>
+            <span [class]="'badge px-3 py-2 rounded-pill ' + getActionClass(log.action)">
+              {{log.action}}
+            </span>
+          </td>
+          <td><span class="text-muted small fw-bold">{{log.details.module || 'SYSTEM'}}</span></td>
+          <td><code class="small text-primary">{{log.ipAddress}}</code></td>
+          <td class="text-end pe-4">
+            <button class="btn btn-light btn-sm rounded-circle shadow-sm" (click)="viewDetails(log)">
+              <i class="bi bi-info-lg"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="mt-4 d-flex justify-content-between align-items-center px-2">
+  <span class="text-muted small">Showing 1 to 20 of 5,840 entries</span>
+  <nav>
+    <ul class="pagination pagination-sm mb-0">
+      <li class="page-item disabled"><a class="page-link border-0 bg-light rounded-start-pill px-3" href="#">Previous</a></li>
+      <li class="page-item active"><a class="page-link border-0 shadow-sm px-3" href="#">1</a></li>
+      <li class="page-item"><a class="page-link border-0 shadow-sm px-3" href="#">2</a></li>
+      <li class="page-item"><a class="page-link border-0 shadow-sm px-3" href="#">3</a></li>
+      <li class="page-item"><a class="page-link border-0 bg-light rounded-end-pill px-3" href="#">Next</a></li>
+    </ul>
+  </nav>
+</div>

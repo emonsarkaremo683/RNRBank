@@ -1,0 +1,85 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top shadow-sm py-3">
+  <div class="container">
+    <a class="navbar-brand fw-bold d-flex align-items-center" routerLink="/">
+      <i class="bi bi-bank2 me-2 fs-3"></i>
+      <span>RNR<span class="text-warning">Bank</span></span>
+    </a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="mainNavbar">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center">
+        <li class="nav-item mx-2">
+          <a class="nav-link active" aria-current="page" routerLink="/">Home</a>
+        </li>
+        <li class="nav-item dropdown mx-2">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Services
+          </a>
+          <div class="dropdown-menu dropdown-menu-end shadow border-0 p-4" style="min-width: 600px;">
+            <div class="row">
+              <div class="col-md-4">
+                <h6 class="dropdown-header text-uppercase fw-bold text-primary px-0 mb-3">Accounts</h6>
+                <a class="dropdown-item py-2 px-0 d-flex align-items-center" routerLink="/services/savings">
+                  <i class="bi bi-piggy-bank me-2 text-primary"></i> Savings Account
+                </a>
+                <a class="dropdown-item py-2 px-0 d-flex align-items-center" routerLink="/services/current">
+                  <i class="bi bi-cash-stack me-2 text-primary"></i> Current Account
+                </a>
+                <a class="dropdown-item py-2 px-0 d-flex align-items-center" routerLink="/services/business">
+                  <i class="bi bi-briefcase me-2 text-primary"></i> Business Banking
+                </a>
+              </div>
+              <div class="col-md-4 border-start">
+                <h6 class="dropdown-header text-uppercase fw-bold text-primary px-0 mb-3">Loans</h6>
+                <a class="dropdown-item py-2 px-0 d-flex align-items-center" routerLink="/services/loans/personal">
+                  <i class="bi bi-person-check me-2 text-primary"></i> Personal Loan
+                </a>
+                <a class="dropdown-item py-2 px-0 d-flex align-items-center" routerLink="/services/loans/home">
+                  <i class="bi bi-house-door me-2 text-primary"></i> Home Loan
+                </a>
+                <a class="dropdown-item py-2 px-0 d-flex align-items-center" routerLink="/services/loans/car">
+                  <i class="bi bi-car-front me-2 text-primary"></i> Car Loan
+                </a>
+              </div>
+              <div class="col-md-4 border-start">
+                <h6 class="dropdown-header text-uppercase fw-bold text-primary px-0 mb-3">Digital</h6>
+                <a class="dropdown-item py-2 px-0 d-flex align-items-center" routerLink="/services/mobile-banking">
+                  <i class="bi bi-phone me-2 text-primary"></i> Mobile Banking
+                </a>
+                <a class="dropdown-item py-2 px-0 d-flex align-items-center" routerLink="/services/cards">
+                  <i class="bi bi-credit-card me-2 text-primary"></i> Card Services
+                </a>
+                <a class="dropdown-item py-2 px-0 d-flex align-items-center" routerLink="/services/forex">
+                  <i class="bi bi-currency-exchange me-2 text-primary"></i> Forex
+                </a>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li class="nav-item mx-2">
+          <a class="nav-link" routerLink="/about">About Us</a>
+        </li>
+        <li class="nav-item mx-2">
+          <a class="nav-link" routerLink="/investors">Investors</a>
+        </li>
+        <li class="nav-item mx-2">
+          <a class="nav-link" routerLink="/contact">Contact</a>
+        </li>
+        <li class="nav-item ms-lg-3">
+          <a *ngIf="!isAuthenticated()" class="btn btn-warning fw-bold px-4 rounded-pill shadow-sm" routerLink="/auth/login">
+            <i class="bi bi-lock-fill me-1"></i> Login
+          </a>
+          <a *ngIf="isAuthenticated()" class="btn btn-warning fw-bold px-4 rounded-pill shadow-sm" [routerLink]="dashboardLink">
+            <i class="bi bi-speedometer2 me-1"></i> Dashboard
+          </a>
+        </li>
+        <li class="nav-item ms-lg-2 mt-2 mt-lg-0">
+          <a class="btn btn-outline-light fw-bold px-4 rounded-pill" routerLink="/auth/register">
+            Open Account
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

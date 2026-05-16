@@ -1,0 +1,77 @@
+<div class="row align-items-center mb-4">
+  <div class="col-md-8">
+    <h2 class="fw-bold text-dark mb-1">Transaction Monitoring</h2>
+    <p class="text-muted small mb-0">Track all bank transactions, flag suspicious activities, and review failed transfers.</p>
+  </div>
+  <div class="col-md-4 text-md-end mt-3 mt-md-0 d-flex gap-2 justify-content-md-end">
+    <button class="btn btn-outline-dark rounded-pill px-4 fw-bold shadow-sm d-flex align-items-center gap-2" (click)="exportLedger()">
+      <i class="bi bi-download"></i> Export Ledger
+    </button>
+  </div>
+</div>
+
+<div class="card border-0 shadow-sm rounded-5 overflow-hidden mb-4" id="opsTxnContainer">
+  <div class="card-header bg-white py-4 px-4 border-0 border-bottom">
+    <div class="row g-3 align-items-center">
+      <div class="col-md-4">
+        <div class="input-group">
+          <span class="input-group-text bg-light border-0"><i class="bi bi-search text-muted"></i></span>
+          <input type="text" class="form-control bg-light border-0" placeholder="Search by reference, account or amount...">
+        </div>
+      </div>
+      <div class="col-md-3">
+        <select class="form-select bg-light border-0">
+          <option value="">All Types</option>
+          <option value="deposit">Deposits</option>
+          <option value="withdrawal">Withdrawals</option>
+          <option value="transfer">Transfers</option>
+        </select>
+      </div>
+      <div class="col-md-3">
+        <select class="form-select bg-light border-0">
+          <option value="">All Statuses</option>
+          <option value="completed">Completed</option>
+          <option value="pending">Pending</option>
+          <option value="failed">Failed / Flagged</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="table-responsive">
+    <table class="table table-hover align-middle mb-0">
+      <thead class="bg-light text-muted small text-uppercase ls-widest">
+        <tr>
+          <th class="ps-4 py-3 border-0">Reference & Type</th>
+          <th class="py-3 border-0">From Account</th>
+          <th class="py-3 border-0">To Account</th>
+          <th class="py-3 border-0">Date & Time</th>
+          <th class="py-3 border-0">Status</th>
+          <th class="py-3 text-end pe-4 border-0">Amount</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let txn of transactions">
+          <td class="ps-4 py-3">
+            <div class="fw-bold text-dark small mb-1">{{txn.transactionReference}}</div>
+            <span class="badge bg-light text-dark border rounded-pill px-2 py-1 small fw-bold" style="font-size: 0.65rem;">
+              {{txn.transactionType}}
+            </span>
+          </td>
+          <td><code class="text-primary">{{txn.senderAccountId}}</code></td>
+          <td><code class="text-primary">{{txn.receiverAccountId || 'N/A'}}</code></td>
+          <td class="small text-muted fw-bold">{{txn.createdAt | date:'medium'}}</td>
+          <td>
+            <span [class]="'badge rounded-pill px-3 py-2 small ' + (txn.status === 'completed' ? 'bg-success bg-opacity-10 text-success' : txn.status === 'failed' ? 'bg-danger bg-opacity-10 text-danger' : 'bg-warning bg-opacity-10 text-warning')">
+              {{txn.status | titlecase}}
+            </span>
+          </td>
+          <td class="text-end pe-4">
+            <h6 class="fw-bold mb-0 text-dark">${{txn.amount | number:'1.2-2'}}</h6>
+            <span class="small text-muted" *ngIf="txn.charge > 0">Fee: ${{txn.charge | number:'1.2-2'}}</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

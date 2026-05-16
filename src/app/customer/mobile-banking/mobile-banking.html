@@ -1,0 +1,162 @@
+<div class="row align-items-center mb-4">
+  <div class="col-md-8">
+    <h2 class="fw-bold text-dark mb-1">Mobile Services</h2>
+    <p class="text-muted small mb-0">Recharge mobile, pay utility bills, and transfer to mobile wallets instantly.</p>
+  </div>
+</div>
+
+<div class="row g-4 mb-5">
+  <!-- Quick Actions -->
+  <div class="col-lg-8">
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="card border-0 shadow-sm rounded-4 p-4 text-center h-100 transition-all hover-translate-y cursor-pointer">
+          <div class="bg-primary bg-opacity-10 text-primary rounded-circle d-flex align-items-center justify-content-center mx-auto mb-3" style="width: 60px; height: 60px;">
+            <i class="bi bi-phone fs-3"></i>
+          </div>
+          <h6 class="fw-bold text-dark mb-1">Mobile Top-up</h6>
+          <p class="text-muted small mb-0">Prepaid & Postpaid</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card border-0 shadow-sm rounded-4 p-4 text-center h-100 transition-all hover-translate-y cursor-pointer">
+          <div class="bg-warning bg-opacity-10 text-warning rounded-circle d-flex align-items-center justify-content-center mx-auto mb-3" style="width: 60px; height: 60px;">
+            <i class="bi bi-lightning-charge fs-3"></i>
+          </div>
+          <h6 class="fw-bold text-dark mb-1">Pay Bills</h6>
+          <p class="text-muted small mb-0">Electricity, Gas, Water</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card border-0 shadow-sm rounded-4 p-4 text-center h-100 transition-all hover-translate-y cursor-pointer" (click)="showAddMoneyModal.set(true)">
+          <div class="bg-success bg-opacity-10 text-success rounded-circle d-flex align-items-center justify-content-center mx-auto mb-3" style="width: 60px; height: 60px;">
+            <i class="bi bi-wallet2 fs-3"></i>
+          </div>
+          <h6 class="fw-bold text-dark mb-1">Add Money</h6>
+          <p class="text-muted small mb-0">From bKash / Nagad</p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Payment Form -->
+    <div class="card border-0 shadow-sm rounded-5 mt-4 p-4 p-md-5">
+      <h5 class="fw-bold text-dark mb-4">Quick Pay</h5>
+      
+      <div *ngIf="isPaySuccess()" class="alert alert-success border-0 rounded-4 p-3 mb-4 d-flex align-items-center gap-3">
+        <i class="bi bi-check-circle-fill fs-4"></i>
+        <div>
+          <div class="fw-bold">Payment Successful!</div>
+          <div class="small">Your bill payment has been processed.</div>
+        </div>
+      </div>
+
+      <form #payForm="ngForm" (ngSubmit)="onPay(payForm.value)" *ngIf="!isPaySuccess()">
+        <div class="row g-3">
+          <div class="col-md-5">
+            <label class="form-label small fw-bold text-uppercase ls-widest text-muted">Service Provider</label>
+            <select name="biller" ngModel class="form-select bg-light border-0 py-3 rounded-4" required>
+              <option value="Grameenphone">Grameenphone</option>
+              <option value="Robi">Robi</option>
+              <option value="Banglalink">Banglalink</option>
+              <option value="DESCO">DESCO (Electricity)</option>
+              <option value="WASA">WASA (Water)</option>
+            </select>
+          </div>
+          <div class="col-md-4">
+            <label class="form-label small fw-bold text-uppercase ls-widest text-muted">Account / Mobile No</label>
+            <input type="text" name="accountNo" ngModel class="form-control bg-light border-0 py-3 rounded-4" placeholder="Enter number" required>
+          </div>
+          <div class="col-md-3">
+            <label class="form-label small fw-bold text-uppercase ls-widest text-muted">Amount</label>
+            <input type="number" name="amount" ngModel class="form-control bg-light border-0 py-3 rounded-4" placeholder="BDT" required>
+          </div>
+          <div class="col-12 mt-4 text-end">
+            <button type="submit" [disabled]="payForm.invalid || isSubmitting()" class="btn btn-primary rounded-pill px-5 fw-bold py-3 shadow-sm d-inline-flex align-items-center gap-2">
+              <span *ngIf="isSubmitting()" class="spinner-border spinner-border-sm"></span>
+              {{ isSubmitting() ? 'Processing...' : 'Proceed to Pay' }}
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Connected Wallets & Recent -->
+  <div class="col-lg-4">
+    <div class="card border-0 shadow-sm rounded-5 p-4 mb-4">
+      <h5 class="fw-bold text-dark mb-4">Linked Wallets</h5>
+      <div *ngFor="let wallet of mobileWallets()" class="d-flex align-items-center justify-content-between p-3 bg-light rounded-4 mb-3">
+        <div class="d-flex align-items-center gap-3">
+          <div class="bg-white rounded-3 p-2 shadow-sm">
+            <i class="bi bi-phone-vibrate text-primary"></i>
+          </div>
+          <div>
+            <h6 class="fw-bold text-dark mb-0">{{wallet.provider}}</h6>
+            <span class="text-muted small">{{wallet.phoneNumber}}</span>
+          </div>
+        </div>
+        <button class="btn btn-outline-danger btn-sm rounded-pill fw-bold">Unlink</button>
+      </div>
+      <button class="btn btn-light w-100 rounded-pill fw-bold border-dashed text-primary mt-2">
+        <i class="bi bi-plus-lg me-1"></i> Link New Wallet
+      </button>
+    </div>
+
+    <div class="card border-0 shadow-sm rounded-5 p-4">
+      <h5 class="fw-bold text-dark mb-4">Recent Payments</h5>
+      <div class="d-flex flex-column gap-3">
+        <div *ngFor="let payment of recentPayments()" class="d-flex align-items-center justify-content-between border-bottom pb-3">
+          <div>
+            <h6 class="fw-bold text-dark mb-0 small">{{payment.biller}}</h6>
+            <span class="text-muted small" style="font-size: 0.75rem;">{{payment.date | date:'shortDate'}}</span>
+          </div>
+          <div class="text-end">
+            <h6 class="fw-bold text-dark mb-0 small">${{payment.amount | number}}</h6>
+            <span class="text-success small fw-bold" style="font-size: 0.75rem;">{{payment.status}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Add Money Modal -->
+<div class="modal fade show d-block" *ngIf="showAddMoneyModal()" tabindex="-1" style="background: rgba(0,0,0,0.5); z-index: 1050;">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content border-0 shadow-lg rounded-5">
+      <div class="modal-header border-0 p-4">
+        <h5 class="fw-bold mb-0">Add Money to Bank</h5>
+        <button type="button" class="btn-close" (click)="showAddMoneyModal.set(false)"></button>
+      </div>
+      <div class="modal-body p-4 pt-0">
+        <div *ngIf="isSuccess()" class="alert alert-success border-0 rounded-4 p-4 text-center">
+           <i class="bi bi-check-circle-fill fs-1 d-block mb-2"></i>
+           <h6 class="fw-bold mb-1">Money Added!</h6>
+           <p class="small mb-0">Balance will be updated shortly.</p>
+        </div>
+
+        <form #addForm="ngForm" (ngSubmit)="onAddMoney(addForm.value)" *ngIf="!isSuccess()">
+          <div class="mb-3">
+            <label class="form-label small fw-bold text-muted text-uppercase">Transfer From</label>
+            <select name="biller" ngModel class="form-select bg-light border-0 py-2 rounded-3" required>
+              <option value="bKash">bKash Wallet</option>
+              <option value="Nagad">Nagad Wallet</option>
+              <option value="Rocket">Rocket Wallet</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label class="form-label small fw-bold text-muted text-uppercase">Wallet Number</label>
+            <input type="text" name="accountNo" ngModel class="form-control bg-light border-0 py-2 rounded-3" placeholder="+880..." required>
+          </div>
+          <div class="mb-4">
+            <label class="form-label small fw-bold text-muted text-uppercase">Amount (BDT)</label>
+            <input type="number" name="amount" ngModel class="form-control bg-light border-0 py-2 rounded-3" placeholder="Enter amount" required>
+          </div>
+          <button type="submit" class="btn btn-primary btn-lg w-100 rounded-pill fw-bold py-3 shadow" [disabled]="addForm.invalid || isSubmitting()">
+            <span *ngIf="!isSubmitting()">Confirm and Add</span>
+            <div *ngIf="isSubmitting()" class="spinner-border spinner-border-sm" role="status"></div>
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

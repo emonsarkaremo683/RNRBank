@@ -1,0 +1,117 @@
+<div class="row align-items-center mb-4">
+  <div class="col-md-8">
+    <h2 class="fw-bold text-dark mb-1">Security Command Center</h2>
+    <p class="text-muted small mb-0">Real-time threat monitoring, fraud analysis, and global compliance tracking.</p>
+  </div>
+  <div class="col-md-4 text-md-end mt-3 mt-md-0">
+    <button class="btn btn-danger rounded-pill px-4 fw-bold shadow-sm d-flex align-items-center gap-2 ms-auto">
+      <i class="bi bi-shield-lock"></i> Lockdown System
+    </button>
+  </div>
+</div>
+
+<!-- Summary Cards -->
+<div class="row g-4 mb-5">
+  <div class="col-md-6 col-lg-3">
+    <div class="card border-0 bg-white shadow-sm rounded-4 p-4 h-100">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <div class="bg-danger bg-opacity-10 text-danger rounded-3 p-2">
+          <i class="bi bi-exclamation-triangle fs-4"></i>
+        </div>
+        <span class="small fw-bold text-danger"><i class="bi bi-arrow-up-short"></i> 12%</span>
+      </div>
+      <h6 class="text-muted small fw-bold text-uppercase mb-1">Fraud Alerts</h6>
+      <h3 class="fw-bold text-dark mb-0">{{stats()?.fraudAlerts}}</h3>
+    </div>
+  </div>
+
+  <div class="col-md-6 col-lg-3">
+    <div class="card border-0 bg-white shadow-sm rounded-4 p-4 h-100">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <div class="bg-primary bg-opacity-10 text-primary rounded-3 p-2">
+          <i class="bi bi-clock-history fs-4"></i>
+        </div>
+      </div>
+      <h6 class="text-muted small fw-bold text-uppercase mb-1">Active Sessions</h6>
+      <h3 class="fw-bold text-dark mb-0">{{stats()?.activeSessions}}</h3>
+    </div>
+  </div>
+
+  <div class="col-md-6 col-lg-3">
+    <div class="card border-0 bg-white shadow-sm rounded-4 p-4 h-100">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <div class="bg-warning bg-opacity-10 text-warning rounded-3 p-2">
+          <i class="bi bi-person-x fs-4"></i>
+        </div>
+        <span class="small fw-bold text-danger"><i class="bi bi-arrow-up-short"></i> 85</span>
+      </div>
+      <h6 class="text-muted small fw-bold text-uppercase mb-1">Failed Logins</h6>
+      <h3 class="fw-bold text-dark mb-0">{{stats()?.failedLogins}}</h3>
+    </div>
+  </div>
+
+  <div class="col-md-6 col-lg-3">
+    <div class="card border-0 bg-dark text-white shadow-sm rounded-4 p-4 h-100 position-relative overflow-hidden">
+      <div class="position-relative" style="z-index: 2;">
+        <h6 class="text-white-50 small fw-bold text-uppercase mb-1">Security Score</h6>
+        <h3 class="fw-bold text-success mb-0">{{stats()?.securityScore}}%</h3>
+        <p class="small text-white-50 mt-2 mb-0">Critical Health Status</p>
+      </div>
+      <i class="bi bi-shield-check position-absolute text-success opacity-10" style="font-size: 8rem; right: -20px; bottom: -20px;"></i>
+    </div>
+  </div>
+</div>
+
+<div class="row g-4 mb-5">
+  <div class="col-lg-5">
+    <div class="card border-0 shadow-sm rounded-5 p-4 h-100">
+      <h5 class="fw-bold text-dark mb-4">Threat Distribution</h5>
+      <div style="height: 300px;">
+        <canvas baseChart
+          [data]="pieChartData"
+          [options]="pieChartOptions"
+          [type]="'pie'">
+        </canvas>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-7">
+    <div class="card border-0 shadow-sm rounded-5 p-4 h-100 bg-danger bg-gradient text-white position-relative overflow-hidden">
+      <i class="bi bi-activity position-absolute text-white opacity-10" style="font-size: 15rem; right: -30px; bottom: -50px;"></i>
+      <h5 class="fw-bold mb-4 position-relative" style="z-index: 2;">Recent Security Events</h5>
+      
+      <div class="activity-timeline small position-relative" style="z-index: 2;">
+        <div class="d-flex gap-3 mb-4 border-start border-white border-opacity-50 ps-4 position-relative">
+          <div class="bg-white rounded-circle position-absolute start-0 translate-middle-x shadow-sm" style="width: 12px; height: 12px; margin-left: -6px; top: 5px;"></div>
+          <div>
+            <h6 class="fw-bold mb-1">Multiple failed SSH attempts blocked</h6>
+            <p class="mb-1 opacity-75 text-white">Target: Motijheel Branch Server • IP: 103.20.14.55</p>
+            <span class="badge bg-white text-danger fw-bold rounded-pill">CRITICAL</span>
+            <span class="ms-2 opacity-50">Just now</span>
+          </div>
+        </div>
+        
+        <div class="d-flex gap-3 mb-4 border-start border-white border-opacity-50 ps-4 position-relative">
+          <div class="bg-warning rounded-circle position-absolute start-0 translate-middle-x shadow-sm" style="width: 12px; height: 12px; margin-left: -6px; top: 5px;"></div>
+          <div>
+            <h6 class="fw-bold mb-1">Suspicious high-value transfer flagged</h6>
+            <p class="mb-1 opacity-75 text-white">Amount: $1.5M • Account: ACC-9982 • Dest: Cayman Islands</p>
+            <span class="badge bg-warning text-dark fw-bold rounded-pill">HIGH</span>
+            <span class="ms-2 opacity-50">12 mins ago</span>
+          </div>
+        </div>
+
+        <div class="d-flex gap-3 border-start border-transparent ps-4 position-relative">
+          <div class="bg-white rounded-circle position-absolute start-0 translate-middle-x shadow-sm" style="width: 12px; height: 12px; margin-left: -6px; top: 5px;"></div>
+          <div>
+            <h6 class="fw-bold mb-1">Weekly compliance audit finished</h6>
+            <p class="mb-1 opacity-75 text-white">Status: 3 Policy violations detected in Loan Module.</p>
+            <span class="badge bg-info text-dark fw-bold rounded-pill">INFO</span>
+            <span class="ms-2 opacity-50">1 hour ago</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

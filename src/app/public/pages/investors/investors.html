@@ -1,0 +1,119 @@
+<!-- Page Header -->
+<section class="bg-primary text-white py-5">
+  <div class="container py-lg-4 text-center">
+    <h1 class="display-4 fw-bold mb-3">Investor Relations</h1>
+    <p class="lead opacity-75 mx-auto" style="max-width: 700px;">Committed to delivering long-term value to our shareholders through sustainable growth and financial transparency.</p>
+  </div>
+</section>
+
+<!-- Financial Highlights -->
+<section class="py-5">
+  <div class="container py-lg-5">
+    <div class="row g-4 mb-5">
+      <div class="col-md-3">
+        <div class="bg-light p-4 rounded-4 text-center h-100">
+          <h6 class="text-secondary small text-uppercase fw-bold mb-3">Revenue (Q1 2026)</h6>
+          <h2 class="fw-bold text-primary">$1.2B</h2>
+          <span class="badge bg-success small">+15% YoY</span>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="bg-light p-4 rounded-4 text-center h-100">
+          <h6 class="text-secondary small text-uppercase fw-bold mb-3">Net Profit</h6>
+          <h2 class="fw-bold text-primary">$450M</h2>
+          <span class="badge bg-success small">+12% YoY</span>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="bg-light p-4 rounded-4 text-center h-100">
+          <h6 class="text-secondary small text-uppercase fw-bold mb-3">Total Assets</h6>
+          <h2 class="fw-bold text-primary">$85B</h2>
+          <span class="badge bg-success small">+8% YoY</span>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="bg-light p-4 rounded-4 text-center h-100">
+          <h6 class="text-secondary small text-uppercase fw-bold mb-3">EPS (Basic)</h6>
+          <h2 class="fw-bold text-primary">$2.45</h2>
+          <span class="badge bg-success small">+10% YoY</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Reports Section -->
+    <div class="bg-white rounded-5 shadow-lg p-5">
+      <h3 class="fw-bold mb-5 text-center">Financial Reports</h3>
+      <div class="row g-4">
+        <div class="col-md-6" *ngFor="let rep of reports()">
+          <div class="d-flex align-items-center gap-4 p-4 border rounded-4 hover-bg-light transition-all">
+            <i class="bi bi-file-earmark-pdf text-danger fs-1"></i>
+            <div class="flex-grow-1">
+              <h5 class="fw-bold mb-1">{{rep.title}}</h5>
+              <p class="small text-secondary mb-0">{{rep.type}} | {{rep.size}}</p>
+            </div>
+            <button class="btn btn-outline-primary rounded-circle"><i class="bi bi-download"></i></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Shareholder Info -->
+<section class="py-5 bg-light">
+  <div class="container py-lg-5">
+    <div class="row g-5 align-items-center">
+      <div class="col-lg-6">
+        <h2 class="fw-bold mb-4">Shareholder Information</h2>
+        <div class="accordion accordion-flush" id="investorAccordion">
+          <div class="accordion-item bg-transparent">
+            <h2 class="accordion-header">
+              <button class="accordion-button bg-transparent fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#share1">
+                Stock Information
+              </button>
+            </h2>
+            <div id="share1" class="accordion-collapse collapse show" data-bs-parent="#investorAccordion">
+              <div class="accordion-body text-secondary">
+                RNR Bank is listed on the New York Stock Exchange (NYSE) under the ticker symbol <strong>RNRB</strong>.
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item bg-transparent">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed bg-transparent fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#share2">
+                Dividend Policy
+              </button>
+            </h2>
+            <div id="share2" class="accordion-collapse collapse" data-bs-parent="#investorAccordion">
+              <div class="accordion-body text-secondary">
+                We maintain a progressive dividend policy, aiming to return 30-40% of net profits to our shareholders.
+              </div>
+            </div>
+          </div>
+           <div class="accordion-item bg-transparent">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed bg-transparent fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#share3">
+                Corporate Governance
+              </button>
+            </h2>
+            <div id="share3" class="accordion-collapse collapse" data-bs-parent="#investorAccordion">
+              <div class="accordion-body text-secondary">
+                Our board of directors is committed to the highest standards of ethics and governance to protect shareholder interests.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 text-center">
+        <div class="bg-primary p-5 rounded-5 text-white shadow-lg">
+          <h3 class="fw-bold mb-4">Investor Contact</h3>
+          <p class="opacity-75 mb-4">For any inquiries regarding investor relations, please contact our team.</p>
+          <div class="d-flex flex-column gap-3 align-items-center">
+             <span class="fs-5 fw-bold"><i class="bi bi-envelope me-2"></i> investors@rnrbank.com</span>
+             <span class="fs-5 fw-bold"><i class="bi bi-telephone me-2"></i> +1 (212) 555-0800</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

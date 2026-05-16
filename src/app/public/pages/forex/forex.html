@@ -1,0 +1,127 @@
+<!-- Page Header -->
+<section class="bg-primary text-white py-5">
+  <div class="container py-lg-4 text-center">
+    <h1 class="display-4 fw-bold mb-3">Foreign Exchange</h1>
+    <p class="lead opacity-75 mx-auto" style="max-width: 700px;">Get real-time exchange rates and enjoy seamless international transfers with RNR Bank.</p>
+  </div>
+</section>
+
+<!-- Rates & Converter -->
+<section class="py-5">
+  <div class="container py-lg-5">
+    <div class="row g-5">
+      <!-- Rates Table -->
+      <div class="col-lg-7">
+        <div class="card border-0 shadow-lg rounded-5 overflow-hidden">
+          <div class="card-header bg-white py-4 px-5 border-0">
+            <h4 class="fw-bold mb-0">Today's Exchange Rates</h4>
+            <p class="small text-secondary mb-0">Last updated: May 15, 2026, 10:00 AM</p>
+          </div>
+          <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+              <thead class="bg-light text-secondary small text-uppercase">
+                <tr>
+                  <th class="ps-5 py-3">Currency</th>
+                  <th class="py-3">Buy Rate</th>
+                  <th class="py-3">Sell Rate</th>
+                  <th class="py-3 text-end pe-5">Trend</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let rate of rates">
+                  <td class="ps-5 py-4 fw-bold">
+                    <span class="me-3 fs-5">{{rate.flag}}</span> {{rate.code}} - {{rate.currency}}
+                  </td>
+                  <td class="py-4 fw-bold text-primary">{{rate.buy | number:'1.2-2'}}</td>
+                  <td class="py-4 fw-bold text-dark">{{rate.sell | number:'1.2-2'}}</td>
+                  <td class="py-4 text-end pe-5">
+                    <i class="bi bi-graph-up-arrow text-success"></i>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Converter Card -->
+      <div class="col-lg-5">
+        <div class="card border-0 bg-primary text-white rounded-5 shadow-lg p-4 p-md-5 h-100">
+          <h3 class="fw-bold mb-4">Currency Converter</h3>
+          <form>
+            <div class="mb-4">
+              <label class="form-label small fw-bold text-uppercase opacity-75">You Send</label>
+              <div class="input-group">
+                <input type="number" class="form-control form-control-lg bg-white bg-opacity-10 border-0 text-white py-3 px-4" value="1000">
+                <select class="form-select bg-white bg-opacity-10 border-0 text-white fw-bold" style="max-width: 100px;">
+                  <option selected>USD</option>
+                  <option>EUR</option>
+                  <option>GBP</option>
+                </select>
+              </div>
+            </div>
+            <div class="text-center mb-4">
+              <div class="bg-warning text-primary rounded-circle d-inline-flex align-items-center justify-content-center shadow" style="width: 50px; height: 50px;">
+                <i class="bi bi-arrow-down-up fs-4"></i>
+              </div>
+            </div>
+            <div class="mb-5">
+              <label class="form-label small fw-bold text-uppercase opacity-75">Recipient Gets</label>
+              <div class="input-group">
+                <input type="number" class="form-control form-control-lg bg-white bg-opacity-10 border-0 text-white py-3 px-4" value="920.50" readonly>
+                <select class="form-select bg-white bg-opacity-10 border-0 text-white fw-bold" style="max-width: 100px;">
+                  <option>USD</option>
+                  <option selected>EUR</option>
+                  <option>GBP</option>
+                </select>
+              </div>
+            </div>
+            <div class="bg-white bg-opacity-10 p-3 rounded-4 mb-5 small">
+              <div class="d-flex justify-content-between mb-2">
+                <span class="opacity-75">Exchange Rate:</span>
+                <span class="fw-bold">1 USD = 0.9205 EUR</span>
+              </div>
+              <div class="d-flex justify-content-between">
+                <span class="opacity-75">Transfer Fee:</span>
+                <span class="fw-bold text-warning">FREE (Premium Benefit)</span>
+              </div>
+            </div>
+            <button class="btn btn-warning btn-lg w-100 rounded-pill fw-bold py-3 shadow">Transfer Now</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- International Banking Features -->
+<section class="py-5 bg-light">
+  <div class="container py-lg-5">
+    <div class="text-center mb-5">
+      <h2 class="display-6 fw-bold">Why choose RNR for Forex?</h2>
+    </div>
+    <div class="row g-4 text-start">
+      <div class="col-md-4">
+        <div class="bg-white p-5 rounded-5 shadow-sm h-100">
+          <i class="bi bi-lightning-charge text-primary fs-1 mb-4"></i>
+          <h4 class="fw-bold">Instant Transfers</h4>
+          <p class="text-secondary small">Send money globally in seconds with our SWIFT & SEPA integrated network.</p>
+        </div>
+      </div>
+       <div class="col-md-4">
+        <div class="bg-white p-5 rounded-5 shadow-sm h-100">
+          <i class="bi bi-tag text-primary fs-1 mb-4"></i>
+          <h4 class="fw-bold">Real-time Rates</h4>
+          <p class="text-secondary small">Transparent pricing with mid-market rates and no hidden markup fees.</p>
+        </div>
+      </div>
+       <div class="col-md-4">
+        <div class="bg-white p-5 rounded-5 shadow-sm h-100">
+          <i class="bi bi-shield-check text-primary fs-1 mb-4"></i>
+          <h4 class="fw-bold">Secure Remittance</h4>
+          <p class="text-secondary small">Fully compliant and secure transfers with multi-layer verification protocols.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

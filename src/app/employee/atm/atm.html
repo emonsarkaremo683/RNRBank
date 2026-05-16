@@ -1,0 +1,38 @@
+<div class="row align-items-center mb-5">
+  <div class="col-md-8">
+    <h2 class="fw-bold text-dark mb-1">ATM Operations</h2>
+    <p class="text-muted small mb-0">Monitor local ATM status, manage cash refills, and report technical issues.</p>
+  </div>
+</div>
+
+<div class="row g-4">
+  <div *ngFor="let atm of atms()" class="col-md-6 col-lg-4">
+    <div class="card border-0 shadow-sm rounded-4 h-100 overflow-hidden transition-all hover-translate-y">
+       <div class="card-header bg-dark text-white border-0 p-4 d-flex justify-content-between align-items-center">
+          <span class="small fw-bold ls-widest text-uppercase">ATM Unit #{{atm.id}}</span>
+          <span [class]="'badge rounded-pill px-3 py-2 small fw-bold ' + (atm.status === 'active' ? 'bg-success' : 'bg-warning text-dark')">
+            {{atm.status | titlecase}}
+          </span>
+       </div>
+       <div class="card-body p-4">
+         <h5 class="fw-bold text-dark mb-3">{{atm.location}}</h5>
+         <p class="small text-muted mb-4"><i class="bi bi-calendar-check text-primary me-2"></i> Last Maintenance: {{atm.lastMaintenance | date:'mediumDate'}}</p>
+         
+         <div class="bg-light rounded-4 p-3 mb-4">
+            <div class="d-flex justify-content-between small fw-bold mb-2">
+              <span class="text-muted">Current Cash Level</span>
+              <span [class]="atm.cashLevel < 20 ? 'text-danger' : 'text-primary'">{{atm.cashLevel}}%</span>
+            </div>
+            <div class="progress" style="height: 6px;">
+              <div class="progress-bar" [class.bg-danger]="atm.cashLevel < 20" [class.bg-primary]="atm.cashLevel >= 20" role="progressbar" [style.width]="atm.cashLevel + '%'"></div>
+            </div>
+         </div>
+
+         <div class="d-flex gap-2">
+           <button class="btn btn-outline-primary btn-sm rounded-pill flex-grow-1 fw-bold border" (click)="requestMaintenance(atm.id)">Report Issue</button>
+           <button class="btn btn-primary btn-sm rounded-pill px-4 fw-bold shadow-sm" (click)="updateStatus(atm.id, 'active')">Refill</button>
+         </div>
+       </div>
+    </div>
+  </div>
+</div>

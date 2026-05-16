@@ -1,0 +1,68 @@
+<div class="row align-items-center mb-4">
+  <div class="col-md-8">
+    <h2 class="fw-bold text-dark mb-1">Global Accounts Registry</h2>
+    <p class="text-muted small mb-0">Manage customer accounts, freeze/unfreeze actions, and review limits.</p>
+  </div>
+  <div class="col-md-4 text-md-end mt-3 mt-md-0">
+    <button class="btn btn-primary rounded-pill px-4 fw-bold shadow-sm d-flex align-items-center gap-2 ms-auto">
+      <i class="bi bi-person-vcard"></i> Open New Account
+    </button>
+  </div>
+</div>
+
+<div class="card border-0 shadow-sm rounded-5 overflow-hidden mb-4">
+  <div class="card-header bg-white py-4 px-4 border-0 border-bottom d-flex justify-content-between align-items-center">
+    <div class="input-group w-50">
+      <span class="input-group-text bg-light border-0"><i class="bi bi-search text-muted"></i></span>
+      <input type="text" class="form-control bg-light border-0" placeholder="Search by Account No, Name or ID...">
+    </div>
+    <select class="form-select bg-light border-0 w-25">
+      <option value="">All Statuses</option>
+      <option value="active">Active</option>
+      <option value="frozen">Frozen</option>
+      <option value="closed">Closed</option>
+    </select>
+  </div>
+  <div class="table-responsive">
+    <table class="table table-hover align-middle mb-0">
+      <thead class="bg-light text-muted small text-uppercase ls-widest">
+        <tr>
+          <th class="ps-4 py-3 border-0">Account Details</th>
+          <th class="py-3 border-0">Customer</th>
+          <th class="py-3 border-0">Type</th>
+          <th class="py-3 border-0">Balance</th>
+          <th class="py-3 border-0">Status</th>
+          <th class="py-3 text-end pe-4 border-0">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let acc of accounts">
+          <td class="ps-4 py-3">
+            <h6 class="fw-bold text-primary font-monospace mb-1">{{acc.accountNumber}}</h6>
+            <span class="text-muted small">ID: {{acc.id}}</span>
+          </td>
+          <td><span class="fw-bold text-dark">{{acc.customerName}}</span></td>
+          <td><span class="badge bg-light text-dark border rounded-pill px-3 py-2 small fw-bold">{{acc.type}}</span></td>
+          <td><span class="fw-bold text-dark">${{acc.balance | number:'1.2-2'}}</span></td>
+          <td>
+            <span [class]="'badge rounded-pill px-3 py-2 small ' + (acc.status === 'active' ? 'bg-success bg-opacity-10 text-success' : 'bg-danger bg-opacity-10 text-danger')">
+              {{acc.status | titlecase}}
+            </span>
+          </td>
+          <td class="text-end pe-4">
+            <div class="dropdown">
+              <button class="btn btn-light btn-sm rounded-circle" data-bs-toggle="dropdown"><i class="bi bi-three-dots-vertical"></i></button>
+              <ul class="dropdown-menu dropdown-menu-end shadow border-0 rounded-4 p-2">
+                 <li><a class="dropdown-item rounded-3 small py-2" href="#"><i class="bi bi-eye me-2"></i> View Details</a></li>
+                 <li><a class="dropdown-item rounded-3 small py-2" href="#"><i class="bi bi-file-text me-2"></i> Statement</a></li>
+                 <li><hr class="dropdown-divider"></li>
+                 <li><a class="dropdown-item rounded-3 small py-2 text-warning" href="#"><i class="bi bi-snow me-2"></i> Freeze</a></li>
+                 <li><a class="dropdown-item rounded-3 small py-2 text-danger" href="#"><i class="bi bi-x-circle me-2"></i> Close Account</a></li>
+              </ul>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

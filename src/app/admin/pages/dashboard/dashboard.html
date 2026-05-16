@@ -1,0 +1,207 @@
+<div class="dashboard-home">
+  <!-- Welcome Header -->
+  <div class="row align-items-center mb-5 g-4">
+    <div class="col-md-8">
+      <h2 class="fw-bold text-dark mb-1">Banking Analytics Dashboard</h2>
+      <p class="text-muted small mb-0">Overview of global bank performance, customer growth, and security alerts.</p>
+    </div>
+    <div class="col-md-4 text-md-end">
+      <div class="d-inline-flex gap-2">
+        <button class="btn btn-white bg-white border shadow-sm rounded-pill px-4 fw-bold small" (click)="exportReport()">
+          <i class="bi bi-download me-2"></i> Export Report
+        </button>
+        <button class="btn btn-primary rounded-pill px-4 fw-bold shadow-sm small">
+          <i class="bi bi-plus-lg me-2"></i> Quick Action
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Summary Stats -->
+  <div class="row g-4 mb-5" id="statsContainer">
+    <div class="col-md-6 col-lg-3">
+      <app-stats-card title="Total Customers" [value]="stats()?.totalCustomers" icon="bi-people" color="primary" [trend]="12.5"></app-stats-card>
+    </div>
+    <div class="col-md-6 col-lg-3">
+      <app-stats-card title="Total Revenue" [value]="stats()?.totalRevenue" icon="bi-cash-coin" color="success" [trend]="8.2" prefix="$"></app-stats-card>
+    </div>
+    <div class="col-md-6 col-lg-3">
+      <app-stats-card title="Active Loans" [value]="stats()?.totalLoans" icon="bi-wallet2" color="warning" [trend]="-2.4"></app-stats-card>
+    </div>
+    <div class="col-md-6 col-lg-3">
+      <app-stats-card title="Fraud Alerts" [value]="stats()?.fraudAlerts" icon="bi-shield-exclamation" color="danger" [trend]="0"></app-stats-card>
+    </div>
+  </div>
+
+  <div class="row g-4 mb-5">
+    <!-- Main Chart -->
+    <div class="col-lg-8">
+      <div class="card border-0 shadow-sm rounded-5 p-4 h-100">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+          <h5 class="fw-bold text-dark mb-0">Transaction Analytics</h5>
+          <select class="form-select form-select-sm border-0 bg-light rounded-pill px-3" style="width: 120px;">
+            <option>Last 7 Days</option>
+            <option>Last 30 Days</option>
+            <option>This Year</option>
+          </select>
+        </div>
+        <div class="chart-container" style="height: 350px;">
+           <!-- Chart.js will be rendered here via ng2-charts -->
+           <canvas baseChart
+             [data]="lineChartData"
+             [options]="lineChartOptions"
+             [type]="'line'">
+           </canvas>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick Actions -->
+    <div class="col-lg-4">
+      <div class="card border-0 shadow-sm rounded-5 p-4 h-100">
+        <h5 class="fw-bold text-dark mb-4">Admin Quick Actions</h5>
+        <div class="row g-3">
+          <div class="col-6">
+            <button class="btn btn-light w-100 py-3 rounded-4 border-0 transition-all hover-translate-y d-flex flex-column align-items-center gap-2">
+              <i class="bi bi-diagram-3 fs-3 text-primary"></i>
+              <span class="small fw-bold">Add Branch</span>
+            </button>
+          </div>
+          <div class="col-6">
+            <button class="btn btn-light w-100 py-3 rounded-4 border-0 transition-all hover-translate-y d-flex flex-column align-items-center gap-2">
+              <i class="bi bi-person-plus fs-3 text-success"></i>
+              <span class="small fw-bold">Add Employee</span>
+            </button>
+          </div>
+          <div class="col-6">
+            <button class="btn btn-light w-100 py-3 rounded-4 border-0 transition-all hover-translate-y d-flex flex-column align-items-center gap-2">
+              <i class="bi bi-shield-check fs-3 text-warning"></i>
+              <span class="small fw-bold">Approve KYC</span>
+            </button>
+          </div>
+          <div class="col-6">
+            <button class="btn btn-light w-100 py-3 rounded-4 border-0 transition-all hover-translate-y d-flex flex-column align-items-center gap-2">
+              <i class="bi bi-file-earmark-bar-graph fs-3 text-info"></i>
+              <span class="small fw-bold">Reports</span>
+            </button>
+          </div>
+           <div class="col-6">
+            <button class="btn btn-light w-100 py-3 rounded-4 border-0 transition-all hover-translate-y d-flex flex-column align-items-center gap-2">
+              <i class="bi bi-gear fs-3 text-dark"></i>
+              <span class="small fw-bold">Settings</span>
+            </button>
+          </div>
+           <div class="col-6">
+            <button class="btn btn-light w-100 py-3 rounded-4 border-0 transition-all hover-translate-y d-flex flex-column align-items-center gap-2">
+              <i class="bi bi-bell fs-3 text-danger"></i>
+              <span class="small fw-bold">Alerts</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row g-4">
+    <!-- Recent Transactions -->
+    <div class="col-lg-7">
+      <div class="card border-0 shadow-sm rounded-5 overflow-hidden">
+        <div class="card-header bg-white py-4 px-4 border-0 d-flex justify-content-between align-items-center">
+          <h5 class="fw-bold text-dark mb-0">Recent Transactions</h5>
+          <a routerLink="/admin/transactions" class="small text-primary fw-bold text-decoration-none">View All</a>
+        </div>
+        <div class="table-responsive">
+          <table class="table table-hover align-middle mb-0">
+            <thead class="bg-light text-muted small text-uppercase ls-widest">
+              <tr>
+                <th class="ps-4 py-3">Reference</th>
+                <th class="py-3">Amount</th>
+                <th class="py-3">Type</th>
+                <th class="py-3">Status</th>
+                <th class="py-3 text-end pe-4">Date</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let txn of transactions()">
+                <td class="ps-4">
+                  <div class="fw-bold text-dark small">{{txn.transactionReference}}</div>
+                </td>
+                <td><span class="fw-bold text-dark">${{txn.amount | number}}</span></td>
+                <td><span class="badge bg-primary bg-opacity-10 text-primary px-3 py-2 rounded-pill small">{{txn.transactionType}}</span></td>
+                <td>
+                  <span [class]="'badge px-3 py-2 rounded-pill ' + (txn.status === 'completed' ? 'bg-success bg-opacity-10 text-success' : 'bg-warning bg-opacity-10 text-warning')">
+                    {{txn.status | titlecase}}
+                  </span>
+                </td>
+                <td class="text-end pe-4 small text-muted">{{txn.createdAt | date:'shortDate'}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- System Health / Analytics -->
+    <div class="col-lg-5">
+      <div class="card border-0 shadow-sm rounded-5 p-4 mb-4">
+        <h5 class="fw-bold text-dark mb-4">Branch Performance</h5>
+        <div class="d-flex flex-column gap-3">
+          <div class="p-3 bg-light rounded-4">
+            <div class="d-flex justify-content-between mb-2">
+              <span class="small fw-bold">Motijheel Branch</span>
+              <span class="small text-success fw-bold">92%</span>
+            </div>
+            <div class="progress" style="height: 6px;">
+              <div class="progress-bar bg-primary" role="progressbar" style="width: 92%"></div>
+            </div>
+          </div>
+          <div class="p-3 bg-light rounded-4">
+            <div class="d-flex justify-content-between mb-2">
+              <span class="small fw-bold">Gulshan Branch</span>
+              <span class="small text-success fw-bold">85%</span>
+            </div>
+            <div class="progress" style="height: 6px;">
+              <div class="progress-bar bg-primary" role="progressbar" style="width: 85%"></div>
+            </div>
+          </div>
+          <div class="p-3 bg-light rounded-4">
+            <div class="d-flex justify-content-between mb-2">
+              <span class="small fw-bold">Agrabad Branch</span>
+              <span class="small text-warning fw-bold">76%</span>
+            </div>
+            <div class="progress" style="height: 6px;">
+              <div class="progress-bar bg-primary" role="progressbar" style="width: 76%"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card border-0 bg-dark text-white rounded-5 p-4">
+        <h5 class="fw-bold mb-4">System Activity</h5>
+        <div class="activity-timeline small">
+           <div class="d-flex gap-3 mb-3 border-start border-secondary border-opacity-50 ps-3 position-relative">
+             <div class="bg-primary rounded-circle position-absolute start-0 translate-middle-x" style="width: 10px; height: 10px; margin-left: -5px;"></div>
+             <div>
+               <p class="mb-1">New user registered from <strong>Gulshan</strong></p>
+               <span class="text-white-50">Just now</span>
+             </div>
+           </div>
+           <div class="d-flex gap-3 mb-3 border-start border-secondary border-opacity-50 ps-3 position-relative">
+             <div class="bg-warning rounded-circle position-absolute start-0 translate-middle-x" style="width: 10px; height: 10px; margin-left: -5px;"></div>
+             <div>
+               <p class="mb-1">ATM Refill request at <strong>Motijheel-2</strong></p>
+               <span class="text-white-50">12 mins ago</span>
+             </div>
+           </div>
+            <div class="d-flex gap-3 border-start border-transparent border-opacity-50 ps-3 position-relative">
+             <div class="bg-info rounded-circle position-absolute start-0 translate-middle-x" style="width: 10px; height: 10px; margin-left: -5px;"></div>
+             <div>
+               <p class="mb-1">Q1 Financial Report Generated</p>
+               <span class="text-white-50">1 hour ago</span>
+             </div>
+           </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

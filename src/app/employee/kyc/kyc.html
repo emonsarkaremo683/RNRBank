@@ -1,0 +1,50 @@
+<div class="row align-items-center mb-4">
+  <div class="col-md-8">
+    <h2 class="fw-bold text-dark mb-1">KYC Verification Hub</h2>
+    <p class="text-muted small mb-0">Review pending applications and verify submitted documents.</p>
+  </div>
+</div>
+
+<div class="row g-4">
+  <div *ngFor="let kyc of kycRequests()" class="col-sm-6 col-lg-4 col-xxl-3">
+    <div class="card border-0 shadow-sm rounded-5 h-100 overflow-hidden transition-all hover-translate-y">
+      <div class="card-body p-4">
+        <div class="d-flex justify-content-between align-items-start mb-4">
+          <div class="d-flex align-items-center gap-3">
+            <div class="bg-warning bg-opacity-10 text-warning rounded-circle d-flex align-items-center justify-content-center fw-bold fs-5" style="width: 45px; height: 45px;">
+              {{kyc.fullName.charAt(0)}}
+            </div>
+            <div>
+              <h6 class="fw-bold text-dark mb-1">{{kyc.fullName}}</h6>
+              <span class="text-muted small">ID: {{kyc.customerId}}</span>
+            </div>
+          </div>
+          <span class="badge bg-warning bg-opacity-10 text-warning rounded-pill px-3 py-2 small fw-bold text-uppercase">{{kyc.verificationStatus}}</span>
+        </div>
+        
+        <div class="bg-light rounded-4 p-3 mb-4">
+          <div class="d-flex justify-content-between mb-2">
+            <span class="small text-muted fw-bold">Document Type</span>
+            <span class="small fw-bold">{{kyc.docType}}</span>
+          </div>
+          <div class="d-flex justify-content-between">
+            <span class="small text-muted fw-bold">Submission Date</span>
+            <span class="small fw-bold">{{kyc.submittedAt | date:'mediumDate'}}</span>
+          </div>
+        </div>
+        
+        <div class="d-flex gap-2">
+          <button class="btn btn-outline-primary btn-sm rounded-pill flex-grow-1 fw-bold border" (click)="viewDocument(kyc.id)">Review Documents</button>
+          <button class="btn btn-success btn-sm rounded-pill px-3 shadow-sm border-0" (click)="approveKyc(kyc.id)"><i class="bi bi-check-lg"></i></button>
+          <button class="btn btn-danger btn-sm rounded-pill px-3 shadow-sm border-0" (click)="rejectKyc(kyc.id)"><i class="bi bi-x-lg"></i></button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div *ngIf="kycRequests().length === 0" class="col-12 text-center py-5">
+    <i class="bi bi-shield-check text-success opacity-50 display-1 mb-3"></i>
+    <h5 class="fw-bold text-dark">All Caught Up!</h5>
+    <p class="text-muted small">There are no pending KYC requests at the moment.</p>
+  </div>
+</div>

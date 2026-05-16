@@ -1,0 +1,43 @@
+<div class="row align-items-center mb-5">
+  <div class="col-md-8">
+    <h2 class="fw-bold text-dark mb-1">Global Loan Portfolio</h2>
+    <p class="text-muted small mb-0">Review all active loans, pending applications, and monitor repayment compliance.</p>
+  </div>
+</div>
+
+<div class="card border-0 shadow-sm rounded-5 overflow-hidden">
+  <div class="table-responsive">
+    <table class="table table-hover align-middle mb-0">
+      <thead class="bg-light text-muted small text-uppercase ls-widest">
+        <tr>
+          <th class="ps-4 py-3 border-0">Application ID</th>
+          <th class="py-3 border-0">Customer ID</th>
+          <th class="py-3 border-0">Loan Type</th>
+          <th class="py-3 border-0">Principal</th>
+          <th class="py-3 border-0">Date</th>
+          <th class="py-3 border-0">Status</th>
+          <th class="py-3 text-end pe-4 border-0">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let loan of loans()">
+          <td class="ps-4 py-3">
+            <h6 class="fw-bold text-primary font-monospace mb-0">{{loan.id}}</h6>
+          </td>
+          <td><span class="small fw-bold text-dark">{{loan.customerId}}</span></td>
+          <td><span class="badge bg-light text-dark border rounded-pill px-3 py-2 small fw-bold">{{loan.type | titlecase}}</span></td>
+          <td><span class="fw-bold text-dark">${{loan.amount | number}}</span></td>
+          <td class="small text-muted fw-bold">{{loan.date | date:'mediumDate'}}</td>
+          <td>
+            <span [class]="'badge rounded-pill px-3 py-2 small ' + (loan.status === 'approved' ? 'bg-success bg-opacity-10 text-success' : 'bg-warning bg-opacity-10 text-warning')">
+              {{loan.status | titlecase}}
+            </span>
+          </td>
+          <td class="text-end pe-4">
+            <button class="btn btn-light btn-sm rounded-pill px-3 fw-bold text-primary shadow-sm border">Review</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

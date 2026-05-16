@@ -1,0 +1,178 @@
+<div class="row align-items-center mb-4">
+  <div class="col-md-8">
+    <h2 class="fw-bold text-dark mb-1">My Cards</h2>
+    <p class="text-muted small mb-0">Manage your credit and debit cards, view limits, and track transactions.</p>
+  </div>
+  <div class="col-md-4 text-md-end mt-3 mt-md-0 d-flex gap-2 justify-content-md-end">
+    <button class="btn btn-outline-primary rounded-pill px-4 fw-bold shadow-sm d-flex align-items-center gap-2" (click)="showApplyModal.set(true)">
+      <i class="bi bi-credit-card"></i> Apply for Card
+    </button>
+  </div>
+</div>
+
+<!-- Apply Card Modal -->
+<div class="modal fade show d-block" *ngIf="showApplyModal()" tabindex="-1" style="background: rgba(0,0,0,0.5); z-index: 1050;">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content border-0 shadow-lg rounded-5">
+      <div class="modal-header border-0 p-4">
+        <h5 class="fw-bold mb-0">Apply for New Card</h5>
+        <button type="button" class="btn-close" (click)="showApplyModal.set(false)"></button>
+      </div>
+      <div class="modal-body p-4 pt-0">
+        <div *ngIf="isSuccess()" class="alert alert-success border-0 rounded-4 p-4 text-center">
+           <i class="bi bi-check-circle-fill fs-1 d-block mb-2"></i>
+           <h6 class="fw-bold mb-1">Application Submitted!</h6>
+           <p class="small mb-0">We are processing your card request.</p>
+        </div>
+
+        <form [formGroup]="cardForm" (ngSubmit)="onSubmit()" *ngIf="!isSuccess()">
+          <div class="mb-3">
+            <label class="form-label small fw-bold text-muted text-uppercase">Card Type</label>
+            <select formControlName="cardType" class="form-select bg-light border-0 py-2 rounded-3">
+              <option value="Credit Card">Credit Card</option>
+              <option value="Debit Card">Debit Card</option>
+              <option value="Prepaid Card">Prepaid Card</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label class="form-label small fw-bold text-muted text-uppercase">Preferred Network</label>
+            <select formControlName="network" class="form-select bg-light border-0 py-2 rounded-3">
+              <option value="Visa">Visa</option>
+              <option value="Mastercard">Mastercard</option>
+              <option value="Amex">American Express</option>
+            </select>
+          </div>
+          <div class="mb-4">
+            <div class="form-check small">
+              <input class="form-check-input" type="checkbox" formControlName="agreement" id="cardTerms">
+              <label class="form-check-label text-muted" for="cardTerms">
+                I agree to the card issuance terms and annual maintenance fees.
+              </label>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary btn-lg w-100 rounded-pill fw-bold py-3 shadow" [disabled]="cardForm.invalid || isSubmitting()">
+            <span *ngIf="!isSubmitting()">Confirm Application</span>
+            <div *ngIf="isSubmitting()" class="spinner-border spinner-border-sm" role="status"></div>
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row g-4 mb-5">
+  <div *ngFor="let card of cards()" class="col-md-6 col-lg-5 col-xl-4">
+    <div class="card border-0 shadow-lg rounded-4 overflow-hidden h-100 position-relative transition-all hover-translate-y" 
+         style="min-height: 220px; background: #ffffff; color: #1a1a1a; font-family: 'Outfit', sans-serif; border: 1px solid rgba(0,0,0,0.08) !important;">
+      
+      <!-- Subtle Decorative Elements -->
+      <div class="position-absolute" style="bottom: -20px; right: 20%; width: 180px; height: 180px; border: 1px solid rgba(0,0,0,0.03); border-radius: 50%;"></div>
+      <div class="position-absolute" style="top: 10px; right: 10px; opacity: 0.1;">
+        <i class="bi bi-wifi fs-4" style="transform: rotate(90deg); display: block;"></i>
+      </div>
+      
+      <div class="card-body p-4 d-flex flex-column justify-content-between position-relative" style="z-index: 1;">
+        <!-- Top: Mastercard Logo -->
+        <div class="d-flex justify-content-between align-items-start">
+          <div class="d-flex align-items-center gap-1">
+            <span class="fw-bold fs-5" style="letter-spacing: -0.5px;">Mastercard</span>
+            <span class="text-danger fw-bold fs-4" style="margin-top: -8px;">.</span>
+          </div>
+          <div class="text-muted small fw-bold text-uppercase ls-widest" style="font-size: 0.6rem;">{{card.cardType || card.type}}</div>
+        </div>
+
+        <!-- Middle: Chip & Number -->
+        <div class="mt-3">
+          <!-- Realistic Chip -->
+          <div class="mb-3 rounded-2 shadow-sm" style="width: 42px; height: 32px; background: linear-gradient(135deg, #f0f4f8 0%, #d9e2ec 100%); border: 1px solid rgba(0,0,0,0.1); overflow: hidden;">
+             <div class="w-100 h-100 d-flex flex-wrap opacity-50">
+                <div class="border-end border-bottom border-secondary w-25 h-50"></div>
+                <div class="border-end border-bottom border-secondary w-25 h-50"></div>
+                <div class="border-end border-bottom border-secondary w-25 h-50"></div>
+                <div class="border-bottom border-secondary w-25 h-50"></div>
+                <div class="border-end border-secondary w-25 h-50"></div>
+                <div class="border-end border-secondary w-25 h-50"></div>
+                <div class="border-end border-secondary w-25 h-50"></div>
+                <div class="w-25 h-50"></div>
+             </div>
+          </div>
+          
+          <!-- Card Number -->
+          <div class="d-flex justify-content-between align-items-center">
+            <h4 class="fw-medium mb-0 font-monospace" style="font-size: 1.35rem; letter-spacing: 2px;">
+              {{card.number | slice:0:4}} {{card.number | slice:4:8}} {{card.number | slice:8:12}} {{card.number | slice:12:16}}
+            </h4>
+          </div>
+        </div>
+
+        <!-- Bottom: Info -->
+        <div class="d-flex justify-content-between align-items-end mt-4">
+          <div class="flex-grow-1">
+            <div class="mb-1">
+              <span class="text-muted text-uppercase fw-bold" style="font-size: 0.55rem; display: block;">Valid Thru</span>
+              <span class="fw-bold small">{{card.expiry}}</span>
+            </div>
+            <div class="fw-bold text-dark text-uppercase small ls-wide" style="font-size: 0.8rem;">{{currentUser()?.fullName}}</div>
+          </div>
+          
+          <!-- Mastercard Circles -->
+          <div class="d-flex position-relative" style="width: 48px; height: 30px;">
+            <div class="rounded-circle" style="width: 30px; height: 30px; background: #eb001b; opacity: 0.9;"></div>
+            <div class="rounded-circle position-absolute" style="width: 30px; height: 30px; background: #f79e1b; opacity: 0.9; right: 0;"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Status Overlay -->
+      <div *ngIf="card.status !== 'active'" class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center" style="background: rgba(255,255,255,0.85); backdrop-filter: blur(4px); z-index: 2;">
+         <span class="badge rounded-pill px-4 py-2 bg-dark text-white fw-bold shadow-lg">
+           <i [class]="'bi me-2 ' + (card.status === 'pending' ? 'bi-clock-history' : 'bi-lock-fill')"></i>{{card.status | uppercase}}
+         </span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card border-0 shadow-sm rounded-5 overflow-hidden">
+  <div class="card-header bg-white py-4 px-4 border-0">
+    <h5 class="fw-bold text-dark mb-0">Card Settings & Limits</h5>
+  </div>
+  <div class="table-responsive">
+    <table class="table table-hover align-middle mb-0 border-top">
+      <thead class="bg-light text-muted small text-uppercase ls-widest">
+        <tr>
+          <th class="ps-4 py-3 border-0">Card Detail</th>
+          <th class="py-3 border-0">Status</th>
+          <th class="py-3 border-0" style="min-width: 250px;">Limit Usage</th>
+          <th class="py-3 text-end pe-4 border-0">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let card of cards()">
+          <td class="ps-4 py-4">
+            <h6 class="fw-bold mb-1">{{card.network}} {{card.type}}</h6>
+            <span class="text-muted small">**** {{card.number | slice:-4}}</span>
+          </td>
+          <td>
+            <div class="form-check form-switch d-inline-block">
+              <input class="form-check-input" type="checkbox" [checked]="card.status === 'active'" style="cursor: pointer;">
+              <label class="form-check-label small ms-2 fw-bold text-success" *ngIf="card.status === 'active'">Active</label>
+            </div>
+          </td>
+          <td>
+            <div class="d-flex justify-content-between small fw-bold mb-2">
+              <span class="text-primary">${{card.used | number}} Used</span>
+              <span class="text-muted">${{card.limit | number}} Total</span>
+            </div>
+            <div class="progress" style="height: 6px;">
+              <div class="progress-bar bg-primary" role="progressbar" [style.width.%]="(card.used / card.limit) * 100"></div>
+            </div>
+          </td>
+          <td class="text-end pe-4">
+            <button class="btn btn-light btn-sm rounded-pill fw-bold text-primary shadow-sm border px-3">Manage</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

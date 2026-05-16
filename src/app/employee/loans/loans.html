@@ -1,0 +1,61 @@
+<div class="row align-items-center mb-4">
+  <div class="col-md-8">
+    <h2 class="fw-bold text-dark mb-1">Loan Management</h2>
+    <p class="text-muted small mb-0">Review loan applications, track EMIs, and manage disbursements.</p>
+  </div>
+</div>
+
+<div class="card border-0 shadow-sm rounded-5 overflow-hidden mb-4">
+  <div class="card-header bg-white py-4 px-4 border-0 border-bottom d-flex justify-content-between align-items-center">
+    <div class="input-group w-50">
+      <span class="input-group-text bg-light border-0"><i class="bi bi-search text-muted"></i></span>
+      <input type="text" class="form-control bg-light border-0" placeholder="Search by App ID or Customer Name...">
+    </div>
+    <select class="form-select bg-light border-0 w-25">
+      <option value="">All Statuses</option>
+      <option value="pending">Pending</option>
+      <option value="approved">Approved</option>
+      <option value="rejected">Rejected</option>
+    </select>
+  </div>
+  <div class="table-responsive">
+    <table class="table table-hover align-middle mb-0">
+      <thead class="bg-light text-muted small text-uppercase ls-widest">
+        <tr>
+          <th class="ps-4 py-3 border-0">Application ID & Customer</th>
+          <th class="py-3 border-0">Loan Type</th>
+          <th class="py-3 border-0">Amount Request</th>
+          <th class="py-3 border-0">Date</th>
+          <th class="py-3 border-0">Status</th>
+          <th class="py-3 text-end pe-4 border-0">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let loan of loans()">
+          <td class="ps-4 py-3">
+            <h6 class="fw-bold text-dark mb-1">{{loan.customerName}}</h6>
+            <span class="text-muted font-monospace small">#{{loan.id}}</span>
+          </td>
+          <td><span class="small fw-bold text-muted">{{loan.type}}</span></td>
+          <td><span class="fw-bold text-primary">${{loan.amount | number}}</span></td>
+          <td class="small text-muted">{{(loan.createdAt || loan.date) | date:'mediumDate'}}</td>
+          <td>
+            <span [class]="'badge rounded-pill px-3 py-2 small ' + (loan.status === 'approved' ? 'bg-success bg-opacity-10 text-success' : loan.status === 'rejected' ? 'bg-danger bg-opacity-10 text-danger' : 'bg-warning bg-opacity-10 text-warning')">
+              {{loan.status | titlecase}}
+            </span>
+          </td>
+          <td class="text-end pe-4">
+            <div class="d-flex gap-2 justify-content-end" *ngIf="loan.status === 'pending'">
+              <button class="btn btn-success btn-sm rounded-pill px-3 fw-bold" (click)="approveLoan(loan.id)">Approve</button>
+              <button class="btn btn-danger btn-sm rounded-pill px-3 fw-bold" (click)="rejectLoan(loan.id)">Reject</button>
+            </div>
+            <button *ngIf="loan.status !== 'pending'" class="btn btn-light btn-sm rounded-pill px-3 fw-bold text-primary shadow-sm border">Details</button>
+          </td>
+        </tr>
+        <tr *ngIf="loans().length === 0">
+          <td colspan="6" class="text-center py-5 text-muted small">No loan applications found.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

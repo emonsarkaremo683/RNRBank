@@ -1,0 +1,109 @@
+<div class="offcanvas-lg offcanvas-start bg-dark text-white border-end shadow d-flex flex-column overflow-y-auto" id="adminSidebar" style="width: 280px; min-height: 100vh;">
+  <div class="p-4 d-flex align-items-center gap-3 border-bottom border-secondary border-opacity-25" style="position: sticky; top: 0; background: #212529; z-index: 10;">
+    <div class="bg-primary rounded-3 p-2">
+      <i class="bi bi-bank2 fs-4 text-white"></i>
+    </div>
+    <div>
+      <h5 class="fw-bold mb-0">RNR <span class="text-warning">Bank</span></h5>
+      <span class="small text-muted text-uppercase fw-bold ls-widest" style="font-size: 0.65rem;">Enterprise Admin</span>
+    </div>
+  </div>
+
+  <div class="p-3">
+    <h6 class="text-muted small text-uppercase fw-bold ls-widest px-3 mb-3">Main Navigation</h6>
+    <ul class="nav flex-column gap-1">
+      <li class="nav-item">
+        <a routerLink="/admin/dashboard" routerLinkActive="bg-primary text-white" class="nav-link text-white-50 p-3 rounded-3 d-flex align-items-center gap-3 transition-all hover-white">
+          <i class="bi bi-speedometer2 fs-5"></i>
+          <span class="fw-bold">Dashboard</span>
+        </a>
+      </li>
+      <li class="nav-item" *ngIf="hasRole('ADMIN') || hasRole('MANAGER')">
+        <a routerLink="/admin/branches" routerLinkActive="bg-primary text-white" class="nav-link text-white-50 p-3 rounded-3 d-flex align-items-center gap-3 transition-all hover-white">
+          <i class="bi bi-diagram-3 fs-5"></i>
+          <span class="fw-bold">Branches</span>
+        </a>
+      </li>
+      <li class="nav-item" *ngIf="hasRole('ADMIN')">
+        <a routerLink="/admin/employees" routerLinkActive="bg-primary text-white" class="nav-link text-white-50 p-3 rounded-3 d-flex align-items-center gap-3 transition-all hover-white">
+          <i class="bi bi-people fs-5"></i>
+          <span class="fw-bold">Employees</span>
+        </a>
+      </li>
+      <li class="nav-item" *ngIf="hasRole('ADMIN') || hasRole('MANAGER')">
+        <a routerLink="/admin/customers" routerLinkActive="bg-primary text-white" class="nav-link text-white-50 p-3 rounded-3 d-flex align-items-center gap-3 transition-all hover-white">
+          <i class="bi bi-person-badge fs-5"></i>
+          <span class="fw-bold">Customers</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a routerLink="/admin/transactions" routerLinkActive="bg-primary text-white" class="nav-link text-white-50 p-3 rounded-3 d-flex align-items-center gap-3 transition-all hover-white">
+          <i class="bi bi-cash-stack fs-5"></i>
+          <span class="fw-bold">Transactions</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a routerLink="/admin/hrm" routerLinkActive="bg-primary text-white" class="nav-link text-white-50 p-3 rounded-3 d-flex align-items-center gap-3 transition-all hover-white">
+          <i class="bi bi-people-fill fs-5"></i>
+          <span class="fw-bold">HRM & Payroll</span>
+        </a>
+      </li>
+    </ul>
+
+    <h6 class="text-muted small text-uppercase fw-bold ls-widest px-3 mt-5 mb-3">Modular Management</h6>
+    <ul class="nav flex-column gap-1">
+       <li class="nav-item" *ngIf="hasRole('ADMIN') || hasRole('MANAGER')">
+        <a routerLink="/admin/kyc" routerLinkActive="bg-primary text-white" class="nav-link text-white-50 p-3 rounded-3 d-flex align-items-center gap-3 transition-all hover-white">
+          <i class="bi bi-shield-check fs-5"></i>
+          <span class="fw-bold">KYC Control</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a routerLink="/admin/loans" routerLinkActive="bg-primary text-white" class="nav-link text-white-50 p-3 rounded-3 d-flex align-items-center gap-3 transition-all hover-white">
+          <i class="bi bi-wallet2 fs-5"></i>
+          <span class="fw-bold">Loan Requests</span>
+        </a>
+      </li>
+      <li class="nav-item" *ngIf="hasRole('ADMIN') || hasRole('MANAGER')">
+        <a routerLink="/admin/atm" routerLinkActive="bg-primary text-white" class="nav-link text-white-50 p-3 rounded-3 d-flex align-items-center gap-3 transition-all hover-white">
+          <i class="bi bi-cash fs-5"></i>
+          <span class="fw-bold">ATM Booths</span>
+        </a>
+      </li>
+       <li class="nav-item">
+        <a routerLink="/admin/cards" routerLinkActive="bg-primary text-white" class="nav-link text-white-50 p-3 rounded-3 d-flex align-items-center gap-3 transition-all hover-white">
+          <i class="bi bi-credit-card fs-5"></i>
+          <span class="fw-bold">Card Center</span>
+        </a>
+      </li>
+    </ul>
+
+    <h6 class="text-muted small text-uppercase fw-bold ls-widest px-3 mt-5 mb-3" *ngIf="hasRole('ADMIN')">System & Analytics</h6>
+    <ul class="nav flex-column gap-1" *ngIf="hasRole('ADMIN')">
+      <li class="nav-item">
+        <a routerLink="/admin/reports" routerLinkActive="bg-primary text-white" class="nav-link text-white-50 p-3 rounded-3 d-flex align-items-center gap-3 transition-all hover-white">
+          <i class="bi bi-file-earmark-bar-graph fs-5"></i>
+          <span class="fw-bold">Reports</span>
+        </a>
+      </li>
+       <li class="nav-item">
+        <a routerLink="/security/audit-logs" routerLinkActive="bg-primary text-white" class="nav-link text-white-50 p-3 rounded-3 d-flex align-items-center gap-3 transition-all hover-white">
+          <i class="bi bi-journal-text fs-5"></i>
+          <span class="fw-bold">Audit Logs</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a routerLink="/admin/settings" routerLinkActive="bg-primary text-white" class="nav-link text-white-50 p-3 rounded-3 d-flex align-items-center gap-3 transition-all hover-white">
+          <i class="bi bi-gear fs-5"></i>
+          <span class="fw-bold">Settings</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <div class="mt-auto p-4 border-top border-secondary border-opacity-25 text-center" style="position: sticky; bottom: 0; background: #212529; z-index: 10;">
+     <button class="btn btn-outline-danger w-100 rounded-pill fw-bold" (click)="logout()">
+       <i class="bi bi-box-arrow-left me-2"></i> Secure Logout
+     </button>
+  </div>
+</div>
