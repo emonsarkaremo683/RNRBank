@@ -331,6 +331,17 @@
       "currency": "BDT",
       "status": "active",
       "openedAt": "2023-06-12T11:49:26.984Z"
+    },
+    {
+      "accountTypeId": "AT-001",
+      "currency": "USD",
+      "initialDeposit": 10000,
+      "customerId": "CUST-001",
+      "accountNumber": "RN-2164090859",
+      "balance": 0,
+      "status": "pending",
+      "createdAt": "2026-05-16T13:32:23.960Z",
+      "id": "_NSQg7Us6Fo"
     }
   ],
   "transactions": [

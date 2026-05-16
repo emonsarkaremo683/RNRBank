@@ -1,7 +1,7 @@
 import { Injectable, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { Observable, tap, of, map, forkJoin } from 'rxjs';
+import { Observable, tap, of, map, forkJoin, switchMap } from 'rxjs';
 import { User, Role, Permission, AuthResponse } from '../models/auth.models';
 
 @Injectable({
@@ -40,12 +40,10 @@ export class AuthService {
   }
 
   login(credentials: any): Observable<AuthResponse> {
-    // For JSON Server, we'll simulate it by fetching the user by email
     return this.http.get<User[]>(`${this.apiUrl}/users?email=${credentials.email}`).pipe(
       map(users => {
         if (users.length > 0) {
           const user = users[0];
-          // Basic password check (in a real app, this is done server-side)
           if ((user as any).password === credentials.password) {
             return { token: 'mock-jwt-token', user };
           }
@@ -53,37 +51,39 @@ export class AuthService {
         }
         throw new Error('User not found');
       }),
-      tap(response => this.handleAuthSuccess(response))
+      switchMap(response => {
+        const user = response.user;
+        const requests: any = {
+          role: this.http.get<Role>(`${this.apiUrl}/roles/${user.roleId}`),
+          perms: this.fetchPermissions(user.roleId)
+        };
+
+        if (user.employeeId) {
+          requests.employee = this.http.get<any>(`${this.apiUrl}/employees/${user.employeeId}`);
+        }
+
+        return forkJoin(requests).pipe(
+          map((results: any) => {
+            user.role = results.role.name;
+            if (results.employee) {
+              user.branchId = results.employee.branchId;
+            }
+            
+            // Set state
+            this.currentUser.set(user);
+            this.isAuthenticated.set(true);
+            this.userPermissions.set(results.perms);
+            
+            // Persist
+            localStorage.setItem('rnr_token', response.token);
+            localStorage.setItem('rnr_user', JSON.stringify(user));
+            localStorage.setItem('rnr_perms', JSON.stringify(results.perms));
+            
+            return response;
+          })
+        );
+      })
     );
-  }
-
-  private handleAuthSuccess(response: AuthResponse) {
-    const user = response.user;
-    
-    // Fetch role details, permissions, and employee info
-    const requests: any = {
-      role: this.http.get<Role>(`${this.apiUrl}/roles/${user.roleId}`),
-      perms: this.fetchPermissions(user.roleId)
-    };
-
-    if (user.employeeId) {
-      requests.employee = this.http.get<any>(`${this.apiUrl}/employees/${user.employeeId}`);
-    }
-
-    forkJoin(requests).subscribe((results: any) => {
-      user.role = results.role.name;
-      if (results.employee) {
-        user.branchId = results.employee.branchId;
-      }
-      
-      this.currentUser.set(user);
-      this.isAuthenticated.set(true);
-      this.userPermissions.set(results.perms);
-      
-      localStorage.setItem('rnr_token', response.token);
-      localStorage.setItem('rnr_user', JSON.stringify(user));
-      localStorage.setItem('rnr_perms', JSON.stringify(results.perms));
-    });
   }
 
   private fetchPermissions(roleId: string): Observable<string[]> {
