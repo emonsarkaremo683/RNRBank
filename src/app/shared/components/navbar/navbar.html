@@ -1,85 +1,284 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top shadow-sm py-3">
-  <div class="container">
-    <a class="navbar-brand fw-bold d-flex align-items-center" routerLink="/">
-      <i class="bi bi-bank2 me-2 fs-3"></i>
-      <span>RNR<span class="text-warning">Bank</span></span>
+<!-- Enterprise Banking Navbar -->
+<nav class="navbar navbar-expand-lg sticky-top shadow-sm" id="mainNavbar" style="background: #ffffff; border-bottom: 3px solid #0a3d91;">
+  <div class="container-xl">
+
+    <!-- Logo -->
+    <a class="navbar-brand d-flex align-items-center gap-2 me-4" routerLink="/">
+      <div class="brand-icon">
+        <i class="bi bi-bank2"></i>
+      </div>
+      <div class="brand-text">
+        <span class="brand-name">RNR<span class="brand-accent">Bank</span></span>
+        <span class="brand-tagline">Enterprise Banking</span>
+      </div>
     </a>
-    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
+
+    <!-- Mobile Toggle -->
+    <button class="navbar-toggler border-0 p-2" type="button"
+            data-bs-toggle="offcanvas" data-bs-target="#mobileNavOffcanvas"
+            aria-controls="mobileNavOffcanvas" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon" style="filter: invert(20%) sepia(100%) saturate(1000%) hue-rotate(200deg);"></span>
     </button>
-    <div class="collapse navbar-collapse" id="mainNavbar">
-      <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center">
-        <li class="nav-item mx-2">
-          <a class="nav-link active" aria-current="page" routerLink="/">Home</a>
-        </li>
-        <li class="nav-item dropdown mx-2">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Services
+
+    <!-- Desktop Nav -->
+    <div class="collapse navbar-collapse" id="desktopNav">
+      <ul class="navbar-nav me-auto align-items-lg-center gap-1">
+
+        <li class="nav-item">
+          <a class="nav-link fw-semibold px-3" routerLink="/" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:true}">
+            <i class="bi bi-house-door me-1"></i>Home
           </a>
-          <div class="dropdown-menu dropdown-menu-end shadow border-0 p-4" style="min-width: 600px;">
-            <div class="row">
+        </li>
+
+        <!-- Services Mega Dropdown -->
+        <li class="nav-item dropdown">
+          <a class="nav-link fw-semibold px-3 dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
+            <i class="bi bi-grid me-1"></i>Services
+          </a>
+          <div class="dropdown-menu mega-menu shadow-lg border-0 p-0" style="min-width: 720px;">
+            <div class="mega-menu-header px-4 py-3">
+              <span class="text-white fw-bold">Our Banking Services</span>
+              <small class="text-white opacity-75 ms-2">Complete financial solutions</small>
+            </div>
+            <div class="row g-0 p-4">
               <div class="col-md-4">
-                <h6 class="dropdown-header text-uppercase fw-bold text-primary px-0 mb-3">Accounts</h6>
-                <a class="dropdown-item py-2 px-0 d-flex align-items-center" routerLink="/services/savings">
-                  <i class="bi bi-piggy-bank me-2 text-primary"></i> Savings Account
+                <h6 class="mega-section-title">Accounts</h6>
+                <a class="mega-item" routerLink="/services/savings">
+                  <div class="mega-icon bg-primary bg-opacity-10"><i class="bi bi-piggy-bank text-primary"></i></div>
+                  <div><strong>Savings Account</strong><br><small class="text-muted">High-yield savings</small></div>
                 </a>
-                <a class="dropdown-item py-2 px-0 d-flex align-items-center" routerLink="/services/current">
-                  <i class="bi bi-cash-stack me-2 text-primary"></i> Current Account
+                <a class="mega-item" routerLink="/services/current">
+                  <div class="mega-icon bg-success bg-opacity-10"><i class="bi bi-cash-stack text-success"></i></div>
+                  <div><strong>Current Account</strong><br><small class="text-muted">Business transactions</small></div>
                 </a>
-                <a class="dropdown-item py-2 px-0 d-flex align-items-center" routerLink="/services/business">
-                  <i class="bi bi-briefcase me-2 text-primary"></i> Business Banking
-                </a>
-              </div>
-              <div class="col-md-4 border-start">
-                <h6 class="dropdown-header text-uppercase fw-bold text-primary px-0 mb-3">Loans</h6>
-                <a class="dropdown-item py-2 px-0 d-flex align-items-center" routerLink="/services/loans/personal">
-                  <i class="bi bi-person-check me-2 text-primary"></i> Personal Loan
-                </a>
-                <a class="dropdown-item py-2 px-0 d-flex align-items-center" routerLink="/services/loans/home">
-                  <i class="bi bi-house-door me-2 text-primary"></i> Home Loan
-                </a>
-                <a class="dropdown-item py-2 px-0 d-flex align-items-center" routerLink="/services/loans/car">
-                  <i class="bi bi-car-front me-2 text-primary"></i> Car Loan
+                <a class="mega-item" routerLink="/services">
+                  <div class="mega-icon bg-warning bg-opacity-10"><i class="bi bi-mortarboard text-warning"></i></div>
+                  <div><strong>Student Account</strong><br><small class="text-muted">Youth banking</small></div>
                 </a>
               </div>
               <div class="col-md-4 border-start">
-                <h6 class="dropdown-header text-uppercase fw-bold text-primary px-0 mb-3">Digital</h6>
-                <a class="dropdown-item py-2 px-0 d-flex align-items-center" routerLink="/services/mobile-banking">
-                  <i class="bi bi-phone me-2 text-primary"></i> Mobile Banking
+                <h6 class="mega-section-title">Loans</h6>
+                <a class="mega-item" routerLink="/services/loans/personal">
+                  <div class="mega-icon bg-danger bg-opacity-10"><i class="bi bi-person-check text-danger"></i></div>
+                  <div><strong>Personal Loan</strong><br><small class="text-muted">Up to ৳50 Lakh</small></div>
                 </a>
-                <a class="dropdown-item py-2 px-0 d-flex align-items-center" routerLink="/services/cards">
-                  <i class="bi bi-credit-card me-2 text-primary"></i> Card Services
+                <a class="mega-item" routerLink="/services/loans/home">
+                  <div class="mega-icon bg-primary bg-opacity-10"><i class="bi bi-house-door text-primary"></i></div>
+                  <div><strong>Home Loan</strong><br><small class="text-muted">Dream home finance</small></div>
                 </a>
-                <a class="dropdown-item py-2 px-0 d-flex align-items-center" routerLink="/services/forex">
-                  <i class="bi bi-currency-exchange me-2 text-primary"></i> Forex
+                <a class="mega-item" routerLink="/services/loans/car">
+                  <div class="mega-icon bg-info bg-opacity-10"><i class="bi bi-car-front text-info"></i></div>
+                  <div><strong>Car Loan</strong><br><small class="text-muted">Auto finance</small></div>
+                </a>
+              </div>
+              <div class="col-md-4 border-start">
+                <h6 class="mega-section-title">Digital</h6>
+                <a class="mega-item" routerLink="/services/mobile-banking">
+                  <div class="mega-icon bg-success bg-opacity-10"><i class="bi bi-phone text-success"></i></div>
+                  <div><strong>Mobile Banking</strong><br><small class="text-muted">Bank anywhere</small></div>
+                </a>
+                <a class="mega-item" routerLink="/services/cards">
+                  <div class="mega-icon bg-warning bg-opacity-10"><i class="bi bi-credit-card text-warning"></i></div>
+                  <div><strong>Cards</strong><br><small class="text-muted">Debit & credit cards</small></div>
+                </a>
+                <a class="mega-item" routerLink="/services/forex">
+                  <div class="mega-icon bg-primary bg-opacity-10"><i class="bi bi-currency-exchange text-primary"></i></div>
+                  <div><strong>Forex</strong><br><small class="text-muted">Currency exchange</small></div>
                 </a>
               </div>
             </div>
           </div>
         </li>
-        <li class="nav-item mx-2">
-          <a class="nav-link" routerLink="/about">About Us</a>
-        </li>
-        <li class="nav-item mx-2">
-          <a class="nav-link" routerLink="/investors">Investors</a>
-        </li>
-        <li class="nav-item mx-2">
-          <a class="nav-link" routerLink="/contact">Contact</a>
-        </li>
-        <li class="nav-item ms-lg-3">
-          <a *ngIf="!isAuthenticated()" class="btn btn-warning fw-bold px-4 rounded-pill shadow-sm" routerLink="/auth/login">
-            <i class="bi bi-lock-fill me-1"></i> Login
+
+        <!-- Accounts Dropdown -->
+        <li class="nav-item dropdown">
+          <a class="nav-link fw-semibold px-3 dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="bi bi-wallet2 me-1"></i>Accounts
           </a>
-          <a *ngIf="isAuthenticated()" class="btn btn-warning fw-bold px-4 rounded-pill shadow-sm" [routerLink]="dashboardLink">
-            <i class="bi bi-speedometer2 me-1"></i> Dashboard
+          <ul class="dropdown-menu shadow border-0 mt-1" style="min-width: 220px;">
+            <li><a class="dropdown-item py-2" routerLink="/services/savings"><i class="bi bi-piggy-bank me-2 text-primary"></i>Savings Account</a></li>
+            <li><a class="dropdown-item py-2" routerLink="/services/current"><i class="bi bi-cash-stack me-2 text-primary"></i>Current Account</a></li>
+            <li><a class="dropdown-item py-2" routerLink="/services"><i class="bi bi-mortarboard me-2 text-primary"></i>Student Account</a></li>
+            <li><a class="dropdown-item py-2" routerLink="/services"><i class="bi bi-briefcase me-2 text-primary"></i>Business Account</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item py-2" routerLink="/auth/register"><i class="bi bi-plus-circle me-2 text-success"></i>Open Account</a></li>
+          </ul>
+        </li>
+
+        <!-- Loans Dropdown -->
+        <li class="nav-item dropdown">
+          <a class="nav-link fw-semibold px-3 dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="bi bi-cash me-1"></i>Loans
+          </a>
+          <ul class="dropdown-menu shadow border-0 mt-1" style="min-width: 220px;">
+            <li><a class="dropdown-item py-2" routerLink="/services/loans/personal"><i class="bi bi-person-check me-2 text-primary"></i>Personal Loan</a></li>
+            <li><a class="dropdown-item py-2" routerLink="/services/loans/home"><i class="bi bi-house-door me-2 text-primary"></i>Home Loan</a></li>
+            <li><a class="dropdown-item py-2" routerLink="/services/loans/car"><i class="bi bi-car-front me-2 text-primary"></i>Car Loan</a></li>
+            <li><a class="dropdown-item py-2" routerLink="/services/loans/education"><i class="bi bi-mortarboard me-2 text-primary"></i>Education Loan</a></li>
+            <li><a class="dropdown-item py-2" routerLink="/services/loans/business"><i class="bi bi-briefcase me-2 text-primary"></i>Business Loan</a></li>
+          </ul>
+        </li>
+
+        <!-- Branches Dropdown -->
+        <li class="nav-item dropdown">
+          <a class="nav-link fw-semibold px-3 dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="bi bi-geo-alt me-1"></i>Branches
+          </a>
+          <ul class="dropdown-menu shadow border-0 mt-1" style="min-width: 220px;">
+            <li><a class="dropdown-item py-2" routerLink="/locators/branches"><i class="bi bi-building me-2 text-primary"></i>Branches</a></li>
+            <li><a class="dropdown-item py-2" routerLink="/locators/branches"><i class="bi bi-building-add me-2 text-primary"></i>Sub Branches</a></li>
+            <li><a class="dropdown-item py-2" routerLink="/locators/branches"><i class="bi bi-cash-coin me-2 text-primary"></i>ATM Booths</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item py-2" routerLink="/locators/branches"><i class="bi bi-map me-2 text-success"></i>Find Near Me</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link fw-semibold px-3" routerLink="/services/mobile-banking">
+            <i class="bi bi-phone me-1"></i>Mobile Banking
           </a>
         </li>
-        <li class="nav-item ms-lg-2 mt-2 mt-lg-0">
-          <a class="btn btn-outline-light fw-bold px-4 rounded-pill" routerLink="/auth/register">
-            Open Account
+
+        <!-- Support Dropdown -->
+        <li class="nav-item dropdown">
+          <a class="nav-link fw-semibold px-3 dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="bi bi-headset me-1"></i>Support
+          </a>
+          <ul class="dropdown-menu shadow border-0 mt-1" style="min-width: 220px;">
+            <li><a class="dropdown-item py-2" routerLink="/help"><i class="bi bi-question-circle me-2 text-primary"></i>Help Center</a></li>
+            <li><a class="dropdown-item py-2" routerLink="/faq"><i class="bi bi-chat-dots me-2 text-primary"></i>FAQ</a></li>
+            <li><a class="dropdown-item py-2" routerLink="/contact"><i class="bi bi-envelope me-2 text-primary"></i>Contact Us</a></li>
+            <li><a class="dropdown-item py-2" routerLink="/security"><i class="bi bi-shield-check me-2 text-primary"></i>Security Center</a></li>
+            <li><a class="dropdown-item py-2" routerLink="/careers"><i class="bi bi-people me-2 text-primary"></i>Careers</a></li>
+            <li><a class="dropdown-item py-2" routerLink="/news"><i class="bi bi-newspaper me-2 text-primary"></i>News</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link fw-semibold px-3" routerLink="/about">
+            <i class="bi bi-info-circle me-1"></i>About
           </a>
         </li>
+
       </ul>
+
+      <!-- CTA Buttons -->
+      <div class="d-flex align-items-center gap-2">
+        @if (!isAuthenticated()) {
+          <a routerLink="/auth/login" class="btn btn-outline-primary fw-semibold px-4 rounded-3">
+            <i class="bi bi-box-arrow-in-right me-1"></i>Login
+          </a>
+          <a routerLink="/auth/register" class="btn btn-primary fw-bold px-4 rounded-3 shadow-sm">
+            <i class="bi bi-person-plus me-1"></i>Open Account
+          </a>
+        } @else {
+          <a [routerLink]="dashboardLink" class="btn btn-primary fw-bold px-4 rounded-3 shadow-sm">
+            <i class="bi bi-speedometer2 me-1"></i>Dashboard
+          </a>
+        }
+      </div>
     </div>
   </div>
 </nav>
+
+<!-- Mobile Offcanvas -->
+<div class="offcanvas offcanvas-start" tabindex="-1" id="mobileNavOffcanvas" aria-labelledby="mobileNavLabel">
+  <div class="offcanvas-header" style="background: linear-gradient(135deg, #0a3d91, #1565c0);">
+    <div class="d-flex align-items-center gap-2">
+      <i class="bi bi-bank2 text-white fs-3"></i>
+      <div>
+        <div class="text-white fw-bold fs-5">RNR<span class="text-warning">Bank</span></div>
+        <div class="text-white opacity-75" style="font-size: 0.7rem;">Enterprise Banking</div>
+      </div>
+    </div>
+    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body px-0">
+    <ul class="nav flex-column">
+      <li class="nav-item border-bottom">
+        <a class="nav-link fw-semibold px-4 py-3 text-dark" routerLink="/" data-bs-dismiss="offcanvas">
+          <i class="bi bi-house-door me-2 text-primary"></i>Home
+        </a>
+      </li>
+      <li class="nav-item border-bottom">
+        <a class="nav-link fw-semibold px-4 py-3 text-dark" routerLink="/services" data-bs-dismiss="offcanvas">
+          <i class="bi bi-grid me-2 text-primary"></i>Services
+        </a>
+      </li>
+      <li class="nav-item border-bottom">
+        <a class="nav-link fw-semibold px-4 py-3 text-dark" routerLink="/services/savings" data-bs-dismiss="offcanvas">
+          <i class="bi bi-wallet2 me-2 text-primary"></i>Accounts
+        </a>
+      </li>
+      <li class="nav-item border-bottom">
+        <a class="nav-link fw-semibold px-4 py-3 text-dark" routerLink="/services/loans/personal" data-bs-dismiss="offcanvas">
+          <i class="bi bi-cash me-2 text-primary"></i>Loans
+        </a>
+      </li>
+      <li class="nav-item border-bottom">
+        <a class="nav-link fw-semibold px-4 py-3 text-dark" routerLink="/services/cards" data-bs-dismiss="offcanvas">
+          <i class="bi bi-credit-card me-2 text-primary"></i>Cards
+        </a>
+      </li>
+      <li class="nav-item border-bottom">
+        <a class="nav-link fw-semibold px-4 py-3 text-dark" routerLink="/services/mobile-banking" data-bs-dismiss="offcanvas">
+          <i class="bi bi-phone me-2 text-primary"></i>Mobile Banking
+        </a>
+      </li>
+      <li class="nav-item border-bottom">
+        <a class="nav-link fw-semibold px-4 py-3 text-dark" routerLink="/locators/branches" data-bs-dismiss="offcanvas">
+          <i class="bi bi-building me-2 text-primary"></i>Branches
+        </a>
+      </li>
+      <li class="nav-item border-bottom">
+        <a class="nav-link fw-semibold px-4 py-3 text-dark" routerLink="/locators/branches" data-bs-dismiss="offcanvas">
+          <i class="bi bi-building-add me-2 text-primary"></i>Sub Branches
+        </a>
+      </li>
+      <li class="nav-item border-bottom">
+        <a class="nav-link fw-semibold px-4 py-3 text-dark" routerLink="/locators/branches" data-bs-dismiss="offcanvas">
+          <i class="bi bi-cash-coin me-2 text-primary"></i>ATM Booths
+        </a>
+      </li>
+      <li class="nav-item border-bottom">
+        <a class="nav-link fw-semibold px-4 py-3 text-dark" routerLink="/security" data-bs-dismiss="offcanvas">
+          <i class="bi bi-shield-check me-2 text-primary"></i>Security
+        </a>
+      </li>
+      <li class="nav-item border-bottom">
+        <a class="nav-link fw-semibold px-4 py-3 text-dark" routerLink="/help" data-bs-dismiss="offcanvas">
+          <i class="bi bi-headset me-2 text-primary"></i>Support
+        </a>
+      </li>
+      <li class="nav-item border-bottom">
+        <a class="nav-link fw-semibold px-4 py-3 text-dark" routerLink="/careers" data-bs-dismiss="offcanvas">
+          <i class="bi bi-people me-2 text-primary"></i>Careers
+        </a>
+      </li>
+      <li class="nav-item border-bottom">
+        <a class="nav-link fw-semibold px-4 py-3 text-dark" routerLink="/news" data-bs-dismiss="offcanvas">
+          <i class="bi bi-newspaper me-2 text-primary"></i>News
+        </a>
+      </li>
+      <li class="nav-item border-bottom">
+        <a class="nav-link fw-semibold px-4 py-3 text-dark" routerLink="/contact" data-bs-dismiss="offcanvas">
+          <i class="bi bi-envelope me-2 text-primary"></i>Contact
+        </a>
+      </li>
+    </ul>
+    <div class="p-4 d-flex flex-column gap-3 mt-3">
+      @if (!isAuthenticated()) {
+        <a routerLink="/auth/login" class="btn btn-outline-primary fw-semibold rounded-3 py-2" data-bs-dismiss="offcanvas">
+          <i class="bi bi-box-arrow-in-right me-1"></i>Login
+        </a>
+        <a routerLink="/auth/register" class="btn btn-primary fw-bold rounded-3 py-2 shadow" data-bs-dismiss="offcanvas">
+          <i class="bi bi-person-plus me-1"></i>Open Account
+        </a>
+      } @else {
+        <a [routerLink]="dashboardLink" class="btn btn-primary fw-bold rounded-3 py-2 shadow" data-bs-dismiss="offcanvas">
+          <i class="bi bi-speedometer2 me-1"></i>Go to Dashboard
+        </a>
+      }
+    </div>
+  </div>
+</div>
